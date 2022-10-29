@@ -22,11 +22,15 @@ end
 ---@description Retrieves a package table stored at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.unserialise'.
 ---@param name string A valid name of a package.
 local function getPackageData(name)
-	local file1 = fs.open("/etc/unicorn/packages/installed/"..name, "r")
-	if file1 == nil then
+	if fs.exists("/etc/unicorn/packages/installed/"..name) then
+		local file1 = fs.open("/etc/unicorn/packages/installed/"..name, "r")
+		if file1 == nil then
+			return false
+		end
+		return textutils.unserialise(file1.readAll())
+	else
 		return false
 	end
-	return textutils.unserialise(file1.readAll())
 end
 
 ---@description Package provider for GitHub.com.
