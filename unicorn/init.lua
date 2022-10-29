@@ -1,0 +1,133 @@
+---@author Tomodachi94
+---@copyright Copyright (c) 2022, MIT License. A copy of the license should have been distributed with the program. If not, see https://tomodachi94.mit-license.org online.
+---@description A modular package manager.
+
+local unicorn = {}
+
+local util = dofile("/lib/unicorn/util.lua")
+
+-- better handling of globals with Lua diagnostics
+---@diagnostic disable:undefined-global
+local fs = fs
+local http = http
+local textutils = textutils
+---@diagnostic enable:undefined-global
+
+---@description Stores a package table at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.serialise'.
+---@param package_table table A valid package table.
+local function storePackageData(package_table)
+	util.fileWrite(textutils.serialise(package_table), "/etc/unicorn/packages/installed/"..package_table.name)
+end
+
+---@description Retrieves a package table stored at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.unserialise'.
+---@param name string A valid name of a package.
+local function getPackageData(name)
+	local file1 = fs.open("/etc/unicorn/packages/installed/"..name, "r")
+	if file1 == nil then
+		return false
+	end
+	return textutils.unserialise(file1.readAll())
+end
+
+---@description Package provider for GitHub.com.
+---@param package_table table table A valid package table
+local function install_github(package_table)
+	for k,v in pairs(package_table.instdat.filemaps) do
+		local http_data = util.smartHttp("https://raw.githubusercontent.com/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
+		util.fileWrite(http_data, v)
+	end
+end
+
+---@description Package provider for GitLab.com.
+---@param package_table table A valid package table
+local function install_gitlab(package_table)
+	for k,v in pairs(package_table.instdat.filemaps) do
+		local http_data = util.smartHttp("https://gitlab.com/raw/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
+		util.fileWrite(http_data, v)
+	end
+end
+
+---@description Package provider for Bitbucket.org.
+---@param package_table table A valid package table
+local function install_bitbucket(package_table)
+	for k,v in pairs(package_table.instdat.filemaps) do
+		local http_data = util.smartHttp("https://bitbucket.org/raw/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
+		util.fileWrite(http_data, v)
+	end
+end
+
+---@description Package provider for Devbin.dev.
+---@param package_table table A valid package table
+local function install_devbin(package_table)
+	for k,v in pairs(package_table.instdat.filemaps) do
+		local http_data = util.smartHttp("https://devbin.dev/raw/" .. k)
+		util.fileWrite(http_data, v)
+	end
+end
+
+---@description Package provider for Pastebin.com.
+---@param package_table table A valid package table
+local function install_pastebin(package_table)
+	for k,v in pairs(package_table.instdat.filemaps) do
+		local http_data = util.smartHttp("https://pastebin.com/raw/" .. k)
+		util.fileWrite(http_data, v)
+	end
+end
+
+---@description Package provider for GitHub Gists <gists.github.com>.
+---@param package_table table A valid package table
+local function install_gist(package_table)
+	-- this is really simple, only works predictably with a one-file gist.
+	for k,v in pairs(package_table.instdat.filemaps) do
+		-- uses source code repository-like names because a Gist is a repository technically :)
+		local http_data = util.smartHttp("https://gist.githubusercontent.com/" .. package_table.instdat.repo_owner .."/"..  package_table.instdat.repo_name .."/".. k .."/raw")
+		util.fileWrite(http_data, v)
+	end
+end
+
+---@description Installs a package from a package table.
+---@param package_table table A valid package table
+---@return boolean
+---@return table
+function unicorn.install(package_table)
+	if getPackageData(package_table.name) then
+		return true, getPackageData(package_table.name)
+	end
+	if package_table.pkgType == "com.github" then
+		install_github(package_table)
+	elseif package_table.pkgType == "com.github.gist" then
+		install_gist(package_table)
+	elseif package_table.pkgType == "com.gitlab" then
+		install_gitlab(package_table)
+	elseif package_table.pkgType == "org.bitbucket" then
+		install_bitbucket(package_table)
+	elseif package_table.pkgType == "com.pastebin" then
+		install_pastebin(package_table)
+	elseif package_table.pkgType == "dev.devbin" then
+		install_devbin(package_table)
+	else
+		if package_table.pkgType == nil then
+			error("The provided package does not have a valid package type. This is either not a package or something is wrong with the file.")
+		else
+			error("Package type " .. package_table.pkgType .. " is unknown. You are either missing the appropriate package type or something is wrong with the package.")
+		end
+	end
+	storePackageData(package_table)
+	return true, package_table
+end
+
+---@description Removes a package from the system.
+---@param package_name string The name of a package.
+---@return boolean
+function unicorn.uninstall(package_name)
+	local package_table = getPackageData(package_name)
+	for _,v in pairs(package_table.instdat.filemaps) do
+		fs.remove(v)
+	end
+	fs.remove("/etc/unicorn/installed/"..package_name)
+	print("Package "..package_name.." removed.")
+	return true
+end
+
+return unicorn
+
