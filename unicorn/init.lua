@@ -94,6 +94,13 @@ end
 ---@return boolean
 ---@return table
 function unicorn.install(package_table)
+	if package_table.rel and package_table.rel.depends then
+		for _,v in pairs(package_table.rel.depends) do
+			if not fs.exists("/etc/unicorn/packages/installed/"..v) then
+				error(package_table.name.." requires the "..v.." package. Aborting...")
+			end
+		end
+	end
 	if getPackageData(package_table.name) then
 		return true, getPackageData(package_table.name)
 	end
