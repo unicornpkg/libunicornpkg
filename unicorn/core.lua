@@ -3,8 +3,8 @@
 --- A modular package manager.
 
 local unicorn = {}
-
-local util = dofile("/lib/unicorn/util.lua")
+unicorn.core = {}
+unicorn.util = dofile("/lib/unicorn/util.lua")
 
 -- better handling of globals with Lua diagnostics
 -- @diagnostic disable:undefined-global
@@ -18,6 +18,11 @@ local textutils = textutils
 -- @return boolean
 local function storePackageData(package_table)
 	util.fileWrite(textutils.serialise(package_table), "/etc/unicorn/packages/installed/"..package_table.name)
+	if fs.exists("/etc/unicorn/packages/installed/"..package_table.name) then
+		return true
+	else
+		return false
+	end
 end
 
 --- Retrieves a package table stored at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.unserialise'.
@@ -96,7 +101,7 @@ end
 -- @param package_table table A valid package table
 -- @return boolean
 -- @return table
-function unicorn.install(package_table)
+function unicorn.core.install(package_table)
 	if package_table.rel and package_table.rel.depends then
 		for _,v in pairs(package_table.rel.depends) do
 			if not fs.exists("/etc/unicorn/packages/installed/"..v) then
@@ -133,7 +138,7 @@ end
 --- Removes a package from the system.
 -- @param package_name string The name of a package.
 -- @return boolean
-function unicorn.uninstall(package_name)
+function unicorn.core.uninstall(package_name)
 	local package_table = getPackageData(package_name)
 	for _,v in pairs(package_table.instdat.filemaps) do
 		fs.remove(v)
@@ -143,5 +148,5 @@ function unicorn.uninstall(package_name)
 	return true
 end
 
-return unicorn
+return unicorn.core
 
