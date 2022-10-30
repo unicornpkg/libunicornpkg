@@ -1,4 +1,8 @@
 --- Utility functions for use with unicornpkg.
+-- @author Tomodachi94
+-- @copyright Copyright (c) 2022, MIT License. A copy of the license should have been distributed with the program. If not, see https://tomodachi94.mit-license.org online.
+-- @module unicorn.util
+
 local unicorn = {}
 unicorn.util = {}
 
@@ -24,7 +28,7 @@ end
 -- @param sContent string The contents of the file to be written.
 -- @param sPath string The full path of the file to be written.
 function unicorn.util.fileWrite(sContent, sPath)
-	if sContent then -- Checking to make sure content is there, to prevent writing an empty file
+	if sContent then -- Checking to m @ake sure content is there, to prevent writing an empty file
 		local file1 = fs.open(sPath, "w")
 		file1.write(sContent)
 		file1.flush()

@@ -1,6 +1,7 @@
+--- A modular package manager.
 -- @author Tomodachi94
 -- @copyright Copyright (c) 2022, MIT License. A copy of the license should have been distributed with the program. If not, see https://tomodachi94.mit-license.org online.
---- A modular package manager.
+-- @module unicorn.core
 
 local unicorn = {}
 unicorn.core = {}
@@ -17,7 +18,7 @@ local textutils = textutils
 -- @param package_table table A valid package table.
 -- @return boolean
 local function storePackageData(package_table)
-	util.fileWrite(textutils.serialise(package_table), "/etc/unicorn/packages/installed/"..package_table.name)
+	unicorn.util.fileWrite(textutils.serialise(package_table), "/etc/unicorn/packages/installed/"..package_table.name)
 	if fs.exists("/etc/unicorn/packages/installed/"..package_table.name) then
 		return true
 	else
@@ -26,12 +27,11 @@ local function storePackageData(package_table)
 end
 
 --- Retrieves a package table stored at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.unserialise'.
--- @param name string A valid name of a package.
+-- @param package_name string A valid name of a package.
 -- @return table If the package table is present.
--- @return false If the package table is not present.
-local function getPackageData(name)
-	if fs.exists("/etc/unicorn/packages/installed/"..name) then
-		local file1 = fs.open("/etc/unicorn/packages/installed/"..name, "r")
+local function getPackageData(package_name)
+	if fs.exists("/etc/unicorn/packages/installed/"..package_name) then
+		local file1 = fs.open("/etc/unicorn/packages/installed/"..package_name, "r")
 		if file1 == nil then
 			return false
 		end
@@ -45,8 +45,8 @@ end
 -- @param package_table table A valid package table
 local function install_github(package_table)
 	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = util.smartHttp("https://raw.githubusercontent.com/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
-		util.fileWrite(http_data, v)
+		local http_data = unicorn.util.smartHttp("https://raw.githubusercontent.com/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
+		unicorn.util.fileWrite(http_data, v)
 	end
 end
 
@@ -54,8 +54,8 @@ end
 -- @param package_table table A valid package table
 local function install_gitlab(package_table)
 	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = util.smartHttp("https://gitlab.com/raw/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
-		util.fileWrite(http_data, v)
+		local http_data = unicorn.util.smartHttp("https://gitlab.com/raw/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
+		unicorn.util.fileWrite(http_data, v)
 	end
 end
 
@@ -63,8 +63,8 @@ end
 -- @param package_table table A valid package table
 local function install_bitbucket(package_table)
 	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = util.smartHttp("https://bitbucket.org/raw/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
-		util.fileWrite(http_data, v)
+		local http_data = unicorn.util.smartHttp("https://bitbucket.org/raw/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
+		unicorn.util.fileWrite(http_data, v)
 	end
 end
 
@@ -72,8 +72,8 @@ end
 -- @param package_table table A valid package table
 local function install_devbin(package_table)
 	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = util.smartHttp("https://devbin.dev/raw/" .. k)
-		util.fileWrite(http_data, v)
+		local http_data = unicorn.util.smartHttp("https://devbin.dev/raw/" .. k)
+		unicorn.util.fileWrite(http_data, v)
 	end
 end
 
@@ -81,8 +81,8 @@ end
 -- @param package_table table A valid package table
 local function install_pastebin(package_table)
 	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = util.smartHttp("https://pastebin.com/raw/" .. k)
-		util.fileWrite(http_data, v)
+		local http_data = unicorn.util.smartHttp("https://pastebin.com/raw/" .. k)
+		unicorn.util.fileWrite(http_data, v)
 	end
 end
 
@@ -92,8 +92,8 @@ local function install_gist(package_table)
 	-- this is really simple, only works predictably with a one-file gist.
 	for k,v in pairs(package_table.instdat.filemaps) do
 		-- uses source code repository-like names because a Gist is a repository technically :)
-		local http_data = util.smartHttp("https://gist.githubusercontent.com/" .. package_table.instdat.repo_owner .."/"..  package_table.instdat.repo_name .."/".. k .."/raw")
-		util.fileWrite(http_data, v)
+		local http_data = unicorn.util.smartHttp("https://gist.githubusercontent.com/" .. package_table.instdat.repo_owner .."/"..  package_table.instdat.repo_name .."/".. k .."/raw")
+		unicorn.util.fileWrite(http_data, v)
 	end
 end
 
