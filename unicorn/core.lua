@@ -102,6 +102,9 @@ end
 -- @return boolean
 -- @return table
 function unicorn.core.install(package_table)
+	if not package_table.unicornSpec then
+		error("This package is lacking the unicornSpec value. Installation was aborted as a precautionary measure.")
+	end
 	if package_table.rel and package_table.rel.depends then
 		for _,v in pairs(package_table.rel.depends) do
 			if not fs.exists("/etc/unicorn/packages/installed/"..v) then
