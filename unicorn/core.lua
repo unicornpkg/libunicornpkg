@@ -105,9 +105,6 @@ function unicorn.core.install(package_table)
 	if not package_table.unicornSpec then
 		error("This package is lacking the unicornSpec value. Installation was aborted as a precautionary measure.")
 	end
-	if unicorn.util.assert_table_and_key(package_table.script, "preinstall") then
-		package_table.script.preinstall()
-	end
 	if package_table.rel and package_table.rel.depends then
 		for _,v in pairs(package_table.rel.depends) do
 			if not fs.exists("/etc/unicorn/packages/installed/"..v) then
@@ -137,9 +134,6 @@ function unicorn.core.install(package_table)
 			error("Package type " .. package_table.pkgType .. " is unknown. You are either missing the appropriate package type or something is wrong with the package.")
 		end
 	end
-	if unicorn.util.assert_table_and_key(package_table.script, "postinstall") then
-		package_table.script.postinstall()
-	end
 	storePackageData(package_table)
 	return true, package_table
 end
@@ -149,16 +143,10 @@ end
 -- @return boolean
 function unicorn.core.uninstall(package_name)
 	local package_table = getPackageData(package_name)
-	if unicorn.util.assert_table_and_key(package_table.script, "preremove") then
-		package_table.script.preremove()
-	end
 	for _,v in pairs(package_table.instdat.filemaps) do
 		fs.remove(v)
 	end
 	fs.remove("/etc/unicorn/installed/"..package_name)
-	if unicorn.util.assert_table_and_key(package_table.script, "postremove") then
-		package_table.script.postremove()
-	end
 	print("Package "..package_name.." removed.")
 	return true
 end

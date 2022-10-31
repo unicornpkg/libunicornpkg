@@ -37,16 +37,4 @@ function unicorn.util.fileWrite(sContent, sPath)
 	end
 end
 
-function unicorn.util.assert_table_and_key(table, key)
-	if table then
-		if table.key then
-			return true
-		else
-			return false
-		end
-	else
-		return false
-	end
-end
-
 return unicorn.util
