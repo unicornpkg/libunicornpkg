@@ -131,10 +131,11 @@ function unicorn.core.install(package_table)
 		if package_table.pkgType == nil then
 			error("The provided package does not have a valid package type. This is either not a package or something is wrong with the file.")
 		else
-			error("Package type " .. package_table.pkgType .. " is unknown. You are either missing the appropriate package type or something is wrong with the package.")
+			error("Package type " .. package_table.pkgType .. " is unknown. You are either missing the appropriate package provider or something is wrong with the package.")
 		end
 	end
 	storePackageData(package_table)
+	print("Package "..package_table.name.." installed successfully.")
 	return true, package_table
 end
 
