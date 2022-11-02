@@ -41,62 +41,6 @@ local function getPackageData(package_name)
 	end
 end
 
---- Package provider for GitHub.com.
--- @param package_table table A valid package table
-local function install_github(package_table)
-	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = unicorn.util.smartHttp("https://raw.githubusercontent.com/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
-		unicorn.util.fileWrite(http_data, v)
-	end
-end
-
---- Package provider for GitLab.com.
--- @param package_table table A valid package table
-local function install_gitlab(package_table)
-	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = unicorn.util.smartHttp("https://gitlab.com/raw/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
-		unicorn.util.fileWrite(http_data, v)
-	end
-end
-
---- Package provider for Bitbucket.org.
--- @param package_table table A valid package table
-local function install_bitbucket(package_table)
-	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = unicorn.util.smartHttp("https://bitbucket.org/raw/" .. package_table.instdat.repo_owner .."/".. package_table.instdat.repo_name .."/".. package_table.instdat.repo_ref .."/".. k)
-		unicorn.util.fileWrite(http_data, v)
-	end
-end
-
---- Package provider for Devbin.dev.
--- @param package_table table A valid package table
-local function install_devbin(package_table)
-	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = unicorn.util.smartHttp("https://devbin.dev/raw/" .. k)
-		unicorn.util.fileWrite(http_data, v)
-	end
-end
-
---- Package provider for Pastebin.com.
--- @param package_table table A valid package table
-local function install_pastebin(package_table)
-	for k,v in pairs(package_table.instdat.filemaps) do
-		local http_data = unicorn.util.smartHttp("https://pastebin.com/raw/" .. k)
-		unicorn.util.fileWrite(http_data, v)
-	end
-end
-
---- Package provider for GitHub Gists <gists.github.com>.
--- @param package_table table A valid package table
-local function install_gist(package_table)
-	-- this is really simple, only works predictably with a one-file gist.
-	for k,v in pairs(package_table.instdat.filemaps) do
-		-- uses source code repository-like names because a Gist is a repository technically :)
-		local http_data = unicorn.util.smartHttp("https://gist.githubusercontent.com/" .. package_table.instdat.repo_owner .."/"..  package_table.instdat.repo_name .."/raw/"..package_table.instdat.repo_ref.."/"..k)
-		unicorn.util.fileWrite(http_data, v)
-	end
-end
-
 --- Installs a package from a package table.
 -- @param package_table table A valid package table
 -- @return boolean
@@ -115,25 +59,22 @@ function unicorn.core.install(package_table)
 	if getPackageData(package_table.name) then
 		return true, getPackageData(package_table.name)
 	end
-	if package_table.pkgType == "com.github" then
-		install_github(package_table)
-	elseif package_table.pkgType == "com.github.gist" then
-		install_gist(package_table)
-	elseif package_table.pkgType == "com.gitlab" then
-		install_gitlab(package_table)
-	elseif package_table.pkgType == "org.bitbucket" then
-		install_bitbucket(package_table)
-	elseif package_table.pkgType == "com.pastebin" then
-		install_pastebin(package_table)
-	elseif package_table.pkgType == "dev.devbin" then
-		install_devbin(package_table)
-	else
+	local match
+	for _,v in pairs(fs.list("/lib/unicorn/provider/")) do -- custom provider support
+		local provider_name = string.gsub(v, ".lua", "")
+		if package_table.pkgType == provider_name then
+			match = true
+			local provider = dofile("/lib/unicorn/provider/"..v)
+			provider(package_table)
+		end
+	end
+	if not match then
 		if package_table.pkgType == nil then
 			error("The provided package does not have a valid package type. This is either not a package or something is wrong with the file.")
 		else
-			error("Package type " .. package_table.pkgType .. " is unknown. You are either missing the appropriate package provider or something is wrong with the package.")
-		end
+			error("Package provider " .. package_table.pkgType .. " is unknown. You are either missing the appropriate package provider or something is wrong with the package.")
 	end
+end
 	storePackageData(package_table)
 	print("Package "..package_table.name.." installed successfully.")
 	return true, package_table
