@@ -14,6 +14,11 @@ local http = http
 local textutils = textutils
 -- @diagnostic enable:undefined-global
 
+if _HOST:find("Recrafted") then -- Recrafted support
+	fs = require("fs")
+	textutils = require("textutils")
+end
+
 --- Stores a package table at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.serialise'.
 -- @param package_table table A valid package table.
 -- @return boolean

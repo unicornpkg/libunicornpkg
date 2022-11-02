@@ -6,6 +6,13 @@
 local unicorn = {}
 unicorn.util = {}
 
+local http = http
+local fs = fs
+if _HOST:find("Recrafted") then -- Recrafted support
+	http = require("http")
+	fs = require("fs")
+end
+
 -- @description Returns contents of HTTP(S) request
 -- @param sUrl string A valid HTTP or HTTPS URL.
 function unicorn.util.smartHttp(sUrl)
