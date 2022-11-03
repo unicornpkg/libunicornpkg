@@ -26,8 +26,7 @@ function unicorn.util.smartHttp(sUrl)
 		response.close()
 		return sResponse
 	else
-		error("HTTP failed: "..httpError)
-		return false
+		return false, httpError
 	end
 end
 
