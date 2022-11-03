@@ -1,6 +1,5 @@
 --- Utility functions for use with unicornpkg.
 -- @author Tomodachi94
--- @copyright Copyright (c) 2022, MIT License. A copy of the license should have been distributed with the program. If not, see https://tomodachi94.mit-license.org online.
 -- @module unicorn.util
 
 local unicorn = {}
