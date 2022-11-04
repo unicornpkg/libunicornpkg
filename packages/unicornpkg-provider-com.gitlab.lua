@@ -8,6 +8,7 @@ package.instdat.repo_name = "unicornpkg"
 package.instdat.repo_ref = "v0.1.0"
 package.instdat.filemaps = {}
 package.instdat.filemaps["unicorn/provider/com.gitlab.lua"] = "/lib/unicorn/provider/com.gitlab.lua"
+package.rel = {}
 package.rel.depends = {
 	"unicornpkg"
 }

@@ -8,6 +8,7 @@ package.instdat.repo_name = "unicornpkg"
 package.instdat.repo_ref = "v0.1.0"
 package.instdat.filemaps = {}
 package.instdat.filemaps["unicorn/provider/org.bitbucket.lua"] = "/lib/unicorn/provider/org.bitbucket.lua"
+package.rel = {}
 package.rel.depends = {
 	"unicornpkg"
 }
