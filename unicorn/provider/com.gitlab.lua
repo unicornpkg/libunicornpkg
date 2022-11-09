@@ -8,3 +8,5 @@ local function install_gitlab(package_table)
 		unicorn.util.fileWrite(http_data, v)
 	end
 end
+
+return install_gitlab
