@@ -9,7 +9,6 @@ unicorn.util = dofile("/lib/unicorn/util.lua")
 -- better handling of globals with Lua diagnostics
 -- @diagnostic disable:undefined-global
 local fs = fs
-local http = http
 local textutils = textutils
 -- @diagnostic enable:undefined-global
 
