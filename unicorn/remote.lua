@@ -13,7 +13,7 @@ function unicorn.remote.install(package_name)
 		local v = v:gsub("https://", "") -- have to remove the https:// prefix because fs.combine does weird stuff with it if it's left in
 		local v = fs.combine(v, package_name .. ".lua")
 		v = "https://" .. v
-		response, httpError = unicorn.util.smartHttp(v)
+		local response, httpError = unicorn.util.smartHttp(v)
 		if httpError then
 			if httpError == "Not Found" then
 				-- do nothing, continue with the loop
