@@ -18,23 +18,27 @@ if _HOST:find("Recrafted") then -- Recrafted support
 	textutils = require("textutils")
 end
 
+local function is_installed(package_name)
+		if fs.exists("/etc/unicorn/packages/installed/"..package_name) then
+			return true
+		else
+			return false
+		end
+end
+
 --- Stores a package table at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.serialise'.
 -- @param package_table table A valid package table.
 -- @return boolean
 local function storePackageData(package_table)
 	unicorn.util.fileWrite(textutils.serialise(package_table), "/etc/unicorn/packages/installed/"..package_table.name)
-	if fs.exists("/etc/unicorn/packages/installed/"..package_table.name) then
-		return true
-	else
-		return false
-	end
+	return is_installed(package_table.name)
 end
 
 --- Retrieves a package table stored at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.unserialise'.
 -- @param package_name string A valid name of a package.
 -- @return table If the package table is present.
 local function getPackageData(package_name)
-	if fs.exists("/etc/unicorn/packages/installed/"..package_name) then
+	if is_installed(package_name) then
 		local file1 = fs.open("/etc/unicorn/packages/installed/"..package_name, "r")
 		if file1 == nil then
 			return false
@@ -55,7 +59,7 @@ function unicorn.core.install(package_table)
 	end
 	if package_table.rel and package_table.rel.depends then
 		for _,v in pairs(package_table.rel.depends) do
-			if not fs.exists("/etc/unicorn/packages/installed/"..v) then
+			if not is_installed(v) then
 				error(package_table.name.." requires the "..v.." package. Aborting...")
 			end
 		end
