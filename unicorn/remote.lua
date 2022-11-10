@@ -15,9 +15,7 @@ function unicorn.remote.install(package_name)
 		v = "https://" .. v
 		local response, httpError = unicorn.util.smartHttp(v)
 		if httpError then
-			if httpError == "Not Found" then
-				-- do nothing, continue with the loop
-			else
+			if not httpError == "Not Found" then
 				error("HTTP request to " .. v .. " failed with error " .. httpError)
 			end
 		end

@@ -1,5 +1,4 @@
 --- A modular package manager.
--- @author Tomodachi94
 -- @module unicorn.core
 
 local unicorn = {}
