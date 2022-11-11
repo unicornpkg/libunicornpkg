@@ -4,6 +4,7 @@
 local unicorn = {}
 unicorn.core = {}
 unicorn.util = dofile("/lib/unicorn/util.lua")
+unicorn.semver = dofile("/lib/unicorn/semver.lua")
 
 -- better handling of globals with Lua diagnostics
 -- @diagnostic disable:undefined-global
@@ -59,11 +60,20 @@ function unicorn.core.install(package_table)
 			assert(is_installed(v), package_table.name .. " requires the " .. v .. " package. Installation aborted.")
 		end
 	end
-	
+
 	-- skips installation if the package is already installed
 	-- TODO: if we add package versions, this is where that logic should go
-	if getPackageData(package_table.name) then
-		return true, getPackageData(package_table.name)
+	local existing_package = getPackageData(package_table.name)
+	if existing_package then
+		if existing_package.version and package_table.version then
+			if unicorn.semver(existing_package.version) == unicorn.semver(package_table.version) then
+				error("Same version of package is installed. Uninstall the currently installed package if you want to override.")
+			elseif unicorn.semver(existing_package.version) > unicorn.semver(package_table.version) then
+				error("Newer version of package is installed. Uninstall the current package if you want to override.")
+			elseif unicorn.semver(existing_package.version) < unicorn.semver(package_table.version) then
+				unicorn.core.uninstall(existing_package.name)
+			end
+		end
 	end
 	
 	-- modular provider loading and usage 
@@ -95,9 +105,9 @@ end
 function unicorn.core.uninstall(package_name)
 	local package_table = getPackageData(package_name)
 	for _, v in pairs(package_table.instdat.filemaps) do
-		fs.remove(v)
+		fs.delete(v)
 	end
-	fs.remove("/etc/unicorn/installed/" .. package_name)
+	fs.delete("/etc/unicorn/installed/" .. package_name)
 	print("Package " .. package_name .. " removed.")
 	return true
 end
