@@ -52,19 +52,21 @@ end
 -- @return boolean
 -- @return table
 function unicorn.core.install(package_table)
-	if not package_table.unicornSpec then
-		error("This package is lacking the unicornSpec value. Installation was aborted as a precautionary measure.")
-	end
+	-- assertion blocks
+	assert(package_table.unicornSpec, "This package is lacking the unicornSpec value. Installation was aborted as a precautionary measure.")
 	if package_table.rel and package_table.rel.depends then
 		for _, v in pairs(package_table.rel.depends) do
-			if not is_installed(v) then
-				error(package_table.name .. " requires the " .. v .. " package. Aborting...")
-			end
+			assert(is_installed(v), package_table.name .. " requires the " .. v .. " package. Installation aborted.")
 		end
 	end
+	
+	-- skips installation if the package is already installed
+	-- TODO: if we add package versions, this is where that logic should go
 	if getPackageData(package_table.name) then
 		return true, getPackageData(package_table.name)
 	end
+	
+	-- modular provider loading and usage 
 	local match
 	for _, v in pairs(fs.list("/lib/unicorn/provider/")) do -- custom provider support
 		local provider_name = string.gsub(v, ".lua", "")
@@ -74,13 +76,14 @@ function unicorn.core.install(package_table)
 			provider(package_table)
 		end
 	end
+
+	-- catch unknown providers
 	if not match then
-		if package_table.pkgType == nil then
-			error("The provided package does not have a valid package type. This is either not a package or something is wrong with the file.")
-		else
+		if not package_table.pkgType == nil then
 			error("Package provider " .. package_table.pkgType .. " is unknown. You are either missing the appropriate package provider or something is wrong with the package.")
+		end
 	end
-end
+	-- finish up
 	storePackageData(package_table)
 	print("Package " .. package_table.name .. " installed successfully.")
 	return true, package_table
