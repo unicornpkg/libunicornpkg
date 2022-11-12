@@ -54,6 +54,7 @@ end
 -- @return table
 function unicorn.core.install(package_table)
 	-- assertion blocks
+	assert(package_table, "Expected 1 argument, got 0")
 	assert(package_table.unicornSpec, "This package is lacking the unicornSpec value. Installation was aborted as a precautionary measure.")
 	if package_table.rel and package_table.rel.depends then
 		for _, v in pairs(package_table.rel.depends) do
