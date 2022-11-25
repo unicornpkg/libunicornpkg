@@ -1,10 +1,12 @@
 --- A modular package manager.
 -- @module unicorn.core
 
+package.path = package.path .. ";/lib/?;/lib/?.lua;/lib/?/init.lua;/rom/lib/?;/rom/lib/?.lua;/rom/lib/?/init.lua"
+
 local unicorn = {}
 unicorn.core = {}
-unicorn.util = dofile("/lib/unicorn/util.lua")
-unicorn.semver = dofile("/lib/unicorn/semver.lua")
+unicorn.util = require("unicorn.util")
+unicorn.semver = require("unicorn.semver")
 
 -- better handling of globals with Lua diagnostics
 -- @diagnostic disable:undefined-global
@@ -76,8 +78,8 @@ function unicorn.core.install(package_table)
 			end
 		end
 	end
-	
-	-- modular provider loading and usage 
+
+	-- modular provider loading and usage
 	local match
 	for _, v in pairs(fs.list("/lib/unicorn/provider/")) do -- custom provider support
 		local provider_name = string.gsub(v, ".lua", "")

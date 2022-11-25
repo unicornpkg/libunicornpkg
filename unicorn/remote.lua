@@ -1,9 +1,11 @@
 --- Support for using package remotes.
 -- @module unicorn.remote
 
+package.path = package.path .. ";/lib/?;/lib/?.lua;/lib/?/init.lua;/rom/lib/?;/rom/lib/?.lua;/rom/lib/?/init.lua"
+
 local unicorn = {}
-unicorn.core = dofile("/lib/unicorn/core.lua")
-unicorn.util = dofile("/lib/unicorn/util.lua")
+unicorn.core = require("unicorn.core")
+unicorn.util = require("unicorn.util")
 unicorn.remote = {}
 
 local function do_remote_install(package_name, v)
