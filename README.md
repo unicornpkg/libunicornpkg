@@ -1,6 +1,6 @@
 # TypeScript to Lua transpiler types for libunicornpkg
 
-Provides hooks into TypeScript's typing system for use with the [TypeScript to Lua transpiler](https://.
+Provides hooks into TypeScript's typing system for use with the [TypeScript to Lua transpiler](https://typescripttolua.github.io).
 
 ## Usage
 
