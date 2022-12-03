@@ -1,6 +1,9 @@
 {
   	"devDependencies": {
-		"eslint": "^8.29.0",
-		"@typescript-eslint/eslint-plugin": "^5.45.0"
-	}
+  	  	"@typescript-eslint/eslint-plugin": "^5.45.0",
+  	  	"dtslint": "^4.2.1",
+  	  	"eslint": "^8.29.0"
+  	},
+  	"types": "types/",
+	"license": "Apache-2.0"
 }
