@@ -1,4 +1,9 @@
 #!/usr/bin/env just --justfile
 
-lint:
+default: lint
+
+install:
+	npm install --save-dev --silent
+
+lint: install
 	npx eslint .
