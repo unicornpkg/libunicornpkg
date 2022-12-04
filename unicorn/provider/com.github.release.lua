@@ -1,11 +1,11 @@
 local unicorn = dofile("/lib/unicorn/init.lua")
 
---- Package provider for GitHub.com.
+--- Package provider for GitHub.com releases.
 -- @param package_table table A valid package table
-local function install_github(package_table)
+local function install_github_releases(package_table)
 	for remote_path, install_path in pairs(package_table.instdat.filemaps) do
 		local http_data = unicorn.util.smartHttp(
-			("https://raw.githubusercontent.com/%s/%s/%s/%s"):format(
+			("https://github.com/%s/%s/releases/download/%s/%s"):format(
 				package_table.instdat.repo_owner,
 				package_table.instdat.repo_name,
 				package_table.instdat.repo_ref,
@@ -16,4 +16,4 @@ local function install_github(package_table)
 	end
 end
 
-return install_github
+return install_github_releases
