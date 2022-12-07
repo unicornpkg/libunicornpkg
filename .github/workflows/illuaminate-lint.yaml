@@ -7,6 +7,7 @@ on:
   pull_request:
     paths:
       ["**.lua", ".github/workflows"]
+  workflow_dispatch:
 
 jobs:
   lint-lua:
