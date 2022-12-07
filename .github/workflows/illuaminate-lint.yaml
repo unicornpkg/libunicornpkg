@@ -1,0 +1,24 @@
+name: Linting
+
+on:
+  push: 
+    paths:
+      ["**.lua", ".github/workflows"]
+  pull_request:
+    paths:
+      ["**.lua", ".github/workflows"]
+
+jobs:
+  lint-lua:
+    name: Lint Lua with Illuaminate
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Lint Lua code
+      run: |
+        test -d bin || mkdir bin
+        test -f bin/illuaminate || wget -q -Obin/illuaminate https://squiddev.cc/illuaminate/linux-x86-64/illuaminate
+        chmod +x bin/illuaminate
+        bin/illuaminate lint
