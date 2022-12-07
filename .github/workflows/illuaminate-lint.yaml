@@ -1,7 +1,7 @@
 name: Linting
 
 on:
-  push: 
+  push:
     paths:
       ["**.lua", ".github/workflows"]
   pull_request:
