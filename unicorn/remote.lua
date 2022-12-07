@@ -24,7 +24,17 @@ function unicorn.remote.install(package_name)
 				unicorn.util.fileWrite(response, "/tmp/" .. package_name)
 				print(response)
 				print(httpError)
-				unicorn.core.install(loadstring(response)())
+
+				local package_table = loadstring(response)()
+
+				-- install depends
+				if package_table.rel ~= nil and package_table.rel.depends ~= nil then
+					for _, package in pairs(package_table.rel.depends) do
+						unicorn.remote.install(package)
+					end
+				end
+
+				unicorn.core.install(package_table)
 
 				downloaded = true
 			end
