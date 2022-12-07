@@ -148,3 +148,6 @@
   
   ;; Whether to create an index.json file, with a dump of all terms. This may be useful for querying externally.
   (json-index true))
+
+(at /unicorn/semver.lua(linters -all))
+(at /unicorn/provider/dev.devbin.lua(linters -var:deprecated))
