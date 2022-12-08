@@ -10,7 +10,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint-lua:
+  lint-selene:
+    - uses: actions/checkout@v2
+    - uses: NTBBloodbath/selene-action@v1.0.0
+      with:
+      # Github secret token
+      token: ${{ secrets.GITHUB_TOKEN }}
+      # selene arguments
+      args: --config .selene.toml
+      # selene version
+      version: 0.23.1
+  # Multiple linters never hurt :)
+  lint-illuaminate:
     name: Lint Lua with Illuaminate
     runs-on: ubuntu-latest
 
