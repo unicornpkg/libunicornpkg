@@ -3,7 +3,7 @@
 default: lint
 
 lint:
-	illuaminate lint
+	-selene $(git ls-files | grep '\.lua' | grep -v "semver\.lua")
 
 autofix:
 	illuaminate fix
