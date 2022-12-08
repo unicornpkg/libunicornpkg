@@ -3,7 +3,7 @@
 default: lint
 
 lint:
-	-selene $(git ls-files | grep '\.lua' | grep -v "semver\.lua")
+	-selene $(git ls-files | grep '\.lua' | grep -v "semver\.lua") --config ".selene.toml"
 
 autofix:
 	stylua .
