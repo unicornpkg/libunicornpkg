@@ -10,7 +10,7 @@ package.instdat.filemaps = {}
 package.instdat.filemaps["unicorn/provider/com.github.release.lua"] = "/lib/unicorn/provider/com.github.release.lua"
 package.rel = {}
 package.rel.depends = {
-	"unicornpkg"
+	"unicornpkg",
 }
 package.pkgType = "com.github"
 package.unicornSpec = "v1.0.0"

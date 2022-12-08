@@ -5,11 +5,7 @@ local unicorn = dofile("/lib/unicorn/init.lua")
 -- @deprecated because devbin.dev has shut down.
 local function install_devbin(package_table)
 	for remote_path, install_path in pairs(package_table.instdat.filemaps) do
-		local http_data = unicorn.util.smartHttp(
-			("https://devbin.dev/raw/%s"):format(
-				remote_path
-			)
-		)
+		local http_data = unicorn.util.smartHttp(("https://devbin.dev/raw/%s"):format(remote_path))
 		unicorn.util.fileWrite(http_data, install_path)
 	end
 end

@@ -18,11 +18,11 @@ if _HOST:find("Recrafted") then -- Recrafted support
 end
 
 local function is_installed(package_name)
-		if fs.exists("/etc/unicorn/packages/installed/" .. package_name) then
-			return true
-		else
-			return false
-		end
+	if fs.exists("/etc/unicorn/packages/installed/" .. package_name) then
+		return true
+	else
+		return false
+	end
 end
 
 --- Stores a package table at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.serialise'.
@@ -55,7 +55,10 @@ end
 function unicorn.core.install(package_table)
 	-- assertion blocks
 	assert(package_table, "Expected 1 argument, got 0")
-	assert(package_table.unicornSpec, "This package is lacking the unicornSpec value. Installation was aborted as a precautionary measure.")
+	assert(
+		package_table.unicornSpec,
+		"This package is lacking the unicornSpec value. Installation was aborted as a precautionary measure."
+	)
 	if package_table.rel and package_table.rel.depends then
 		for _, v in pairs(package_table.rel.depends) do
 			assert(is_installed(v), package_table.name .. " requires the " .. v .. " package. Installation aborted.")
@@ -68,7 +71,9 @@ function unicorn.core.install(package_table)
 	if existing_package then
 		if existing_package.version and package_table.version then
 			if unicorn.semver(existing_package.version) == unicorn.semver(package_table.version) then
-				error("Same version of package is installed. Uninstall the currently installed package if you want to override.")
+				error(
+					"Same version of package is installed. Uninstall the currently installed package if you want to override."
+				)
 			elseif unicorn.semver(existing_package.version) > unicorn.semver(package_table.version) then
 				error("Newer version of package is installed. Uninstall the current package if you want to override.")
 			elseif unicorn.semver(existing_package.version) < unicorn.semver(package_table.version) then
@@ -76,8 +81,8 @@ function unicorn.core.install(package_table)
 			end
 		end
 	end
-	
-	-- modular provider loading and usage 
+
+	-- modular provider loading and usage
 	local match
 	for _, v in pairs(fs.list("/lib/unicorn/provider/")) do -- custom provider support
 		local provider_name = string.gsub(v, ".lua", "")
@@ -91,7 +96,11 @@ function unicorn.core.install(package_table)
 	-- catch unknown providers
 	if not match then
 		if not package_table.pkgType == nil then
-			error("Package provider " .. package_table.pkgType .. " is unknown. You are either missing the appropriate package provider or something is wrong with the package.")
+			error(
+				"Package provider "
+					.. package_table.pkgType
+					.. " is unknown. You are either missing the appropriate package provider or something is wrong with the package."
+			)
 		end
 	end
 	-- finish up
@@ -114,4 +123,3 @@ function unicorn.core.uninstall(package_name)
 end
 
 return unicorn.core
-

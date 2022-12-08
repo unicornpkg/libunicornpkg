@@ -39,9 +39,7 @@ function unicorn.remote.install(package_name)
 				downloaded = true
 			end
 		end
-
 	end
 end
 
 return unicorn.remote
-
