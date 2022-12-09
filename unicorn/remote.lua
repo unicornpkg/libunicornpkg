@@ -12,10 +12,10 @@ function unicorn.remote.install(package_name)
 		-- TODO: Change the variable names into something more descriptive
 		-- TODO: Split this into smaller local functions
 		for _, v in pairs(fs.list("/etc/unicorn/remotes/")) do
-			local v = fs.open("/etc/unicorn/remotes/" .. v, "r")
-			local v = v.readLine()
-			local v = v:gsub("https://", "") -- have to remove the https:// prefix because fs.combine does weird stuff with it if it's left in
-			local v = fs.combine(v, package_name .. ".lua")
+			v = fs.open("/etc/unicorn/remotes/" .. v, "r")
+			v = v.readLine()
+			v = v:gsub("https://", "") -- have to remove the https:// prefix because fs.combine does weird stuff with it if it's left in
+			v = fs.combine(v, package_name .. ".lua")
 			v = "https://" .. v
 			local response, httpError = unicorn.util.smartHttp(v)
 			if httpError then
