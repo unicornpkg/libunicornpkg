@@ -9,6 +9,8 @@ unicorn.remote = {}
 function unicorn.remote.install(package_name)
 	local downloaded = false
 	while not downloaded do
+		-- TODO: Change the variable names into something more descriptive
+		-- TODO: Split this into smaller local functions
 		for _, v in pairs(fs.list("/etc/unicorn/remotes/")) do
 			local v = fs.open("/etc/unicorn/remotes/" .. v, "r")
 			local v = v.readLine()
