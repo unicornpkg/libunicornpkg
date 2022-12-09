@@ -9,6 +9,7 @@ on:
 
 jobs:
   lint-selene:
+    name: Lint Lua with Selene
     runs-on: ubuntu-latest
 
     steps:
