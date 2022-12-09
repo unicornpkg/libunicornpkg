@@ -18,7 +18,7 @@ jobs:
           # Github secret token
           token: ${{ secrets.GITHUB_TOKEN }}
           # selene arguments
-          args: --config .selene.toml
+          args: --config .selene.toml $(git ls-files '*.py')
           # selene version
           version: 0.23.1
 
