@@ -2,36 +2,36 @@ name: Linting
 
 on:
   push:
-    paths:
-      ["**.lua", ".github/workflows"]
+    paths: ["**.lua", ".github/workflows"]
   pull_request:
-    paths:
-      ["**.lua", ".github/workflows"]
+    paths: ["**.lua", ".github/workflows"]
   workflow_dispatch:
 
 jobs:
   lint-selene:
+    runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - uses: NTBBloodbath/selene-action@v1.0.0
-      with:
-      # Github secret token
-      token: ${{ secrets.GITHUB_TOKEN }}
-      # selene arguments
-      args: --config .selene.toml
-      # selene version
-      version: 0.23.1
+      - uses: actions/checkout@v2
+      - uses: NTBBloodbath/selene-action@v1.0.0
+        with:
+          # Github secret token
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # selene arguments
+          args: --config .selene.toml
+          # selene version
+          version: 0.23.1
   # Multiple linters never hurt :)
   lint-illuaminate:
     name: Lint Lua with Illuaminate
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Lint Lua code
-      run: |
-        test -d bin || mkdir bin
-        test -f bin/illuaminate || wget -q -Obin/illuaminate https://squiddev.cc/illuaminate/linux-x86-64/illuaminate
-        chmod +x bin/illuaminate
-        bin/illuaminate lint
+      - name: Lint Lua code
+        run: |
+          test -d bin || mkdir bin
+          test -f bin/illuaminate || wget -q -Obin/illuaminate https://squiddev.cc/illuaminate/linux-x86-64/illuaminate
+          chmod +x bin/illuaminate
+          bin/illuaminate lint
