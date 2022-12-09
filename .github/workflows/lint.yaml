@@ -2,9 +2,9 @@ name: Linting
 
 on:
   push:
-    paths: ["**.lua", ".github/workflows"]
+    paths: ["**.lua", ".github/workflows/lint.yaml"]
   pull_request:
-    paths: ["**.lua", ".github/workflows"]
+    paths: ["**.lua", ".github/workflows/lint.yaml"]
   workflow_dispatch:
 
 jobs:
@@ -21,6 +21,7 @@ jobs:
           args: --config .selene.toml
           # selene version
           version: 0.23.1
+
   # Multiple linters never hurt :)
   lint-illuaminate:
     name: Lint Lua with Illuaminate
