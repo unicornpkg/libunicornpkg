@@ -1,0 +1,5 @@
+std = "cc-tweaked"
+exclude = ["./unicorn/semver.lua"]
+
+[lints]
+incorrect_standard_library_use = "allow" # Workaround for https://github.com/Kampfkarren/selene/issues/467

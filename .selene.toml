@@ -1,5 +1,0 @@
-std = ".cc-tweaked.selene"
-exclude = ["./unicorn/semver.lua"]
-
-[lints]
-incorrect_standard_library_use = "allow" # With this set to "warn", it will warn about uses of "fs" that are perfectly valid in CC.

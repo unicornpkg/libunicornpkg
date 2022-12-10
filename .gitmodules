@@ -1,0 +1,3 @@
+[submodule ".github/selene/selene-cc-tweaked"]
+	path = .github/selene/selene-cc-tweaked
+	url = https://github.com/unicornpkg/selene-cc-tweaked
