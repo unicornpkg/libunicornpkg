@@ -16,13 +16,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - run: ln -sr .github/selene/selene-cc-tweaked/cc-tweaked.yaml .github/selene/cc-tweaked.yaml
       - uses: NTBBloodbath/selene-action@v1.0.0
         with:
           # Github secret token
           token: ${{ secrets.GITHUB_TOKEN }}
           # selene arguments
-          args: . --config .github/selene/selene.toml
+          args: . --config .selene.toml
           # selene version
           version: 0.23.1
 

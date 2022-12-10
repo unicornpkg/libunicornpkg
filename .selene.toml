@@ -1,4 +1,4 @@
-std = "cc-tweaked"
+std = ".cc-tweaked.selene"
 exclude = ["./unicorn/semver.lua"]
 
 [lints]
