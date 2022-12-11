@@ -101,6 +101,17 @@ local function action_modular_providers(package_table)
 	end
 end
 
+local function action_script(package_table, package_script_name)
+	if package_table.script.preinstall then
+		local output, scriptError = loadstring(package_table.script[package_script_name])
+		if scriptError then
+			error(scriptError)
+		else
+			print("Package script " .. package_script_name .. " returned " .. tostring(output))
+		end
+	end
+end
+
 --- Installs a package from a package table.
 -- @param package_table table A valid package table
 -- @return boolean
@@ -113,8 +124,10 @@ function unicorn.core.install(package_table)
 	-- a newer or equivalent version is installed
 	check_installable(package_table)
 
+	action_script(package_table, "preinstall")
 	-- modular provider loading and usage
 	action_modular_providers(package_table)
+	action_script(package_table, "postinstall")
 
 	-- finish up
 	storePackageData(package_table)
@@ -127,10 +140,12 @@ end
 -- @return boolean
 function unicorn.core.uninstall(package_name)
 	local package_table = getPackageData(package_name)
+	action_script(package_table, "preremove")
 	for _, v in pairs(package_table.instdat.filemaps) do
 		fs.delete(v)
 	end
 	fs.delete("/etc/unicorn/installed/" .. package_name)
+	action_script(package_table, "postremove")
 	print("Package " .. package_name .. " removed.")
 	return true
 end
