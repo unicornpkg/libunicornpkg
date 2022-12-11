@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `local.generic` provider. ([@Commandcracker](https://github.com/Commandcracker))
 - Add `local.string` provider. ([@Commandcracker](https://github.com/Commandcracker))
 - Add [scripts](https://unicornpkg.madefor.cc/specification/package-tables.html#script).
+- Fix `org.bitbucket` and `com.gitlab` providers.
 
 ## v0.1.0
 

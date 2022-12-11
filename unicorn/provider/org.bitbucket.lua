@@ -5,7 +5,7 @@ local unicorn = dofile("/lib/unicorn/init.lua")
 local function install_bitbucket(package_table)
 	for remote_path, install_path in pairs(package_table.instdat.filemaps) do
 		local http_data = unicorn.util.smartHttp(
-			("https://bitbucket.org/raw/%s/%s/%s/%s"):format(
+			("https://bitbucket.org/%s/%s/raw/%s/%s"):format(
 				package_table.instdat.repo_owner,
 				package_table.instdat.repo_name,
 				package_table.instdat.repo_ref,
