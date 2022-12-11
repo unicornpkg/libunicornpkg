@@ -48,12 +48,7 @@ local function getPackageData(package_name)
 	end
 end
 
---- Installs a package from a package table.
--- @param package_table table A valid package table
--- @return boolean
--- @return table
-function unicorn.core.install(package_table)
-	-- assertion blocks
+local function check_valid(package_table)
 	assert(package_table, "Expected 1 argument, got 0")
 	assert(
 		package_table.unicornSpec,
@@ -64,9 +59,9 @@ function unicorn.core.install(package_table)
 			assert(is_installed(v), package_table.name .. " requires the " .. v .. " package. Installation aborted.")
 		end
 	end
+end
 
-	-- skips installation if the package is already installed
-	-- TODO: if we add package versions, this is where that logic should go
+local function check_installable(package_table)
 	local existing_package = getPackageData(package_table.name)
 	if existing_package then
 		if existing_package.version and package_table.version then
@@ -81,8 +76,9 @@ function unicorn.core.install(package_table)
 			end
 		end
 	end
+end
 
-	-- modular provider loading and usage
+local function action_modular_providers(package_table)
 	local match
 	for _, v in pairs(fs.list("/lib/unicorn/provider/")) do -- custom provider support
 		local provider_name = string.gsub(v, ".lua", "")
@@ -103,6 +99,23 @@ function unicorn.core.install(package_table)
 			)
 		end
 	end
+end
+
+--- Installs a package from a package table.
+-- @param package_table table A valid package table
+-- @return boolean
+-- @return table
+function unicorn.core.install(package_table)
+	-- assertion blocks
+	check_valid(package_table)
+
+	-- skips installation if the package is already installed, or if
+	-- a newer or equivalent version is installed
+	check_installable(package_table)
+
+	-- modular provider loading and usage
+	action_modular_providers(package_table)
+
 	-- finish up
 	storePackageData(package_table)
 	print("Package " .. package_table.name .. " installed successfully.")
