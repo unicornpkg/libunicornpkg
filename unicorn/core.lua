@@ -48,6 +48,9 @@ local function getPackageData(package_name)
 	end
 end
 
+--- Checks if the provided "package_table" is valid.
+-- This works by checking if "package_table.unicornSpec" is a valid value,
+-- and then checks if there are unfulfilled dependencies.
 local function check_valid(package_table)
 	assert(package_table, "Expected 1 argument, got 0")
 	assert(
@@ -61,6 +64,10 @@ local function check_valid(package_table)
 	end
 end
 
+--- Checks if a conflicting version of a package is installed.
+-- This checks if there is an equivalent or higher version of a package is installed.
+-- If one is not detected, installation continues.
+-- @param package_table A valid package table
 local function check_installable(package_table)
 	local existing_package = getPackageData(package_table.name)
 	if existing_package then
@@ -78,6 +85,10 @@ local function check_installable(package_table)
 	end
 end
 
+--- Installs filemaps from a "package_table" using "pkgType".
+-- This function traverses "/lib/unicorn/provider" for a valid package provider.
+-- If found, it uses that provider to install files to the system.
+-- Otherwise, it errors.
 local function action_modular_providers(package_table)
 	local match
 	for _, v in pairs(fs.list("/lib/unicorn/provider/")) do -- custom provider support
@@ -101,8 +112,11 @@ local function action_modular_providers(package_table)
 	end
 end
 
+--- Gets "package_script_name" from "package_table.script" and runs it.
+-- @param package_table A valid package table
+-- @param package_script_name A value that is either "preinstall", "postinstall", "preremove", or "postremove".
 local function action_script(package_table, package_script_name)
-	if package_table.script.preinstall then
+	if package_table.script[package_script_name] then
 		local output, scriptError = loadstring(package_table.script[package_script_name])
 		if scriptError then
 			error(scriptError)
@@ -113,6 +127,9 @@ local function action_script(package_table, package_script_name)
 end
 
 --- Installs a package from a package table.
+-- This function is split up into "checks" and "actions".
+-- Checks ensure that the operation can be completed,
+-- and actions do things with values in the package table.
 -- @param package_table table A valid package table
 -- @return boolean
 -- @return table
@@ -136,6 +153,7 @@ function unicorn.core.install(package_table)
 end
 
 --- Removes a package from the system.
+-- It traverses package_table.instdat.filemaps and deletes everything.
 -- @param package_name string The name of a package.
 -- @return boolean
 function unicorn.core.uninstall(package_name)
