@@ -14,6 +14,6 @@ package.rel.depends = {
 }
 package.pkgType = "com.github"
 package.unicornSpec = "v1.0.0"
-package.version = "0.1.0"
+package.version = "1.0.0"
 
 return package
