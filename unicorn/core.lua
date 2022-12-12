@@ -117,7 +117,7 @@ end
 -- @param package_table A valid package table
 -- @param package_script_name A value that is either "preinstall", "postinstall", "preremove", or "postremove".
 local function action_script(package_table, package_script_name)
-	if package_table.script[package_script_name] then
+	if package_table.script ~= nil and package_table.script[package_script_name] then
 		local output, scriptError = loadstring(package_table.script[package_script_name])
 		if scriptError then
 			error(scriptError)
