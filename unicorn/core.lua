@@ -126,6 +126,14 @@ local function action_script(package_table, package_script_name)
 	end
 end
 
+--- Creates folders from package_table.dirs
+-- @param package_table A valid package table
+local function action_make_folders(package_table)
+	for _, v in package_table.dirs do
+		fs.makeDir(v)
+	end
+end
+
 --- Installs a package from a package table.
 -- This function is split up into "checks" and "actions".
 -- Checks ensure that the operation can be completed,
@@ -142,6 +150,9 @@ function unicorn.core.install(package_table)
 	check_installable(package_table)
 
 	action_script(package_table, "preinstall")
+
+	-- make folders
+	action_make_folders(package_table)
 	-- modular provider loading and usage
 	action_modular_providers(package_table)
 	action_script(package_table, "postinstall")
@@ -150,6 +161,14 @@ function unicorn.core.install(package_table)
 	storePackageData(package_table)
 	print("Package " .. package_table.name .. " installed successfully.")
 	return true, package_table
+end
+
+local function action_delete_folders(package_table)
+	for _, v in package_table.dirs do
+		if not next(fs.list(v)) then
+			fs.delete(v)
+		end
+	end
 end
 
 --- Removes a package from the system.
@@ -162,6 +181,7 @@ function unicorn.core.uninstall(package_name)
 	for _, v in pairs(package_table.instdat.filemaps) do
 		fs.delete(v)
 	end
+	action_delete_folders(package_table)
 	fs.delete("/etc/unicorn/installed/" .. package_name)
 	action_script(package_table, "postremove")
 	print("Package " .. package_name .. " removed.")
