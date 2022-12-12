@@ -5,6 +5,7 @@ local unicorn = {}
 unicorn.core = {}
 unicorn.util = dofile("/lib/unicorn/util.lua")
 unicorn.semver = dofile("/lib/unicorn/semver.lua")
+unicorn.sha256 = dofile("/lib/unicorn/sha256.lua")
 
 -- better handling of globals with Lua diagnostics
 -- @diagnostic disable:undefined-global
@@ -126,6 +127,14 @@ local function action_script(package_table, package_script_name)
 	end
 end
 
+--- Creates folders from package_table.dirs
+-- @param package_table A valid package table
+local function action_make_folders(package_table)
+	for _, v in package_table.dirs do
+		fs.makeDir(package_table)
+	end
+end
+
 --- Installs a package from a package table.
 -- This function is split up into "checks" and "actions".
 -- Checks ensure that the operation can be completed,
@@ -152,6 +161,14 @@ function unicorn.core.install(package_table)
 	return true, package_table
 end
 
+local function action_delete_folders(package_table)
+	for _, v in package_table.dirs do
+		if not next(fs.list(v)) then
+			fs.delete(v)
+		end
+	end
+end
+
 --- Removes a package from the system.
 -- It traverses package_table.instdat.filemaps and deletes everything.
 -- @param package_name string The name of a package.
@@ -162,6 +179,7 @@ function unicorn.core.uninstall(package_name)
 	for _, v in pairs(package_table.instdat.filemaps) do
 		fs.delete(v)
 	end
+	action_delete_folders(package_table)
 	fs.delete("/etc/unicorn/installed/" .. package_name)
 	action_script(package_table, "postremove")
 	print("Package " .. package_name .. " removed.")
