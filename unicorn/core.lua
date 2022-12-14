@@ -4,7 +4,7 @@
 local unicorn = {}
 unicorn.core = {}
 unicorn.util = dofile("/lib/unicorn/util.lua")
-unicorn.semver = dofile("/lib/unicorn/semver.lua")
+local semver = dofile("/lib/semver.lua")
 
 -- better handling of globals with Lua diagnostics
 -- @diagnostic disable:undefined-global
@@ -72,13 +72,13 @@ local function check_installable(package_table)
 	local existing_package = getPackageData(package_table.name)
 	if existing_package then
 		if existing_package.version and package_table.version then
-			if unicorn.semver(existing_package.version) == unicorn.semver(package_table.version) then
+			if semver(existing_package.version) == semver(package_table.version) then
 				error(
 					"Same version of package is installed. Uninstall the currently installed package if you want to override."
 				)
-			elseif unicorn.semver(existing_package.version) > unicorn.semver(package_table.version) then
+			elseif semver(existing_package.version) > semver(package_table.version) then
 				error("Newer version of package is installed. Uninstall the current package if you want to override.")
-			elseif unicorn.semver(existing_package.version) < unicorn.semver(package_table.version) then
+			elseif semver(existing_package.version) < semver(package_table.version) then
 				unicorn.core.uninstall(existing_package.name)
 			end
 		end
