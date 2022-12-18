@@ -129,8 +129,10 @@ end
 --- Creates folders from package_table.dirs
 -- @param package_table A valid package table
 local function action_make_folders(package_table)
-	for _, v in package_table.dirs do
-		fs.makeDir(v)
+	if package_table.dirs then
+		for _, v in pairs(package_table.dirs) do
+			fs.makeDir(v)
+		end
 	end
 end
 
@@ -189,3 +191,4 @@ function unicorn.core.uninstall(package_name)
 end
 
 return unicorn.core
+
