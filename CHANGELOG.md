@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [unreleased]
 
 - Add `UnicornInstall` and `UnicornUninstall` events with `os.queueEvent`.
+- Add the `instdat.gitlab_instance` field in the GitLab provider.
 
 ## v1.1.0
 
