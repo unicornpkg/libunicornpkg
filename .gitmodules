@@ -1,3 +1,9 @@
 [submodule ".github/selene/selene-cc-tweaked"]
 	path = .github/selene/selene-cc-tweaked
 	url = https://github.com/unicornpkg/selene-cc-tweaked
+[submodule ".sumneko-defs"]
+	path = .sumneko-defs
+	url = https://gitlab.com/carsakiller/cc-tweaked-documentation
+[submodule ".definitions/cc-tweaked"]
+	path = .definitions/cc-tweaked
+	url = https://gitlab.com/carsakiller/cc-tweaked-documentation

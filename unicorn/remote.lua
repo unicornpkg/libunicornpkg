@@ -28,7 +28,7 @@ function unicorn.remote.install(package_name)
 					print(response)
 					print(httpError)
 
-					local package_table = loadstring(response)()
+					local package_table = load(response)()
 
 					-- install depends
 					if package_table.rel ~= nil and package_table.rel.depends ~= nil then

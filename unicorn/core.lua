@@ -117,7 +117,7 @@ end
 -- @param package_script_name A value that is either "preinstall", "postinstall", "preremove", or "postremove".
 local function action_script(package_table, package_script_name)
 	if package_table.script and package_table.script[package_script_name] then
-		local output, scriptError = loadstring(package_table.script[package_script_name])
+		local output, scriptError = load(package_table.script[package_script_name])()
 		if scriptError then
 			error(scriptError)
 		else
@@ -191,4 +191,3 @@ function unicorn.core.uninstall(package_name)
 end
 
 return unicorn.core
-
