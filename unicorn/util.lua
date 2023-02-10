@@ -12,10 +12,11 @@ if _HOST:find("Recrafted") then -- Recrafted support
 end
 
 -- @description Returns contents of HTTP(S) request
--- @param sUrl string A valid HTTP or HTTPS URL.
-function unicorn.util.smartHttp(sUrl)
-	print("Connecting to " .. sUrl .. "... ")
-	local response, httpError = http.get(sUrl)
+-- @deprecated "Use http.get instead"
+-- @param url string A valid HTTP or HTTPS URL.
+function unicorn.util.smartHttp(url)
+	print("Connecting to " .. url .. "... ")
+	local response, httpError = http.get(url)
 
 	if response then
 		print("HTTP success.")
@@ -29,12 +30,12 @@ function unicorn.util.smartHttp(sUrl)
 end
 
 -- @description Writes a file to the specified path.
--- @param sContent string The contents of the file to be written.
--- @param sPath string The full path of the file to be written.
-function unicorn.util.fileWrite(sContent, sPath)
-	if sContent then -- Checking to m @ake sure content is there, to prevent writing an empty file
-		local file1 = fs.open(sPath, "w")
-		file1.write(sContent)
+-- @param content string The contents of the file to be written.
+-- @param path string The full path of the file to be written.
+function unicorn.util.fileWrite(content, path)
+	if content then -- Checking to m @ake sure content is there, to prevent writing an empty file
+		local file1 = fs.open(path, "w")
+		file1.write(content)
 		file1.flush()
 	else
 		return false
