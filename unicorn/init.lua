@@ -1,6 +1,7 @@
+package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local unicorn = {}
-unicorn.core = dofile("/lib/unicorn/core.lua")
-unicorn.util = dofile("/lib/unicorn/util.lua")
-unicorn.remote = dofile("/lib/unicorn/remote.lua")
+unicorn.core = require("unicorn.core")
+unicorn.util = dofile("unicorn.util")
+unicorn.remote = dofile("unicorn.remote")
 
 return unicorn

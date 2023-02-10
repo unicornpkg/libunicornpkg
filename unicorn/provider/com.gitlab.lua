@@ -1,4 +1,5 @@
-local unicorn = dofile("/lib/unicorn/init.lua")
+package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
+local unicorn = require("unicorn")
 
 --- Package provider for GitLab.com.
 -- @param package_table table A valid package table

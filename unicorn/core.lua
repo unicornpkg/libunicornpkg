@@ -1,10 +1,11 @@
 --- A modular package manager.
 -- @module unicorn.core
 
+package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local unicorn = {}
 unicorn.core = {}
-unicorn.util = dofile("/lib/unicorn/util.lua")
-local semver = dofile("/lib/semver.lua")
+unicorn.util = require("unicorn.util")
+local semver = require("semver")
 
 -- better handling of globals with Lua diagnostics
 -- @diagnostic disable:undefined-global
