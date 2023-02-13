@@ -91,14 +91,10 @@ end
 -- If found, it uses that provider to install files to the system.
 -- Otherwise, it errors.
 local function action_modular_providers(package_table)
-	local match
-	for _, v in pairs(fs.list("/lib/unicorn/provider/")) do -- custom provider support
-		local provider_name = string.gsub(v, ".lua", "")
-		if package_table.pkgType == provider_name then
-			match = true
-			local provider = dofile("/lib/unicorn/provider/" .. v)
-			provider(package_table)
-		end
+	local match, provider = pcall(require("unicorn.provider." .. package_table.pkgType))
+
+	if type(provider) == "function" then
+		provider(package_table)
 	end
 
 	-- catch unknown providers
