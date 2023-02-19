@@ -6,6 +6,7 @@ local unicorn = {}
 unicorn.core = {}
 unicorn.util = require("unicorn.util")
 local semver = require("semver")
+local sha256 = _G.sha256 or require("sha256") -- Some servers provide access to a Java-based hashing API; we should use that where possible
 
 -- better handling of globals with Lua diagnostics
 -- @diagnostic disable:undefined-global
@@ -123,6 +124,14 @@ local function action_script(package_table, package_script_name)
 	end
 end
 
+local function action_check_hashes(package_table)
+	if package_table.security and package_table.security.sha256 then
+		for k, v in package_table.security.sha256 do
+			local digest = sha256.digest(fs.open(k, "r"):readAll())
+			assert(digest, v)
+		end
+	end
+end
 --- Creates folders from package_table.dirs
 -- @param package_table A valid package table
 local function action_make_folders(package_table)
@@ -158,6 +167,8 @@ function unicorn.core.install(package_table)
 
 	-- finish up
 	storePackageData(package_table)
+	action_check_hashes(package_table)
+
 	os.queueEvent("UnicornInstall", package_table[name])
 	print("Package " .. package_table.name .. " installed successfully.")
 	return true, package_table
