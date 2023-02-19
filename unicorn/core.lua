@@ -169,7 +169,7 @@ function unicorn.core.install(package_table)
 	storePackageData(package_table)
 	action_check_hashes(package_table)
 
-	os.queueEvent("UnicornInstall", package_table[name])
+	os.queueEvent("UnicornInstall", package_table["name"])
 	print("Package " .. package_table.name .. " installed successfully.")
 	return true, package_table
 end
@@ -196,7 +196,7 @@ function unicorn.core.uninstall(package_name)
 	fs.delete("/etc/unicorn/installed/" .. package_name)
 	action_script(package_table, "postremove")
 	print("Package " .. package_name .. " removed.")
-	os.queueEvent("UnicornUninstall", package_table[name])
+	os.queueEvent("UnicornUninstall", package_table["name"])
 	return true
 end
 
