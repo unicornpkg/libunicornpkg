@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add `UnicornInstall` and `UnicornUninstall` events with `os.queueEvent`.
 - Add the `instdat.gitlab_instance` field in the GitLab provider.
+- Add build hooks, which are reusable scripts that can be used in `postinstall` scripts:
+    - `makeBinWrapper`, a faux symlink creator for binaries (executable Lua files).
+    - `makeModuleWrapper`, a faux symlink creator for Lua modules.
+    - `patchPackageDotPath`, a default build hook which patches `package.path`, allowing for modules to be sourced from `/lib`.
 
 ## v1.1.0
 
