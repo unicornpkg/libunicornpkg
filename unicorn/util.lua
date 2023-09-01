@@ -1,6 +1,7 @@
 --- Utility functions for use with unicornpkg.
 -- @module unicorn.util
-
+package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
+local stdlib = require("libcompat")
 local unicorn = {}
 unicorn.util = {}
 
@@ -16,7 +17,7 @@ end
 -- @param url string A valid HTTP or HTTPS URL.
 function unicorn.util.smartHttp(url)
 	print("Connecting to " .. url .. "... ")
-	local response, httpError = http.get(url)
+	local response, httpError = stdlib.http.get(url)
 
 	if response then
 		print("HTTP success.")
@@ -34,7 +35,7 @@ end
 -- @param path string The full path of the file to be written.
 function unicorn.util.fileWrite(content, path)
 	if content then -- Checking to m @ake sure content is there, to prevent writing an empty file
-		local file1 = fs.open(path, "w")
+		local file1 = stdlib.fs.open(path, "w")
 		file1.write(content)
 		file1.flush()
 	else

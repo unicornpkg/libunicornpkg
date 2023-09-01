@@ -2,6 +2,7 @@
 -- @module unicorn.core
 
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
+local stdlib = require("libcompat")
 local unicorn = {}
 unicorn.core = {}
 unicorn.util = require("unicorn.util")
@@ -10,14 +11,9 @@ local sha256 = _G.sha256 or require("sha256") -- Some servers provide access to 
 
 -- better handling of globals with Lua diagnostics
 -- @diagnostic disable:undefined-global
-local fs = fs
-local textutils = textutils
+local fs = stdlib.fs
+local textutils = stdlib.textutils
 -- @diagnostic enable:undefined-global
-
-if _HOST:find("Recrafted") then -- Recrafted support
-	fs = require("fs")
-	textutils = require("textutils")
-end
 
 local function is_installed(package_name)
 	if fs.exists("/etc/unicorn/packages/installed/" .. package_name) then
