@@ -4,3 +4,9 @@
 [submodule ".definitions/cc-tweaked"]
 	path = .definitions/cc-tweaked
 	url = https://gitlab.com/carsakiller/cc-tweaked-documentation
+[submodule "vendor/libcompat"]
+	path = vendor/libcompat
+	url = https://github.com/unicornpkg/libcompat
+[submodule "vendor/semver"]
+	path = vendor/semver.lua
+	url = https://github.com/kikito/semver.lua
