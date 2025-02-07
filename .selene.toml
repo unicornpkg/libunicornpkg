@@ -1,4 +1,8 @@
 std = ".cc-tweaked.selene"
 
+exclude = [
+    "vendor/**"
+]
+
 [lints]
 incorrect_standard_library_use = "allow" # Workaround for https://github.com/Kampfkarren/selene/issues/467
