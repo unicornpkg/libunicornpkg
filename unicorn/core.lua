@@ -6,6 +6,7 @@ local unicorn = {}
 unicorn.core = {}
 unicorn.util = require("unicorn.util")
 local semver = require("semver")
+-- selene: allow(global_usage)
 local sha256 = _G.sha256 or require("sha256") -- Some servers provide access to a Java-based hashing API; we should use that where possible
 
 -- better handling of globals with Lua diagnostics
