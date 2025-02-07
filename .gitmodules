@@ -5,5 +5,5 @@
 	path = vendor/libcompat
 	url = https://github.com/unicornpkg/libcompat
 [submodule "vendor/semver"]
-	path = vendor/semver.lua
+	path = vendor/semver
 	url = https://github.com/kikito/semver.lua
