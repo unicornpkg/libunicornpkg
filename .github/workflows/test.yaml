@@ -1,0 +1,18 @@
+name: Linting
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - run: sudo add-apt-repository ppa:jackmacwindows
+      - run: sudo apt install craftos-pc
+      - run: ./test/cctm.sh
