@@ -1,4 +1,4 @@
-std = ".cc-tweaked.selene"
+std = ".cc-tweaked.selene+.mcfly.selene"
 
 exclude = [
     "vendor/**"
