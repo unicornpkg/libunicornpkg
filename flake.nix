@@ -23,6 +23,13 @@
               packages = with pkgs; [
                 just
                 craftos-pc
+                selene
+              ];
+            };
+            lint = pkgs.mkShellNoCC {
+              packages = with pkgs; [
+                just
+                selene
               ];
             };
           });
