@@ -2,7 +2,7 @@
 
 set export
 
-default: lint
+default: lint test
 
 lint:
 	selene . --config .selene.toml
