@@ -14,6 +14,7 @@ jobs:
         with:
           submodules: recursive
       - run: |
+          sudo apt-add-repository universe
           sudo add-apt-repository ppa:jackmacwindows
           sudo apt-get update
           sudo apt-get install craftos-pc
