@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - run: sudo add-apt-repository ppa:jackmacwindows
-      - run: sudo apt install craftos-pc
-      - run: ./test/cctm.sh
+      - run: |
+        sudo add-apt-repository ppa:jackmacwindows
+        sudo apt-get update
+        sudo apt-get install craftos-pc
+        ./test/cctm.sh
