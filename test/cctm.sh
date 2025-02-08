@@ -17,8 +17,6 @@ cp "$SOURCE_DIR/vendor/semver/semver.lua" "$COMPUTER_DIR/lib"
 cp "$SOURCE_DIR/vendor/sha256.lua" "$COMPUTER_DIR/lib"
 cp "$SOURCE_DIR/vendor/mcfly.lua" "$COMPUTER_DIR/bin/mcfly.lua"
 
-cp "$SOURCE_DIR/test/entrypoint.lua" "$COMPUTER_DIR/bin"
-
 cp -r "$SOURCE_DIR" "$COMPUTER_DIR/source"
 
 craftos --directory "$DATA_DIR" --headless --exec "shell.run('bin/mcfly.lua source/test/unicorn/'); os.shutdown()"
