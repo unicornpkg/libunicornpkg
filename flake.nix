@@ -22,6 +22,7 @@
             default = pkgs.mkShellNoCC {
               packages = with pkgs; [
                 just
+                craftos-pc
               ];
             };
           });

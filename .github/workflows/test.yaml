@@ -13,9 +13,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - run: |
-          sudo apt-add-repository universe
-          sudo add-apt-repository ppa:jackmacwindows
-          sudo apt-get update
-          sudo apt-get install craftos-pc
-          ./test/cctm.sh
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+      - uses: DeterminateSystems/magic-nix-cache-action@6221693898146dc97e38ad0e013488a16477a4c4
+      - run: "nix develop .#"
+        name: "Prefetch CI dependencies"
+      - run: nix develop .# --command just test
+        name: Run tests
