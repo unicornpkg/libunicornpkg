@@ -176,9 +176,11 @@ function unicorn.core.install(package_table)
 end
 
 local function action_delete_folders(package_table)
-	for _, v in package_table.dirs do
-		if not next(fs.list(v)) then
-			fs.delete(v)
+	if package_table.dirs then
+		for _, v in package_table.dirs do
+			if not next(fs.list(v)) then
+				fs.delete(v)
+			end
 		end
 	end
 end
