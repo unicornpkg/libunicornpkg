@@ -622,10 +622,28 @@ local statuses = {
 -- Set up each test status count.
 for k in pairs(statuses) do test_status[k] = 0 end
 
---- Do the actual running of our test
+------------------------------------------------------------
+-- Define the output file name used to store TAP-formatted results.
+local output_file = "tap_results.txt"
+
+-- Open the file for appending; if it doesn't exist, it will be created.
+local file_handle = fs.open(output_file, "a")
+if not file_handle then error("Cannot open file: " .. output_file) end
+
+-- Utility function to write a line to the file.
+local function write_line(s)
+  file_handle.writeLine(s)
+  file_handle.flush()  -- flush after every write to ensure data persistence
+end
+
+-- Print TAP plan; later, we output it at the top of the file.
+local function print_plan(total)
+  write_line("1.." .. total)
+end
+
+local test_counter = 0
+
 local function do_run(test)
-    -- If we're a pre-computed test, determine our status message. Otherwise,
-    -- skip.
     local status, err
     if test.pending then
         status = "pending"
@@ -636,7 +654,8 @@ local function do_run(test)
         local state = push_state()
 
         -- Flush the event queue and ensure we're running with 0 timeout.
-        os.queueEvent("start_test") os.pullEvent("start_test")
+        os.queueEvent("start_test")
+        os.pullEvent("start_test")
 
         local ok = true
         for i = 1, test.before.n do
@@ -646,37 +665,81 @@ local function do_run(test)
         if ok then ok, err = try(test.action) end
 
         status = ok and "pass" or (err.fail and "fail" or "error")
-
         pop_state(state)
+    else
+        status = "unknown"
     end
 
-    -- If we've a boolean status, then convert it into a string
-    if status == true then status = "pass"
-    elseif status == false then status = err.fail and "fail" or "error"
+    if howlci then
+      howlci.status(status, test_name(test))
+    end
+    if cct_test then
+      cct_test.submit({
+        status = status,
+        name = test.name,
+        message = test.message or (err and err.message),
+        trace = test.trace or (err and err.trace)
+      })
+    end
+
+    test_counter = test_counter + 1
+
+    -- Clean up the test name by replacing any newline characters with a space.
+    local safe_name = test_name(test):gsub("\n", " ")
+
+    local out = ""
+    if status == "pass" then
+        out = ("ok %d - %s"):format(test_counter, safe_name)
+    elseif status == "pending" then
+        out = ("ok %d # SKIP pending - %s"):format(test_counter, safe_name)
+    else
+        out = ("not ok %d - %s"):format(test_counter, safe_name)
+    end
+
+    write_line(out)
+
+    if (status ~= "pass" and status ~= "pending") then
+        if test.message then
+            for _, line in ipairs({test.message:gsub("\r", ""):split("\n")}) do
+                write_line("# " .. line)
+            end
+        end
+        if test.trace then
+            for _, line in ipairs({test.trace:gsub("\r", ""):split("\n")}) do
+                write_line("# " .. line)
+            end
+        end
     end
 
     tests_run = tests_run + 1
     test_status[status] = test_status[status] + 1
     test_results[tests_run] = {
-        status = status, name = test.name,
-        message = test.message or err and err.message,
-        trace = test.trace or err and err.trace,
+        status = status,
+        name = test.name,
+        message = test.message or (err and err.message),
+        trace = test.trace or (err and err.trace),
     }
-
-    -- If we're running under howlci, then log some info.
-    if howlci then howlci.status(status, test_name(test)) end
-    if cct_test then cct_test.submit(test_results[tests_run]) end
-
-    -- Print our progress dot
-    local data = statuses[status]
-    term.setTextColour(data.col) io.write(data.dot)
-    term.setTextColour(colours.white)
 end
 
--- Loop over all our tests, running them as required.
+-- A simple split function, since Lua doesn't include one by default.
+function string:split(sep)
+  local sep, fields = sep or ":", {}
+  local pattern = string.format("([^%s]+)", sep)
+  self:gsub(pattern, function(c) fields[#fields+1] = c end)
+  return fields
+end
+
+local total_tests = 0
 if cct_test then
-    -- If we're within a cct_test environment, then submit them and wait on tests
-    -- to be run.
+    for _ in pairs(test_map) do total_tests = total_tests + 1 end
+else
+    for _ in pairs(test_list) do total_tests = total_tests + 1 end
+end
+
+-- Write the TAP plan header at the beginning of the file.
+print_plan(total_tests)
+
+if cct_test then
     cct_test.start(test_map)
     while true do
         local _, name = os.pullEvent("cct_test_run")
@@ -684,47 +747,27 @@ if cct_test then
         do_run(test_list[test_map[name].idx])
     end
 else
-    for _, test in pairs(test_list) do do_run(test) end
-end
-
--- Otherwise, display the results of each failure
-io.write("\n\n")
-for i = 1, tests_run do
-    local test = test_results[i]
-    if test.status ~= "pass" then
-        local status_data = statuses[test.status]
-
-        term.setTextColour(status_data.col)
-        io.write(status_data.desc)
-        term.setTextColour(colours.white)
-        io.write(" \26 " .. test_name(test) .. "\n")
-
-        if test.message then
-            io.write("  " .. test.message:gsub("\n", "\n  ") .. "\n")
-        end
-
-        if test.trace then
-            term.setTextColour(colours.lightGrey)
-            io.write("  " .. test.trace:gsub("\n", "\n  ") .. "\n")
-        end
-
-        io.write("\n")
+    for _, test in pairs(test_list) do
+        do_run(test)
     end
 end
 
--- And some summary statistics
+write_line("")
 local actual_count = tests_run - test_status.pending
-local info = ("Ran %s test(s), of which %s passed (%g%%).")
-    :format(actual_count, test_status.pass, test_status.pass / actual_count * 100)
-
+local success_rate = test_status.pass / (actual_count > 0 and actual_count or 1) * 100
+local summary = ("# Ran %s test(s), of which %s passed (%.2f%%)."):format(actual_count, test_status.pass, success_rate)
 if test_status.pending > 0 then
-    info = info .. (" Skipped %d pending test(s)."):format(test_status.pending)
+    summary = summary .. (" Skipped %d pending test(s)."):format(test_status.pending)
 end
+write_line(summary)
 
-term.setTextColour(colours.white) io.write(info .. "\n")
+-- Close the file after writing all output.
+file_handle.close()
 
--- Restore hook stubs
 _G.loadfile = native_loadfile
 
 if cct_test then cct_test.finish(line_counts) end
-if howlci then howlci.log("debug", info) sleep(3) end
+if howlci then
+    howlci.log("debug", summary)
+    sleep(3)
+end
