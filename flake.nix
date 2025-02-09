@@ -27,12 +27,6 @@
                 selene
               ];
             };
-            lint = pkgs.mkShellNoCC {
-              packages = with pkgs; [
-                just
-                selene
-              ];
-            };
           });
     };
 }

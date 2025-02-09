@@ -23,3 +23,5 @@ jobs:
         name: "Prefetch CI dependencies"
       - run: nix develop .# --command just test
         name: Run tests
+      - run: nix develop .# --command just lint
+        name: Run lints
