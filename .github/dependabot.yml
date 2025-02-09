@@ -8,7 +8,7 @@ updates:
     directory: ".github/workflows"
     schedule:
       interval: "daily"
-  - package-ecosystem: "submodules"
+  - package-ecosystem: "gitsubmodule"
     directory: "vendor"
     schedule:
       interval: "weekly"
