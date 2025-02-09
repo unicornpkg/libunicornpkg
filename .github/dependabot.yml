@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2024 Tomodachi94
+#
+# SPDX-License-Identifier: MIT
+
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: ".github/workflows"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "submodules"
+    directory: "vendor"
+    schedule:
+      interval: "weekly"
