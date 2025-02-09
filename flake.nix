@@ -29,6 +29,7 @@
             lint = pkgs.mkShellNoCC {
               packages = with pkgs; [
                 just
+                python3Packages.tappy
                 selene
               ];
             };

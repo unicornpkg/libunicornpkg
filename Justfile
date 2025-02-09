@@ -9,6 +9,7 @@ lint:
 
 test:
   ./test/cctm.sh
+  tappy tap_results.txt
 
 autofix:
 	stylua .
