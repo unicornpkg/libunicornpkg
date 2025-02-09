@@ -23,13 +23,13 @@
               packages = with pkgs; [
                 just
                 craftos-pc
+                python3Packages.tappy
                 selene
               ];
             };
             lint = pkgs.mkShellNoCC {
               packages = with pkgs; [
                 just
-                python3Packages.tappy
                 selene
               ];
             };
