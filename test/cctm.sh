@@ -14,6 +14,7 @@ rm -f "$SOURCE_DIR"/tap_results.txt
 echo "TAP version 14" > "$SOURCE_DIR"/tap_results.txt
 
 COMPUTER_DIR="$DATA_DIR/computer/0"
+cp "$SOURCE_DIR"/test/settings "$COMPUTER_DIR"/.settings
 mkdir -p "$COMPUTER_DIR"/{lib,bin}
 cp -r "$SOURCE_DIR/unicorn" "$COMPUTER_DIR/lib"
 cp "$SOURCE_DIR/vendor/semver/semver.lua" "$COMPUTER_DIR/lib"
