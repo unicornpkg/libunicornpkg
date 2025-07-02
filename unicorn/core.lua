@@ -196,7 +196,7 @@ function unicorn.core.uninstall(package_name)
 		fs.delete(v)
 	end
 	action_delete_folders(package_table)
-	fs.delete("/etc/unicorn/installed/" .. package_name)
+	fs.delete("/etc/unicorn/packages/installed/" .. package_name)
 	action_script(package_table, "postremove")
 	print("Package " .. package_name .. " removed.")
 	os.queueEvent("UnicornUninstall", package_table["name"])
