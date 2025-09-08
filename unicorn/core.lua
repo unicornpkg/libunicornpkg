@@ -1,8 +1,13 @@
 --- A modular package manager.
--- @module unicorn.core
+----@namespace unicorn.core
+---@module unicorn.core
 
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
+--- !doctype module
+----@class lib.module
 local unicorn = {}
+--- !doctype module
+----@class lib.module
 unicorn.core = {}
 unicorn.util = require("unicorn.util")
 local semver = require("semver")
@@ -10,10 +15,10 @@ local semver = require("semver")
 local sha256 = _G.sha256 or require("sha256") -- Some servers provide access to a Java-based hashing API; we should use that where possible
 
 -- better handling of globals with Lua diagnostics
--- @diagnostic disable:undefined-global
+---@diagnostic disable:undefined-global
 local fs = fs
 local textutils = textutils
--- @diagnostic enable:undefined-global
+---@diagnostic enable:undefined-global
 
 if _HOST:find("Recrafted") then -- Recrafted support
 	fs = require("fs")
@@ -29,16 +34,16 @@ local function is_installed(package_name)
 end
 
 --- Stores a package table at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.serialise'.
--- @param package_table table A valid package table.
--- @return boolean
+---@param package_table table A valid package table.
+---@return boolean
 local function storePackageData(package_table)
 	unicorn.util.fileWrite(textutils.serialise(package_table), "/etc/unicorn/packages/installed/" .. package_table.name)
 	return is_installed(package_table.name)
 end
 
 --- Retrieves a package table stored at '/etc/unicorn/packages/installed/{package_name}' with 'textutils.unserialise'.
--- @param package_name string A valid name of a package.
--- @return table If the package table is present.
+---@param package_name string A valid name of a package.
+---@return table If the package table is present.
 local function getPackageData(package_name)
 	if is_installed(package_name) then
 		local file1 = fs.open("/etc/unicorn/packages/installed/" .. package_name, "r")
@@ -70,7 +75,7 @@ end
 --- Checks if a conflicting version of a package is installed.
 -- This checks if there is an equivalent or higher version of a package is installed.
 -- If one is not detected, installation continues.
--- @param package_table A valid package table
+---@param package_table A valid package table
 local function check_installable(package_table)
 	local existing_package = getPackageData(package_table.name)
 	if existing_package then
@@ -112,8 +117,8 @@ local function action_modular_providers(package_table)
 end
 
 --- Gets "package_script_name" from "package_table.script" and runs it.
--- @param package_table A valid package table
--- @param package_script_name A value that is either "preinstall", "postinstall", "preremove", or "postremove".
+---@param package_table A valid package table
+---@param package_script_name A value that is either "preinstall", "postinstall", "preremove", or "postremove".
 local function action_script(package_table, package_script_name)
 	if package_table.script and package_table.script[package_script_name] then
 		local output, scriptError = load(package_table.script[package_script_name])()
@@ -134,7 +139,7 @@ local function action_check_hashes(package_table)
 	end
 end
 --- Creates folders from package_table.dirs
--- @param package_table A valid package table
+---@param package_table A valid package table
 local function action_make_folders(package_table)
 	if package_table.dirs then
 		for _, v in pairs(package_table.dirs) do
@@ -147,9 +152,9 @@ end
 -- This function is split up into "checks" and "actions".
 -- Checks ensure that the operation can be completed,
 -- and actions do things with values in the package table.
--- @param package_table table A valid package table
--- @return boolean
--- @return table
+---@param package_table table A valid package table
+---@return boolean
+---@return table
 function unicorn.core.install(package_table)
 	-- assertion blocks
 	check_valid(package_table)
@@ -187,8 +192,8 @@ end
 
 --- Removes a package from the system.
 -- It traverses package_table.instdat.filemaps and deletes everything.
--- @param package_name string The name of a package.
--- @return boolean
+---@param package_name string The name of a package.
+---@return boolean
 function unicorn.core.uninstall(package_name)
 	local package_table = getPackageData(package_name)
 	action_script(package_table, "preremove")

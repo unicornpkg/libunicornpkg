@@ -1,5 +1,5 @@
 --- Support for using package remotes.
--- @module unicorn.remote
+---@module unicorn.remote
 
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local unicorn = {}
