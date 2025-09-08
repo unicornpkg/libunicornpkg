@@ -1,5 +1,4 @@
 --- Utility functions for use with unicornpkg.
----@module unicorn.util
 
 local unicorn = {}
 unicorn.util = {}

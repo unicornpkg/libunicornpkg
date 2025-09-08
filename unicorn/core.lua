@@ -1,6 +1,4 @@
 --- A modular package manager.
-----@namespace unicorn.core
----@module unicorn.core
 
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 --- !doctype module
@@ -55,6 +53,7 @@ local function getPackageData(package_name)
 		return false
 	end
 end
+
 
 --- Checks if the provided "package_table" is valid.
 -- This works by checking if "package_table.unicornSpec" is a valid value,

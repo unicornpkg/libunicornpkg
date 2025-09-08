@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime.path": [
+    "?.lua",
+    "?/init.lua",
+    "vendor/?.lua",
+    "vendor/?/init.lua"
+  ],
+  "runtime.version": "Lua 5.3",
+  "workspace.ignoreDir": [
+    ".vscode",
+    "vendor"
+  ],
+  "workspace.library": [
+        "${addons}/cc-tweaked/module/library"
+  ],
+  "runtime.builtin": {
+    "io": "disable",
+    "os": "disable"
+  },
+  "workspace.checkThirdParty": false
+}
