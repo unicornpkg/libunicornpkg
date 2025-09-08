@@ -1,11 +1,9 @@
 --- A modular package manager.
 
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
---- !doctype module
-----@class lib.module
 local unicorn = {}
 --- !doctype module
-----@class lib.module
+--- @class unicorn.core
 unicorn.core = {}
 unicorn.util = require("unicorn.util")
 local semver = require("semver")

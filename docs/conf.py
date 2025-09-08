@@ -28,9 +28,11 @@ default_role = "lua:obj"
 
 lua_ls_project_root = ".."
 lua_ls_backend = "luals"
-lua_ls_project_directories = [
-  ".."
-]
+lua_ls_apidoc_default_options = {
+   "undoc-members": "",
+   "protected-members": "",
+   "globals": "",
+}
 lua_ls_apidoc_roots = {
    "unicorn": "api",
 }
