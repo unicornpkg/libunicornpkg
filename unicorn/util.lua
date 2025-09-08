@@ -1,5 +1,5 @@
 --- Utility functions for use with unicornpkg.
--- @module unicorn.util
+---@module unicorn.util
 
 local unicorn = {}
 unicorn.util = {}
@@ -11,9 +11,9 @@ if _HOST:find("Recrafted") then -- Recrafted support
 	fs = require("fs")
 end
 
--- @description Returns contents of HTTP(S) request
--- @deprecated "Use http.get instead"
--- @param url string A valid HTTP or HTTPS URL.
+---@description Returns contents of HTTP(S) request
+---@deprecated "Use http.get instead"
+---@param url string A valid HTTP or HTTPS URL.
 function unicorn.util.smartHttp(url)
 	print("Connecting to " .. url .. "... ")
 	local response, httpError = http.get(url)
@@ -29,9 +29,9 @@ function unicorn.util.smartHttp(url)
 	end
 end
 
--- @description Writes a file to the specified path.
--- @param content string The contents of the file to be written.
--- @param path string The full path of the file to be written.
+---@description Writes a file to the specified path.
+---@param content string The contents of the file to be written.
+---@param path string The full path of the file to be written.
 function unicorn.util.fileWrite(content, path)
 	if content then -- Checking to m @ake sure content is there, to prevent writing an empty file
 		local file1 = fs.open(path, "w")
