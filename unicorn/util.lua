@@ -1,6 +1,8 @@
 --- Utility functions for use with unicornpkg.
 
 local unicorn = {}
+--- !doctype module
+--- @class unicorn.util
 unicorn.util = {}
 
 local http = http
