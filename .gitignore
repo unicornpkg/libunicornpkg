@@ -1,2 +1,4 @@
 doc/
 tap_results.txt
+_docs/_build
+_docs/api

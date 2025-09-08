@@ -11,5 +11,8 @@ test:
   ./test/cctm.sh
   tappy tap_results.txt
 
+docs *SPHINXOPTS:
+  sphinx-build -b html {{SPHINXOPTS}} docs _docs
+
 autofix:
 	stylua .
