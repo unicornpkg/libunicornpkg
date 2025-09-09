@@ -6,10 +6,9 @@
 libunicornpkg documentation
 ===========================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+This is the documentation for libunicornpkg, the library containing the *de facto* implementation of [unicornpkg](https://unicornpkg.madefor.cc).
 
+The documentation here is limited strictly to the library; please see the main website for other documentation.
 
 .. toctree::
    :maxdepth: 2
