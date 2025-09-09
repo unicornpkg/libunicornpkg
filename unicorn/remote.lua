@@ -4,6 +4,8 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local unicorn = {}
 unicorn.core = require("unicorn.core")
 unicorn.util = require("unicorn.util")
+--- !doctype module
+--- @class unicorn.util
 unicorn.remote = {}
 
 function unicorn.remote.install(package_name)
