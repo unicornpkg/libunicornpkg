@@ -28,7 +28,7 @@ jobs:
       - run: nix develop .# --command just docs
         name: Build docs
       - name: Publish documentation to GitHub Pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: docs/_build
 
