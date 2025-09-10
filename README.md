@@ -1,4 +1,4 @@
-# unicornpkg
+# libunicornpkg
 
 The primary library and reference implementation for [unicornpkg](https://unicornpkg.madefor.cc).
 
