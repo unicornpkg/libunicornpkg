@@ -12,7 +12,8 @@ test:
   tappy tap_results.txt
 
 docs *SPHINXOPTS:
-  sphinx-build -b html {{SPHINXOPTS}} docs _docs
+  uv run --project docs -- \
+    sphinx-build -b html {{SPHINXOPTS}} docs docs/_build
 
 autofix:
 	stylua .
