@@ -6,7 +6,7 @@
 libunicornpkg documentation
 ===========================
 
-This is the documentation for libunicornpkg, the library containing the *de facto* implementation of [unicornpkg](https://unicornpkg.madefor.cc).
+This is the documentation for libunicornpkg, the library containing the *de facto* implementation of `unicornpkg <https://unicornpkg.madefor.cc>`_.
 
 The documentation here is limited strictly to the library; please see the main website for other documentation.
 
