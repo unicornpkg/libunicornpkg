@@ -7,7 +7,7 @@ Provides hooks into TypeScript's typing system for use with the [TypeScript to L
 Add this as a submodule with the path `types/unicorn`:
 
 ```
-git submodule add https://github.com/unicornpkg/tstl-typings-libunicornpkg types/unicorn
+git submodule add https://github.com/unicornpkg/tstl-types-libunicornpkg types/unicorn
 git submodule update --init --recurse
 ```
 

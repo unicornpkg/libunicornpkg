@@ -8,6 +8,6 @@
 	"license": "Apache-2.0",
   	"repository": {
   	  	"type": "git",
-  	  	"url": "https://github.com/unicornpkg/tstl-typings-libunicornpkg"
+  	  	"url": "https://github.com/unicornpkg/tstl-types-libunicornpkg"
   	}
 }
