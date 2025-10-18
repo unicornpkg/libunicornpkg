@@ -1,0 +1,7 @@
+{
+  "name": "@unicornpkg/types-libunicornpkg",
+  "version": "1.0.0",
+  "exports": {
+    "./unicorn": "./unicorn.d.ts"
+  }
+}

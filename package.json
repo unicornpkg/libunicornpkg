@@ -3,7 +3,8 @@
   	"devDependencies": {
   	  	"@typescript-eslint/eslint-plugin": "^5.45.0",
   	  	"dtslint": "^4.2.1",
-  	  	"eslint": "^8.29.0"
+  	  	"eslint": "^8.29.0",
+		"jsr": "*"
   	},
 	"license": "Apache-2.0",
   	"repository": {
