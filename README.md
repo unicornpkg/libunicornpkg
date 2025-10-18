@@ -4,6 +4,19 @@ Provides hooks into TypeScript's typing system for use with the [TypeScript to L
 
 ## Usage
 
+### Via jsr.io
+
+This package is [available as the `@unicornpkg/types-libunicornpkg` package](https://jsr.io/@unicornpkg/types-libunicornpkg) on [jsr.io](https://jsr.io). See [jsr.io's documentation for information on how to install this package](https://jsr.io/docs/using-packages).
+
+
+After it's been installed, you can import it like this:
+
+```ts
+import { unicorn } from "@unicornpkg/types-libunicornpkg";
+```
+
+### As a submodule (legacy)
+
 Add this as a submodule with the path `types/unicorn`:
 
 ```
@@ -11,7 +24,11 @@ git submodule add https://github.com/unicornpkg/tstl-types-libunicornpkg types/u
 git submodule update --init --recurse
 ```
 
-Then, `import` the library as usual.
+Then, `import` the library:
+
+```ts
+import { unicorn } from "./types/unicorn/unicorn.d.ts";
+```
 
 ## Development
 
