@@ -1,5 +1,6 @@
 {
 	"name": "@unicornpkg/types-libunicornpkg",
+	"version": "2025.10.18+0",
   	"devDependencies": {
   	  	"@typescript-eslint/eslint-plugin": "^5.45.0",
   	  	"dtslint": "^4.2.1",
