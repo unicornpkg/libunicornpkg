@@ -5,9 +5,21 @@ local unicorn = {}
 unicorn.core = require("unicorn.core")
 unicorn.util = require("unicorn.util")
 --- !doctype module
---- @class unicorn.util
+--- @class unicorn.remote
 unicorn.remote = {}
 
+--- Installs a package from a remote.
+---
+--- This function traverses `/etc/unicorn/remotes` for all text files that contain URLs to a [package remote](https://unicornpkg.github.io/spec/v1.1.0/package-remotes.html).
+---
+--- For each remote, it tries requesting the remote's URL plus the package's name.
+--- If it fails with a `Not Found` error, it moves on.
+--- If it gets a good response, then it installs the package.
+--- ## Example
+--- ```lua
+--- local unicorn = require("unicorn")
+--- unicorn.remote.install("aukit") -- installs MCJack123's AUKit, assuming the default remote is present
+--- ```
 function unicorn.remote.install(package_name)
 	local downloaded = false
 	while not downloaded do
