@@ -3,6 +3,7 @@ name = "docs"
 version = "0.0.0"
 requires-python = ">=3.13"
 dependencies = [
+    "myst-parser>=4.0.1",
     "sphinx",
-    "sphinx_lua_ls"
+    "sphinx_lua_ls",
 ]

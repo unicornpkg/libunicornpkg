@@ -8,6 +8,10 @@ updates:
     directory: ".github/workflows"
     schedule:
       interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "ts-types"
+    schedule:
+      interval: "weekly"
   - package-ecosystem: "gitsubmodule"
     directory: "vendor"
     schedule:
