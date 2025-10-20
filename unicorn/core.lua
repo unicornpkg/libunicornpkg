@@ -2,6 +2,7 @@
 
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local unicorn = {}
+--- Core logic for installing and uninstalling packages on the local system.
 --- !doctype module
 --- @class unicorn.core
 unicorn.core = {}
