@@ -147,6 +147,7 @@ local function action_make_folders(package_table)
 end
 
 --- Installs a package from a package table.
+---
 --- Example
 --- ~~~~~~~
 --- Reads a package table from the disk and installs it.
