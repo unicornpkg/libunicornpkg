@@ -1,0 +1,19 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "ts-types/v**"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: ./ts-types
+    steps:
+      - uses: actions/checkout@v5
+      - run: npm exec -- jsr publish

@@ -1,0 +1,15 @@
+{
+	"name": "@unicornpkg/types-libunicornpkg",
+	"version": "2025.10.18+1",
+  	"devDependencies": {
+  	  	"@typescript-eslint/eslint-plugin": "^5.45.0",
+  	  	"dtslint": "^4.2.1",
+  	  	"eslint": "^8.29.0",
+		"jsr": "*"
+  	},
+	"license": "Apache-2.0",
+  	"repository": {
+  	  	"type": "git",
+  	  	"url": "https://github.com/unicornpkg/libunicornpkg"
+  	}
+}

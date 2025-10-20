@@ -15,3 +15,4 @@ The documentation here is limited strictly to the library; please see the main w
    :caption: Contents:
 
    api/index.rst
+   tstl-types.md

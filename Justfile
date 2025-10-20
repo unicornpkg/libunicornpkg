@@ -6,6 +6,7 @@ default: lint test
 
 lint:
 	selene . --config .selene.toml
+	cd ts-types && just lint
 
 test:
   ./test/cctm.sh
