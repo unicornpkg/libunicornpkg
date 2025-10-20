@@ -16,11 +16,11 @@ unicorn.remote = {}
 --- If it fails with a `Not Found` error, it moves on.
 --- If it gets a good response, then it installs the package.
 ---
---- ## Example
---- ```lua
---- local unicorn = require("unicorn")
---- unicorn.remote.install("aukit") -- installs MCJack123's AUKit, assuming the default remote is present
---- ```
+--- Example
+--- ~~~~~~~
+--- Installs MCJack123's AUKit, assuming a remote hosting it is configured.
+--- >>> local unicorn = require("unicorn")
+--- >>> unicorn.remote.install("aukit")
 function unicorn.remote.install(package_name)
 	local downloaded = false
 	while not downloaded do

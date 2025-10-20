@@ -146,13 +146,26 @@ local function action_make_folders(package_table)
 end
 
 --- Installs a package from a package table.
--- This function is split up into "checks" and "actions".
--- Checks ensure that the operation can be completed,
--- and actions do things with values in the package table.
+--- Example
+--- ~~~~~~~
+--- Reads a package table from the disk and installs it.
+---
+--- .. DANGER::
+---    **This is insecure code.** This will execute the file at `/tmp/example_package`.
+---    You may want to consider evaluating `/tmp/example_package` in a sandbox.
+---
+--- >>> local unicorn = require("unicorn")
+--- >>> local file_1 = fs.open("/tmp/example_package")
+--- >>> local contents = file_1.readAll()
+--- >>> unicorn.core.install(dofile(contents))
 ---@param package_table table A valid package table
 ---@return boolean
 ---@return table
 function unicorn.core.install(package_table)
+	-- This function is split up into "checks" and "actions".
+	-- Checks ensure that the operation can be completed,
+	-- and actions do things with values in the package table.
+
 	-- assertion blocks
 	check_valid(package_table)
 
@@ -188,7 +201,11 @@ local function action_delete_folders(package_table)
 end
 
 --- Removes a package from the system.
--- It traverses package_table.instdat.filemaps and deletes everything.
+--- It traverses package_table.instdat.filemaps and deletes everything.
+--- Example
+--- ~~~~~~~
+--- Uninstall a package named `example-package`.
+--- >>> unicorn.core.uninstall("example-package")
 ---@param package_name string The name of a package.
 ---@return boolean
 function unicorn.core.uninstall(package_name)

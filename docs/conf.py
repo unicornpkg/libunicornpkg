@@ -23,6 +23,7 @@ exclude_patterns = []
 
 primary_domain = "lua"
 default_role = "lua:obj"
+highlight_language = 'lua'
 
 # -- sphinx-lua-ls configuration ---------------------------------------------
 
