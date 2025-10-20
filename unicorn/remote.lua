@@ -15,6 +15,7 @@ unicorn.remote = {}
 --- For each remote, it tries requesting the remote's URL plus the package's name.
 --- If it fails with a `Not Found` error, it moves on.
 --- If it gets a good response, then it installs the package.
+---
 --- ## Example
 --- ```lua
 --- local unicorn = require("unicorn")
