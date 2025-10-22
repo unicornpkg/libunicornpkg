@@ -16,4 +16,5 @@ jobs:
         working-directory: ./ts-types
     steps:
       - uses: actions/checkout@v5
-      - run: npm exec -- jsr publish
+      - run: npm install --save-dev
+      - run: npm exec -- jsr publish --allow-slow-types

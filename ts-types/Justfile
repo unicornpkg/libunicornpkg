@@ -12,4 +12,5 @@ copy-readme:
 	cp ../docs/tstl-types.md ./README.md
 
 publish: install copy-readme
-	npm exec -- jsr publish
+	npm exec -- jsr publish \
+		--allow-slow-types # tstl needs ambient types
