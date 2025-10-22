@@ -2,7 +2,7 @@
 	"name": "@unicornpkg/types-libunicornpkg",
 	"version": "2025.10.22+1",
   	"devDependencies": {
-  	  	"@typescript-eslint/eslint-plugin": "^5.45.0",
+  	  	"@typescript-eslint/eslint-plugin": "^8.46.2",
   	  	"dtslint": "^4.2.1",
   	  	"eslint": "^8.29.0",
 		"jsr": "*"
