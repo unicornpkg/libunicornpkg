@@ -7,3 +7,9 @@ install:
 
 lint: install
 	npx eslint .
+
+copy-readme:
+	cp ../docs/tstl-types.md ./README.md
+
+publish: install copy-readme
+	npm exec -- jsr publish
