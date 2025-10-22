@@ -1,6 +1,6 @@
 {
   "name": "@unicornpkg/types-libunicornpkg",
-  "version": "2025.10.22+0",
+  "version": "2025.10.22+1",
   "exports": {
     "./unicorn": "./unicorn.d.ts"
   }
