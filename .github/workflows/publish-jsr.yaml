@@ -21,7 +21,7 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
             accept-flake-config = true
-      - run: "nix develop ..#"
+      - run: "nix develop .#"
         name: "Prefetch CI dependencies"
-      - run: nix develop ..# --command just ts-types/publish
+      - run: nix develop .# --command just ts-types/publish
         name: Publish
