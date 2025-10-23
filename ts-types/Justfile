@@ -8,9 +8,6 @@ install:
 lint: install
 	npx eslint .
 
-copy-readme:
-	cp ../docs/tstl-types.md ./README.md
-
-publish: install copy-readme
+publish: install
 	npm exec -- jsr publish \
 		--allow-slow-types # tstl needs ambient types
