@@ -1,6 +1,6 @@
 {
   "name": "@unicornpkg/types-libunicornpkg",
-  "version": "2025.10.24+0",
+  "version": "2025.10.24+1",
   "license": "Apache-2.0",
   "exports": {
     "./unicorn": "./unicorn.d.ts"
