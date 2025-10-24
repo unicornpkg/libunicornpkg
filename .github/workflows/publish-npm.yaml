@@ -10,6 +10,9 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    defaults:
+      run:
+        working-directory: ./ts-types
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
