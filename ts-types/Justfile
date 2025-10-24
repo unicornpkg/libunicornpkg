@@ -8,6 +8,12 @@ install:
 lint: install
 	npx eslint .
 
-publish: install
+publsh-npm: install
+	npm publish \
+		--provenance \
+		--ignore-scripts \
+		--access public
+
+publish-jsr: install
 	npm exec -- jsr publish \
 		--allow-slow-types # tstl needs ambient types
