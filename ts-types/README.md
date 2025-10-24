@@ -4,9 +4,9 @@ Provides hooks into TypeScript's typing system for use with the [TypeScript to L
 
 ## Usage
 
-### Via jsr.io
+### Via npmjs.com
 
-This package is [available as the `@unicornpkg/types-libunicornpkg` package](https://jsr.io/@unicornpkg/types-libunicornpkg) on [jsr.io](https://jsr.io). See [jsr.io's documentation for information on how to install this package](https://jsr.io/docs/using-packages).
+This package is [available as the `@unicornpkg/types-libunicornpkg` package](https://npmjs.com/@unicornpkg/types-libunicornpkg) on [npmjs.com](https://npmjs.com). See [Node.js's documentation for information on how to install this package](https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager).
 
 
 After it's been installed, you can import it like this:
