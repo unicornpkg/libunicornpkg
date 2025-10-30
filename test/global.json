@@ -17,7 +17,7 @@
     "http_blacklist" : [
 
     ],
-    "http_enable" : false,
+    "http_enable" : true,
     "http_max_download" : 16777216,
     "http_max_requests" : 16,
     "http_max_upload" : 4194304,
@@ -28,7 +28,8 @@
     "http_timeout" : 30000,
     "http_websocket_enabled" : true,
     "http_whitelist" : [
-        "*"
+        "unicornpkg.github.io",
+        "pastebin.com"
     ],
     "ignoreHotkeys" : false,
     "initialComputer" : 0,

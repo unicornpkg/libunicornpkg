@@ -1,0 +1,15 @@
+package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
+
+describe("remote", function()
+   it("require('unicorn.remote') returns a table", function()
+     expect(require("unicorn.remote")):type("table")
+   end)
+   it("can install a package from a remote", function()
+     print("hi")
+     local unicornRemote = require("unicorn.remote")
+     local unicornCore = require("unicorn.core")
+     unicornRemote.install("ink")
+     expect(fs.exists("/etc/unicorn/packages/installed/ink")):equals(true)
+     expect(unicornCore.uninstall("ink")):equals(true)
+   end)
+end)
