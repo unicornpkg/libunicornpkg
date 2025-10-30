@@ -41,7 +41,7 @@ jobs:
       pages: write
     runs-on: ubuntu-latest
     needs: ci
-    if: ${{ github.ref == 'refs/heads/main' && github.action_repository == 'unicornpkg/libunicornpkg' }}
+    if: ${{ github.ref == 'refs/heads/main' && github.repository == 'unicornpkg/libunicornpkg' }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
