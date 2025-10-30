@@ -31,9 +31,11 @@ function unicorn.remote.install(package_name)
 			if not fs.isDir("/etc/unicorn/remotes/" .. v0) then
 				local v1 = fs.open("/etc/unicorn/remotes/" .. v0, "r")
 				local v2 = v1.readLine()
-				local v3 = v2:gsub("https://", "") -- have to remove the https:// prefix because fs.combine does weird stuff with it if it's left in
+				local protocol_pattern = "^(%a+://)"
+				local protocol = v2:match(protocol_pattern)
+				local v3 = v2:gsub(protocol_pattern, "") -- have to remove the https:// prefix because fs.combine does weird stuff with it if it's left in
 				local v4 = fs.combine(v3, package_name .. ".lua")
-				local v5 = "https://" .. v4
+				local v5 = protocol .. v4
 				local response, httpError = unicorn.util.smartHttp(v5)
 				if httpError then
 					if not httpError == "Not Found" then
