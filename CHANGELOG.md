@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+- When fetching a file from a package remote, the file is no longer written to `/tmp`. ([Reported](https://github.com/unicornpkg/libunicornpkg/issues/49) by [@Commandcracker](https://github.com/Commandcracker))
+
 ## v1.2.1
 
 - Fix a bug where attempting to uninstall and then reinstall a package would result in an error. ([Reported](https://github.com/unicornpkg/wing/issues/19#issuecomment-3029323428) by [@rapidradiance](https://github.com/rapidradiance))

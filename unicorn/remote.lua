@@ -42,7 +42,6 @@ function unicorn.remote.install(package_name)
 						error("HTTP request to " .. v5 .. " failed with error " .. httpError)
 					end
 				else
-					unicorn.util.fileWrite(response, "/tmp/" .. package_name)
 					print(response)
 					print(httpError)
 
