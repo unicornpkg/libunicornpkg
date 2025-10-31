@@ -27,7 +27,7 @@ cp -r "$SOURCE_DIR" "$COMPUTER_DIR/source"
 
 function runTests() {
     extraArgs="$@"
-    craftos --directory "$DATA_DIR" --headless --exec "shell.run('bin/mcfly.lua source/test/unicorn/'); os.shutdown()" "$extraArgs"
+    craftos --directory "$DATA_DIR" --headless --exec "_G.UNICORN_DEBUG_DO_NOT_USE_IN_PRODUCTION_CODE = 1; shell.run('bin/mcfly.lua source/test/unicorn/'); os.shutdown()" "$extraArgs"
 }
 
 runTests
