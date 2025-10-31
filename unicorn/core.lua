@@ -123,7 +123,7 @@ local function action_script(package_table, package_script_name)
 		if scriptError then
 			error(scriptError)
 		else
-			print("Package script " .. package_script_name .. " returned " .. tostring(output))
+			unicorn.util.logging.debug("Package script " .. package_script_name .. " returned " .. tostring(output))
 		end
 	end
 end
@@ -188,7 +188,7 @@ function unicorn.core.install(package_table)
 	action_check_hashes(package_table)
 
 	os.queueEvent("UnicornInstall", package_table["name"])
-	print("Package " .. package_table.name .. " installed successfully.")
+	unicorn.util.logging.info("Package " .. package_table.name .. " installed successfully.")
 	return true, package_table
 end
 
@@ -219,7 +219,7 @@ function unicorn.core.uninstall(package_name)
 	action_delete_folders(package_table)
 	fs.delete("/etc/unicorn/packages/installed/" .. package_name)
 	action_script(package_table, "postremove")
-	print("Package " .. package_name .. " removed.")
+	unicorn.util.logging.info("Package " .. package_name .. " removed.")
 	os.queueEvent("UnicornUninstall", package_table["name"])
 	return true
 end

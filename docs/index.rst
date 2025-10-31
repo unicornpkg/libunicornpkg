@@ -16,5 +16,6 @@ The documentation here is limited strictly to the library; please see the main w
 
    api/index.rst
    TypeScript to Lua types <tstl-types.md>
+   debugging.rst
    changelog.md
    License <license.md>

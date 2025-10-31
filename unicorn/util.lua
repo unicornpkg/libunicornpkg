@@ -16,11 +16,11 @@ end
 ---@deprecated "Use http.get instead"
 ---@param url string A valid HTTP or HTTPS URL.
 function unicorn.util.smartHttp(url)
-	print("Connecting to " .. url .. "... ")
+	unicorn.util.logging.debug("Connecting to " .. url .. "... ")
 	local response, httpError = http.get(url)
 
 	if response then
-		print("HTTP success.")
+		unicorn.util.logging.debug("HTTP success.")
 
 		local sResponse = response.readAll()
 		response.close()
@@ -58,7 +58,7 @@ function unicorn.util.logging.info(...)
 end
 
 function unicorn.util.logging.debug(...)
-	if _G.UNICORN_DEBUG == 1 then
+	if _G.UNICORN_DEBUG_DO_NOT_USE_IN_PRODUCTION_CODE == 1 then
 		print(...)
 	end
 end

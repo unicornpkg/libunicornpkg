@@ -42,8 +42,8 @@ function unicorn.remote.install(package_name)
 						error("HTTP request to " .. v5 .. " failed with error " .. httpError)
 					end
 				else
-					print(response)
-					print(httpError)
+					unicorn.util.logging.debug(response)
+					unicorn.util.logging.debug(httpError)
 
 					local package_table = load(response)()
 
