@@ -45,7 +45,7 @@ function unicorn.remote.install(package_name)
 					unicorn.util.logging.debug(response)
 					unicorn.util.logging.debug(httpError)
 
-					local package_table = load(response)()
+					local package_table = unicorn.util.evaluateInSandbox(response)()
 
 					-- install depends
 					if package_table.rel ~= nil and package_table.rel.depends ~= nil then

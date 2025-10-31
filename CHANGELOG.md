@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
+- Packages are now evaluated inside of a sandbox, preventing package tables from having side effects.
+  The functions available in the sandbox are defined in `unicorn.util.sandbox_env`.
+  **This does not provide much security. Do not install untrusted packages!**
+    - As a side effect, packages available on a remote can no longer be Lua bytecode (but this was never supported to begin with).
 - When fetching a file from a package remote, the file is no longer written to `/tmp`. ([Reported](https://github.com/unicornpkg/libunicornpkg/issues/49) by [@Commandcracker](https://github.com/Commandcracker))
 - Logging is slightly less verbose. Debug logging can be enabled by setting
   the `_G.UNICORN_DEBUG_DO_NOT_USE_IN_PRODUCTION_CODE` variable to `1`.
