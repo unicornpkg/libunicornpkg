@@ -128,6 +128,7 @@ function unicorn.util.logging.info(...)
 end
 
 function unicorn.util.logging.debug(...)
+	-- selene: allow(global_usage)
 	if _G.UNICORN_DEBUG_DO_NOT_USE_IN_PRODUCTION_CODE == 1 then
 		print(...)
 	end
