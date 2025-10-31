@@ -43,4 +43,24 @@ function unicorn.util.fileWrite(content, path)
 	end
 end
 
+unicorn.util.logging = {}
+
+function unicorn.util.logging.error(...)
+	error(...)
+end
+
+function unicorn.util.logging.warning(...)
+	printError(...)
+end
+
+function unicorn.util.logging.info(...)
+	print(...)
+end
+
+function unicorn.util.logging.debug(...)
+	if _G.UNICORN_DEBUG == 1 then
+		print(...)
+	end
+end
+
 return unicorn.util
