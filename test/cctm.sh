@@ -25,6 +25,13 @@ echo "https://unicornpkg.github.io/unicornpkg-main" > "$COMPUTER_DIR/etc/unicorn
 
 cp -r "$SOURCE_DIR" "$COMPUTER_DIR/source"
 
-craftos --directory "$DATA_DIR" --headless --exec "shell.run('bin/mcfly.lua source/test/unicorn/'); os.shutdown()"
+function runTests() {
+    extraArgs="$@"
+    craftos --directory "$DATA_DIR" --headless --exec "shell.run('bin/mcfly.lua source/test/unicorn/'); os.shutdown()" "$extraArgs"
+}
+
+runTests
+# FIXME: start testing under Recrafted once everything works
+# runTests --rom "$SOURCE_DIR/vendor/recrafted/data/computercraft/lua"
 
 cat $COMPUTER_DIR/tap_results.txt >> "$SOURCE_DIR"/tap_results.txt
