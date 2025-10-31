@@ -40,6 +40,8 @@ globals:
     property: read-only
   pocket:
     property: read-only
+  printError:
+    property: read-only
   rednet:
     property: read-only
   redstone:
