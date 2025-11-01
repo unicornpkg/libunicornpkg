@@ -14,6 +14,7 @@ The documentation here is limited strictly to the library; please see the main w
    :maxdepth: 2
    :caption: Contents:
 
+   providers/index.rst
    api/index.rst
    TypeScript to Lua types <tstl-types.md>
    debugging.rst
