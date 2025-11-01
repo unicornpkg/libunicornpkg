@@ -213,8 +213,10 @@ end
 function unicorn.core.uninstall(package_name)
 	local package_table = getPackageData(package_name)
 	action_script(package_table, "preremove")
-	for _, v in pairs(package_table.instdat.filemaps) do
-		fs.delete(v)
+	if package_table.instdat and package_table.instdat.filemaps then
+		for _, v in pairs(package_table.instdat.filemaps) do
+			fs.delete(v)
+		end
 	end
 	action_delete_folders(package_table)
 	fs.delete("/etc/unicorn/packages/installed/" .. package_name)

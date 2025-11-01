@@ -26,4 +26,19 @@ describe("provider.local.nothing", function()
     expect(fs.exists("/etc/unicorn/packages/installed/argparse")):equals(true)
     expect(unicornCore.uninstall("argparse")):equals(true)
   end)
+   it("can be installed and uninstalled if instdat is empty", function()
+    local unicornCore = require("unicorn.core")
+    --local testutils = require("testutils")
+
+    local package = {}
+    package.pkgType = "local.nothing"
+    package.unicornSpec = "v1.0.0"
+    package.name = "test-local.nothing-empty-instdat"
+    package.version = "0.0.1"
+    package.instdat = {}
+
+    expect(unicornCore.install(package)):equals(true)
+    expect(fs.exists("/etc/unicorn/packages/installed/test-local.nothing-empty-instdat")):equals(true)
+    expect(unicornCore.uninstall("test-local.nothing-empty-instdat")):equals(true)
+  end)
 end)
