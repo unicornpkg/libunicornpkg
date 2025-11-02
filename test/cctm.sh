@@ -10,6 +10,10 @@ echo "# Data dir is $DATA_DIR"
 mkdir -p "$DATA_DIR"/{config,computer/0}
 cp "$SOURCE_DIR"/test/global.json "$DATA_DIR"/config/global.json
 
+# add a symlink to ./testenv, for inspecting the environment
+rm -f "$SOURCE_DIR/test/testenv"
+ln -s "$DATA_DIR" "$SOURCE_DIR/test/testenv"
+
 rm -f "$SOURCE_DIR"/tap_results.txt
 echo "TAP version 14" > "$SOURCE_DIR"/tap_results.txt
 

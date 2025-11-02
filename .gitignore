@@ -1,5 +1,6 @@
 doc/
 tap_results.txt
+/test/testenv
 docs/_build
 docs/api
 docs/.venv
