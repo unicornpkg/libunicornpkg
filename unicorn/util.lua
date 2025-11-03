@@ -113,6 +113,8 @@ function unicorn.util.evaluateInSandbox(input)
 	return load(input, "sandbox_content", "t", unicorn.util.sandbox_env)
 end
 
+--- !doctype module
+--- @class unicorn.util.logging
 unicorn.util.logging = {}
 
 function unicorn.util.logging.error(...)
