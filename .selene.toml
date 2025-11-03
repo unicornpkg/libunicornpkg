@@ -1,7 +1,8 @@
 std = ".cc-tweaked.selene+.mcfly.selene"
 
 exclude = [
-    "vendor/**"
+    "vendor/**",
+    "test/testenv"
 ]
 
 [lints]
