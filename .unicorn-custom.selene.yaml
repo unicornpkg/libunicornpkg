@@ -1,0 +1,21 @@
+globals:
+  dofile:
+    args:
+      - type: string
+    deprecated:
+      message: "dofile should not be used in this project; use require instead"
+  loadfile:
+    args:
+      - type: string
+    deprecated:
+      message: "loadfile should not be used in this project; use require instead"
+  os.loadAPI:
+    args:
+      - type: string
+    deprecated:
+      message: "os.loadAPI should not be used in this project; use require instead"
+  os.unloadAPI:
+    args:
+      - type: string
+    deprecated:
+      message: "os.unloadAPI should not be used in this project; use require instead"
