@@ -4,7 +4,7 @@
 export interface PackageTableType {
     // v1.0.0 is what libunicornpkg currently supports
     unicornSpec: "v1.0.0";
-    pkgType: "com.github" | "com.github.releases" | "com.gitlab" | "com.pastebin" | "dev.devbin" | "org.bitbucket";
+    pkgType: "com.github" | "com.github.releases" | "com.gitlab" | "com.pastebin" | "org.bitbucket";
     name: string;
     desc: string;
     maintainer: string;
