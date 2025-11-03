@@ -37,7 +37,7 @@ function unicorn.util.fileWrite(content, path)
 	if content then -- Checking to m @ake sure content is there, to prevent writing an empty file
 		local file1 = fs.open(path, "w")
 		file1.write(content)
-		file1.flush()
+		file1.close()
 	else
 		return false
 	end
