@@ -4,6 +4,22 @@ describe("core", function()
 	it("require('unicorn.core') returns a table", function()
 		expect(require("unicorn.core")):type("table")
 	end)
+
+	it("unicorn.core.install fails when it encounters an unknown pkgType", function()
+		local unicornCore = require("unicorn.core")
+		local fake_provider_name = "invalid.this_package_provider_should_never_exist"
+
+		local thisPackage = {}
+		thisPackage.pkgType = fake_provider_name
+		thisPackage.unicornSpec = "v1.0.0"
+		thisPackage.name = "test-fail-unknown-pkgType"
+		thisPackage.version = "0.0.1"
+		thisPackage.instdat = {}
+
+		local status = pcall(unicornCore.install, thisPackage)
+		expect(status):equals(false)
+	end)
+
 	it("core.install runs script.preinstall", function()
 		local unicornCore = require("unicorn.core")
 
