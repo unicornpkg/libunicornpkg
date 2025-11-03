@@ -5,7 +5,8 @@ set export
 default: lint test
 
 lint:
-	selene . --config .selene.toml
+	#!/usr/bin/env bash
+	selene . --pattern "unicorn/*.lua" --pattern "test/*.lua"
 	cd ts-types && just lint
 
 test:
