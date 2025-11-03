@@ -34,6 +34,56 @@ describe("core", function()
 		expect(status):equals(false)
 	end)
 
+	it("unicorn.core.install creates directories when dirs is set", function()
+		local unicornCore = require("unicorn.core")
+		local thisPackage = {}
+		thisPackage.pkgType = "local.nothing"
+		thisPackage.unicornSpec = "v1.0.0"
+		thisPackage.name = "test-dirs-created"
+		thisPackage.version = "0.0.1"
+		thisPackage.dirs = { "/lib/giim" }
+
+		expect(fs.isDir("/lib/giim")):equals(false)
+		unicornCore.install(thisPackage)
+		expect(fs.isDir("/lib/giim")):equals(true)
+		unicornCore.uninstall("test-dirs-created")
+	end)
+
+	it("unicorn.core.uninstall deletes empty directories when dirs is set", function()
+		local unicornCore = require("unicorn.core")
+		local thisPackage = {}
+		thisPackage.pkgType = "local.nothing"
+		thisPackage.unicornSpec = "v1.0.0"
+		thisPackage.name = "test-dirs-deleted"
+		thisPackage.version = "0.0.1"
+		thisPackage.dirs = { "/lib/giim" }
+
+		expect(fs.isDir("/lib/giim")):equals(false)
+		unicornCore.install(thisPackage)
+		expect(fs.isDir("/lib/giim")):equals(true)
+		unicornCore.uninstall("test-dirs-deleted")
+		expect(fs.isDir("/lib/giim")):equals(false)
+	end)
+
+	it("unicorn.core.uninstall keeps directories containing stuff when dirs is set", function()
+		local unicornCore = require("unicorn.core")
+		local unicornUtil = require("unicorn.util")
+		local thisPackage = {}
+		thisPackage.pkgType = "local.nothing"
+		thisPackage.unicornSpec = "v1.0.0"
+		thisPackage.name = "test-dirs-preserved-when-containing-stuff"
+		thisPackage.version = "0.0.1"
+		thisPackage.dirs = { "/lib/giim" }
+
+		expect(fs.isDir("/lib/giim")):equals(false)
+		unicornCore.install(thisPackage)
+		expect(fs.isDir("/lib/giim")):equals(true)
+		unicornUtil.fileWrite("return 1", "/lib/giim/hello.lua")
+		unicornCore.uninstall("test-dirs-preserved-when-containing-stuff")
+		expect(fs.isDir("/lib/giim")):equals(true)
+		expect(require("giim.hello")):equals(1)
+	end)
+
 	it("core.install runs script.preinstall", function()
 		local unicornCore = require("unicorn.core")
 
