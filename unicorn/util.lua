@@ -5,13 +5,6 @@ local unicorn = {}
 --- @class unicorn.util
 unicorn.util = {}
 
-local http = http
-local fs = fs
-if _HOST:find("Recrafted") then -- Recrafted support
-	http = require("http")
-	fs = require("fs")
-end
-
 ---@description Returns contents of HTTP(S) request
 ---@deprecated "Use http.get instead"
 ---@param url string A valid HTTP or HTTPS URL.

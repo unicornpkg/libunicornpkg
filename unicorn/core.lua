@@ -11,17 +11,6 @@ local semver = require("semver")
 -- selene: allow(global_usage)
 local sha256 = _G.sha256 or require("sha256") -- Some servers provide access to a Java-based hashing API; we should use that where possible
 
--- better handling of globals with Lua diagnostics
----@diagnostic disable:undefined-global
-local fs = fs
-local textutils = textutils
----@diagnostic enable:undefined-global
-
-if _HOST:find("Recrafted") then -- Recrafted support
-	fs = require("fs")
-	textutils = require("textutils")
-end
-
 local function is_installed(package_name)
 	if fs.exists("/etc/unicorn/packages/installed/" .. package_name) then
 		return true

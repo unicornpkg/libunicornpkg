@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Logging is slightly less verbose. Debug logging can be enabled by setting
   the `_G.UNICORN_DEBUG_DO_NOT_USE_IN_PRODUCTION_CODE` variable to `1`.
   **This interface is not stable.**
+- [Recrafted](https://ocaweso.me/recrafted/) is no longer officially supported.
+  The initial support was very subpar, and went untested for so long
+  that it broke entirely.
+  **Recrafted support will come back in a future release.**
+  (Tracked by [#12](https://github.com/unicornpkg/libunicornpkg/issues/12))
 
 ## v1.2.1
 
