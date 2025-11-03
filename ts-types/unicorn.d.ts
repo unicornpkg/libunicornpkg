@@ -11,10 +11,10 @@ export interface PackageTableType {
     licensing: string;
     version: string;
     script: {
-        preinstall: () => void;
-        postinstall: () => void;
-        preremove: () => void;
-        postremove: () => void;
+        preinstall: string;
+        postinstall: string;
+        preremove: string;
+        postremove: string;
     };
     rel: {
         depends: string[];
