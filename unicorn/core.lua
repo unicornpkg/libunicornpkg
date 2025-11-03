@@ -130,7 +130,7 @@ end
 
 local function action_check_hashes(package_table)
 	if package_table.security and package_table.security.sha256 then
-		for k, v in package_table.security.sha256 do
+		for k, v in pairs(package_table.security.sha256) do
 			local digest = sha256.digest(fs.open(k, "r"):readAll())
 			assert(digest, v)
 		end
@@ -194,7 +194,7 @@ end
 
 local function action_delete_folders(package_table)
 	if package_table.dirs then
-		for _, v in package_table.dirs do
+		for _, v in pairs(package_table.dirs) do
 			if not next(fs.list(v)) then
 				fs.delete(v)
 			end
