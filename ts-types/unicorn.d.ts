@@ -6,21 +6,21 @@ export interface PackageTableType {
     unicornSpec: "v1.0.0";
     pkgType: "com.github" | "com.github.releases" | "com.gitlab" | "com.pastebin" | "org.bitbucket";
     name: string;
-    desc: string;
-    maintainer: string;
-    licensing: string;
-    version: string;
-    script: {
-        preinstall: string;
-        postinstall: string;
-        preremove: string;
-        postremove: string;
+    desc?: string;
+    maintainer?: string;
+    licensing?: string;
+    version?: string;
+    script?: {
+        preinstall?: string;
+        postinstall?: string;
+        preremove?: string;
+        postremove?: string;
     };
-    rel: {
-        depends: string[];
-        conflicts: string[];
+    rel?: {
+        depends?: string[];
+        conflicts?: string[];
     };
-    security: { sha256: Map<string, string> };
+    security?: { sha256?: Map<string, string> };
 }
 
 declare module "unicorn" {
