@@ -1,4 +1,5 @@
 doc/
+.direnv
 tap_results.txt
 /test/testenv
 docs/_build
