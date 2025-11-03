@@ -20,6 +20,20 @@ describe("core", function()
 		expect(status):equals(false)
 	end)
 
+	it("unicorn.core.install fails when it encounters a table without a unicornSpec value", function()
+		local unicornCore = require("unicorn.core")
+		local fake_provider_name = "invalid.this_package_provider_should_never_exist"
+
+		local thisPackage = {}
+		thisPackage.pkgType = fake_provider_name
+		thisPackage.name = "test-fail-no-unicornSpec"
+		thisPackage.version = "0.0.1"
+		thisPackage.instdat = {}
+
+		local status = pcall(unicornCore.install, thisPackage)
+		expect(status):equals(false)
+	end)
+
 	it("core.install runs script.preinstall", function()
 		local unicornCore = require("unicorn.core")
 
