@@ -85,21 +85,18 @@ end
 -- If found, it uses that provider to install files to the system.
 -- Otherwise, it errors.
 local function action_modular_providers(package_table)
-	local match, provider = pcall(require("unicorn.provider." .. package_table.pkgType))
-
-	if type(provider) == "function" then
+	local match, provider = pcall(require, "unicorn.provider." .. package_table.pkgType)
+	if match then
+		assert(type(provider) == "function", "The package provider "
+			.. package_table.pkgType
+			.. "is malformed (type should be function). Something is wrong with the provider's backend code. Unless you are writing your own provider, please report this error.")
 		provider(package_table)
-	end
-
-	-- catch unknown providers
-	if not match then
-		if not package_table.pkgType == nil then
-			error(
-				"Package provider "
-					.. package_table.pkgType
-					.. " is unknown. You are either missing the appropriate package provider or something is wrong with the package."
-			)
-		end
+	else
+		error(
+			"Package provider "
+				.. package_table.pkgType
+				.. " is unknown. You are either missing the appropriate package provider or something is wrong with the package."
+		)
 	end
 end
 
