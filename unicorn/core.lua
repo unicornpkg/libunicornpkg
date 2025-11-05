@@ -62,7 +62,7 @@ end
 --- Checks if a conflicting version of a package is installed.
 -- This checks if there is an equivalent or higher version of a package is installed.
 -- If one is not detected, installation continues.
----@param package_table A valid package table
+---@param package_table table A valid package table
 local function check_installable(package_table)
 	local existing_package = getPackageData(package_table.name)
 	if existing_package then
@@ -101,8 +101,8 @@ local function action_modular_providers(package_table)
 end
 
 --- Gets "package_script_name" from "package_table.script" and runs it.
----@param package_table A valid package table
----@param package_script_name A value that is either "preinstall", "postinstall", "preremove", or "postremove".
+---@param package_table table A valid package table
+---@param package_script_name string A value that is either "preinstall", "postinstall", "preremove", or "postremove".
 local function action_script(package_table, package_script_name)
 	if package_table.script and package_table.script[package_script_name] then
 		local output, scriptError = load(package_table.script[package_script_name])()
@@ -117,13 +117,13 @@ end
 local function action_check_hashes(package_table)
 	if package_table.security and package_table.security.sha256 then
 		for k, v in pairs(package_table.security.sha256) do
-			local digest = sha256.digest(fs.open(k, "r"):readAll())
+			local digest = sha256.digest(fs.open(k, "r"):readAll()):toHex()
 			assert(digest, v)
 		end
 	end
 end
 --- Creates folders from package_table.dirs
----@param package_table A valid package table
+---@param package_table table A valid package table
 local function action_make_folders(package_table)
 	if package_table.dirs then
 		for _, v in pairs(package_table.dirs) do

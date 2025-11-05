@@ -7,6 +7,7 @@ unicorn.util = {}
 
 ---@description Returns contents of HTTP(S) request
 ---@param url string A valid HTTP or HTTPS URL.
+---@return string The content from the request
 function unicorn.util.smartHttp(url)
 	unicorn.util.logging.debug("Connecting to " .. url .. "... ")
 
@@ -39,6 +40,7 @@ end
 ---@type table
 --- @doctype const
 unicorn.util.sandbox_env = {
+	---@diagnostic disable: deprecated
 	-- Source: https://stackoverflow.com/a/6982080 (with gentle modifications)
 	ipairs = ipairs,
 	next = next,
@@ -93,6 +95,7 @@ unicorn.util.sandbox_env = {
 		tan = math.tan,
 		tanh = math.tanh,
 	},
+	---@diagnostic enable: deprecated
 }
 
 --- Load some Lua code in a sandboxed environment.

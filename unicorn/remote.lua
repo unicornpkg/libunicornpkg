@@ -22,6 +22,8 @@ unicorn.remote = {}
 --- Installs MCJack123's AUKit, assuming a remote hosting it is configured.
 --- >>> local unicorn = require("unicorn")
 --- >>> unicorn.remote.install("aukit")
+---@param package_name string The name of the package
+---@return nil
 function unicorn.remote.install(package_name)
 	local downloaded = false
 	while not downloaded do
