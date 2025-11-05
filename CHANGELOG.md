@@ -34,6 +34,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   making packages that don't need to contain anything; for example,
   packages which function as "groups" to install certain packages
   at once, or packages for software that is already installed.
+- Migrated the project to use `require` with a custom `package.path` value.
+    - Retroactive note: **This breaks most installations of the CLI.**
+      The breakages that this change caused in the CLI are fixed in CLI version 1.2.1 or later.
 
 ## v1.1.0
 
