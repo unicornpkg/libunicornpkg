@@ -6,7 +6,6 @@ local unicorn = {}
 unicorn.util = {}
 
 ---@description Returns contents of HTTP(S) request
----@deprecated "Use http.get instead"
 ---@param url string A valid HTTP or HTTPS URL.
 function unicorn.util.smartHttp(url)
 	unicorn.util.logging.debug("Connecting to " .. url .. "... ")
