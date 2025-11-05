@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - As a side effect, packages available on a remote can no longer be Lua bytecode (but this was never supported to begin with).
 - Packages with an empty `instdat` can now be uninstalled.
 - Packages with `dirs` can now be uninstalled.
+- When attempting an HTTP request with `unicorn.util.smartHttp`,
+  the function will throw an error if we receive a bad response.
+  As a result, operations that make HTTP requests will now fail if the server sends such a response.
+  ([Reported](https://github.com/unicornpkg/libunicornpkg/issues/33) by [@Commandcracker](https://github.com/Commandcracker))
 - When fetching a file from a package remote, the file is no longer written to `/tmp`. ([Reported](https://github.com/unicornpkg/libunicornpkg/issues/49) by [@Commandcracker](https://github.com/Commandcracker))
 - Logging is slightly less verbose. Debug logging can be enabled by setting
   the `_G.UNICORN_DEBUG_DO_NOT_USE_IN_PRODUCTION_CODE` variable to `1`.

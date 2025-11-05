@@ -29,7 +29,9 @@
     "http_websocket_enabled" : true,
     "http_whitelist" : [
         "unicornpkg.github.io",
-        "pastebin.com"
+        "pastebin.com",
+        "httpbin.io",
+        "example.com"
     ],
     "ignoreHotkeys" : false,
     "initialComputer" : 0,

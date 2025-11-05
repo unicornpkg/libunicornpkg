@@ -10,17 +10,16 @@ unicorn.util = {}
 ---@param url string A valid HTTP or HTTPS URL.
 function unicorn.util.smartHttp(url)
 	unicorn.util.logging.debug("Connecting to " .. url .. "... ")
+
 	local response, httpError = http.get(url)
-
-	if response then
-		unicorn.util.logging.debug("HTTP success.")
-
-		local sResponse = response.readAll()
-		response.close()
-		return sResponse
-	else
-		return false, httpError
+	if not response then
+		error("Failed to fetch URL '" .. url .. "': " .. tostring(httpError))
 	end
+
+	unicorn.util.logging.debug("HTTP success.")
+	local sResponse = response.readAll()
+	response.close()
+	return sResponse
 end
 
 ---@description Writes a file to the specified path.
