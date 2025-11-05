@@ -13,4 +13,6 @@ To use these in a package, set the `package.pkgType` to the provider's identifie
    ./com.github.release.md
    ./com.gitlab.md
    ./com.pastebin.md
+   ./local.nothing.md
+   ./local.string.md
    ./org.bitbucket.md
