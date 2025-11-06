@@ -31,6 +31,7 @@ highlight_language = 'lua'
 html_theme_options = {
     'github_user': 'unicornpkg',
     'github_repo': 'libunicornpkg',
+    'github_banner': true,
 }
 
 # -- sphinx-lua-ls configuration ---------------------------------------------
