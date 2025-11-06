@@ -26,6 +26,13 @@ primary_domain = "lua"
 default_role = "lua:obj"
 highlight_language = 'lua'
 
+# -- Theme configuration -----------------------------------------------------
+
+html_theme_options = {
+    'github_user': 'unicornpkg',
+    'github_repo': 'libunicornpkg',
+}
+
 # -- sphinx-lua-ls configuration ---------------------------------------------
 
 lua_ls_project_root = ".."
