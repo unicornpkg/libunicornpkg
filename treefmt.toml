@@ -1,0 +1,26 @@
+"$schema" = "https://www.schemastore.org/treefmt.json"
+excludes = ["vendor/*"]
+[formatter.stylua]
+command = "stylua"
+includes = ["*.lua"]
+[formatter.taplo]
+command = "taplo"
+options = ["fmt"]
+includes = ["*.toml"]
+[formatter.nixfmt]
+command = "nixfmt"
+includes = ["*.nix"]
+[formatter.shfmt]
+command = "shfmt"
+includes = ["*.sh"]
+[formatter.prettier]
+command = "prettier"
+includes = ["*.js", "*.ts", "*.cjs", "*.mjs", "*.yaml", "*.yml", "*.json"]
+[formatter.ruff]
+command = "ruff"
+options = ["format"]
+includes = ["*.py"]
+[formatter.just]
+command = "just"
+options = ["--unstable", "--format", "--justfile"]
+includes = ["Justfile"]
