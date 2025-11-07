@@ -17,7 +17,7 @@ release = "1.2.1"
 extensions = ["myst_parser", "sphinx_lua_ls"]
 
 templates_path = ["_templates"]
-exclude_patterns = []
+exclude_patterns = [".venv"]
 
 primary_domain = "lua"
 default_role = "lua:obj"
