@@ -30,6 +30,7 @@
     "http_whitelist" : [
         "unicornpkg.github.io",
         "pastebin.com",
+        "p.sc3.io",
         "httpbin.io",
         "example.com"
     ],
