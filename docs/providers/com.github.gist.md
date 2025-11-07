@@ -2,7 +2,7 @@
 
 `com.github.gist` is the identifier for the package provider of [GitHub Gists](https://gists.github.com).
 
-This provider enables sourcing the contents of a single-file GitHub Gist (ergo, a Gist with only one file).
+This provider enables sourcing files from a GitHub Gist.
 
 ## `instdat.repo_owner`
 
@@ -16,3 +16,8 @@ The identifier of the target Gist. (This is named this way for consistency with 
 
 The [Git reference](https://git-scm.com/book/en/v2/Git-Internals-Git-References) (a commit) of the target repository.
 
+## `instdat.filemaps`
+
+A table which contains mappings for files on GitHub and their local counterparts.
+
+The key for each item in the table should correspond to the full path on the GitHub Gist, and the value should be the local destination.
