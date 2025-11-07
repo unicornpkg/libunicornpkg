@@ -7,7 +7,7 @@ default: lint test
 lint:
     #!/usr/bin/env bash
     treefmt --ci
-    selene . --pattern "unicorn/*.lua" --pattern "test/*.lua"
+    selene . --pattern "unicorn/*.lua" --pattern "cli/*.lua" --pattern "test/*.lua"
     cd ts-types && just lint
 
 test:
