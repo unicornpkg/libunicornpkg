@@ -42,7 +42,6 @@ local function getPackageData(package_name)
 	end
 end
 
-
 --- Checks if the provided "package_table" is valid.
 -- This works by checking if "package_table.unicornSpec" is a valid value,
 -- and then checks if there are unfulfilled dependencies.
@@ -87,9 +86,12 @@ end
 local function action_modular_providers(package_table)
 	local match, provider = pcall(require, "unicorn.provider." .. package_table.pkgType)
 	if match then
-		assert(type(provider) == "function", "The package provider "
-			.. package_table.pkgType
-			.. "is malformed (type should be function). Something is wrong with the provider's backend code. Unless you are writing your own provider, please report this error.")
+		assert(
+			type(provider) == "function",
+			"The package provider "
+				.. package_table.pkgType
+				.. "is malformed (type should be function). Something is wrong with the provider's backend code. Unless you are writing your own provider, please report this error."
+		)
 		provider(package_table)
 	else
 		error(

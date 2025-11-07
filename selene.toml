@@ -1,9 +1,6 @@
 std = ".cc-tweaked.selene+.mcfly.selene+.unicorn-custom.selene"
 
-exclude = [
-    "vendor/**",
-    "test/testenv"
-]
+exclude = ["vendor/**", "test/testenv"]
 
 [lints]
 incorrect_standard_library_use = "allow" # Workaround for https://github.com/Kampfkarren/selene/issues/467

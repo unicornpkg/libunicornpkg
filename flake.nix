@@ -8,16 +8,24 @@
     systems.url = "github:nix-systems/default";
   };
 
-  outputs = { self, nixpkgs, systems, ... } @ inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      systems,
+      ...
+    }@inputs:
     let
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
     in
     {
-      devShells = forEachSystem
-        (system:
-          let
-            pkgs = nixpkgs.legacyPackages.${system};
-            sphinx-lua-ls = with pkgs; python3Packages.buildPythonPackage rec {
+      devShells = forEachSystem (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          sphinx-lua-ls =
+            with pkgs;
+            python3Packages.buildPythonPackage rec {
               pname = "sphinx-lua-ls";
               version = "3.2.0";
               pyproject = true;
@@ -49,27 +57,28 @@
                 license = lib.licenses.mit;
               };
             };
-          in
-          {
-            default = pkgs.mkShellNoCC {
-              packages = with pkgs; [
-                just
-                craftos-pc
-                python3Packages.tappy
-                selene
-                python3Packages.uv
-                lua-language-server # needed for docs
-                nodejs_24
-                # formatters
-                treefmt
-                stylua
-                taplo
-                nixfmt
-                prettier
-                shfmt
-                ruff
-              ];
-            };
-          });
+        in
+        {
+          default = pkgs.mkShellNoCC {
+            packages = with pkgs; [
+              just
+              craftos-pc
+              python3Packages.tappy
+              selene
+              python3Packages.uv
+              lua-language-server # needed for docs
+              nodejs_24
+              # formatters
+              treefmt
+              stylua
+              taplo
+              nixfmt
+              prettier
+              shfmt
+              ruff
+            ];
+          };
+        }
+      );
     };
 }
