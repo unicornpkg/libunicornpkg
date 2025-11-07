@@ -25,7 +25,20 @@ highlight_language = "lua"
 
 # -- Theme configuration -----------------------------------------------------
 
+html_sidebars = {
+    "**": [
+        "about.html",
+        "searchfield.html",
+        "navigation.html",
+        "relations.html",
+        "donate.html",
+    ]
+}
+
 html_theme_options = {
+    "extra_nav_links": {
+        "Installation guide": "https://unicornpkg.madefor.cc/how-tos/installation.html",
+    },
     "github_user": "unicornpkg",
     "github_repo": "libunicornpkg",
     "github_banner": True,
