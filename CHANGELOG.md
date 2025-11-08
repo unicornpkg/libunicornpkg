@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
+
+## v1.3.0
 - Packages are now evaluated inside of a sandbox, preventing package tables from having side effects.
   The functions available in the sandbox are defined in `unicorn.util.sandbox_env`.
   **This does not provide much security. Do not install untrusted packages!**
