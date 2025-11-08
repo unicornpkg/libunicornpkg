@@ -18,5 +18,8 @@ docs *SPHINXOPTS:
     uv run --project docs -- \
     	sphinx-build -b html {{ SPHINXOPTS }} docs docs/_build
 
+docs-preview: docs
+    python3 -m http.server -d docs/_build
+
 autofix:
     treefmt
