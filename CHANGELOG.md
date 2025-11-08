@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   The functions available in the sandbox are defined in `unicorn.util.sandbox_env`.
   **This does not provide much security. Do not install untrusted packages!**
     - As a side effect, packages available on a remote can no longer be Lua bytecode (but this was never supported to begin with).
+- The [](./providers/org.codeberg.md) provider for [Codeberg](https://codeberg.org) has been added.
 - Packages with an empty `instdat` can now be uninstalled.
 - Packages with `dirs` can now be uninstalled.
 - When attempting an HTTP request with `unicorn.util.smartHttp`,
