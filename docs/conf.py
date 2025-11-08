@@ -47,7 +47,8 @@ html_theme_options = {
 # -- rediraffe configuration -------------------------------------------------
 
 rediraffe_redirects = {
-    "providers/com.github.releases.md": "providers/com.github.release.md"
+    "providers/com.github.releases.md": "providers/com.github.release.md",
+    "providers/dev.devbin.md": "changelog.md",
 }
 
 # -- sphinx-lua-ls configuration ---------------------------------------------
