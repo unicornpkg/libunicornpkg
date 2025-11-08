@@ -14,7 +14,7 @@ release = "1.2.1"
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["myst_parser", "sphinx_lua_ls"]
+extensions = ["myst_parser", "sphinx_lua_ls", "sphinxext.rediraffe"]
 
 templates_path = ["_templates"]
 exclude_patterns = [".venv"]
@@ -42,6 +42,12 @@ html_theme_options = {
     "github_user": "unicornpkg",
     "github_repo": "libunicornpkg",
     "github_banner": True,
+}
+
+# -- rediraffe configuration -------------------------------------------------
+
+rediraffe_redirects = {
+    "providers/com.github.releases.md": "providers/com.github.release.md"
 }
 
 # -- sphinx-lua-ls configuration ---------------------------------------------
