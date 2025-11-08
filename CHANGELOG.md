@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Logging is slightly less verbose. Debug logging can be enabled by setting
   the `_G.UNICORN_DEBUG_DO_NOT_USE_IN_PRODUCTION_CODE` variable to `1`.
   **This interface is not stable.**
+- Remotes defined in `/etc/unicorn/remotes` must now end with the `.txt` file extension.
 - [Recrafted](https://ocaweso.me/recrafted/) is no longer officially supported.
   The initial support was very subpar, and went untested for so long
   that it broke entirely.

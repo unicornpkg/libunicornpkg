@@ -11,7 +11,7 @@ unicorn.remote = {}
 
 --- Installs a package from a remote.
 ---
---- This function traverses `/etc/unicorn/remotes` for all text files that contain URLs to a [package remote](https://unicornpkg.github.io/spec/v1.1.0/package-remotes.html).
+--- This function traverses `/etc/unicorn/remotes` for all `.txt` files that contain URLs to a [package remote](https://unicornpkg.github.io/spec/v1.1.0/package-remotes.html).
 ---
 --- For each remote, it tries requesting the remote's URL plus the package's name.
 --- If it fails with a `Not Found` error, it moves on.
@@ -30,8 +30,9 @@ function unicorn.remote.install(package_name)
 		-- TODO: Change the variable names into something more descriptive
 		-- TODO: Split this into smaller local functions
 		for _, v0 in pairs(fs.list("/etc/unicorn/remotes/")) do
-			if not fs.isDir("/etc/unicorn/remotes/" .. v0) then
-				local v1 = fs.open("/etc/unicorn/remotes/" .. v0, "r")
+			local candidatePath = "/etc/unicorn/remotes/" .. v0
+			if (candidatePath):match(".txt$") and (not fs.isDir(candidatePath)) then
+				local v1 = fs.open(candidatePath, "r")
 				local v2 = v1.readLine()
 				local protocol_pattern = "^(%a+://)"
 				local protocol = v2:match(protocol_pattern)
