@@ -84,6 +84,27 @@ describe("core", function()
 		expect(require("giim.hello")):equals(1)
 	end)
 
+	it("unicorn.core.install doesn't cause problems when hashes are good", function()
+		local unicornCore = require("unicorn.core")
+
+		local package = {}
+		package.pkgType = "local.string"
+		package.unicornSpec = "v1.0.0"
+		package.name = "test-sha256-validated"
+		package.version = "0.0.1"
+		package.instdat = {}
+		package.instdat.filemaps = {}
+		package.instdat.filemaps["return 1"] = "/lib/test-sha256-validated.lua"
+		package.security = {}
+		package.security.sha256 = {}
+		package.security.sha256["/lib/test-sha256-validated.lua"] = "486d9affb60dbb0063b03d8e23a6ccf6364ce203dc3a9f56f20e750eb41ecade"
+
+		expect(unicornCore.install(package)):equals(true)
+		expect(fs.exists("/etc/unicorn/packages/installed/test-sha256-validated")):equals(true)
+		expect(require("test-sha256-validated")):equals(1)
+		expect(unicornCore.uninstall("test-sha256-validated")):equals(true)
+	end)
+
 	it("core.install runs script.preinstall", function()
 		local unicornCore = require("unicorn.core")
 
