@@ -1,6 +1,3 @@
-[submodule "vendor/libcompat"]
-	path = vendor/libcompat
-	url = https://github.com/unicornpkg/libcompat
 [submodule "vendor/recrafted"]
 	path = vendor/recrafted
 	url = https://github.com/Ocawesome101/recrafted
