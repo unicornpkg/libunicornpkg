@@ -26,17 +26,16 @@ cp "$SOURCE_DIR/vendor/mcfly.lua" "$COMPUTER_DIR/bin/mcfly.lua"
 echo "https://unicornpkg.github.io/unicornpkg-main" > "$COMPUTER_DIR/etc/unicorn/remotes/90-main.txt"
 
 function runTests() {
-    extraArgs="$@"
     craftos \
         --directory "$DATA_DIR" \
         --headless \
         --mount-ro "source=$SOURCE_DIR" \
         --mount-ro "lib/unicorn=$SOURCE_DIR/unicorn" \
-        "$extraArgs"
+        "$@"
 }
 
-runTests
+runTests "$@"
 # FIXME: start testing under Recrafted once everything works
-# runTests --rom "$SOURCE_DIR/vendor/recrafted/data/computercraft/lua"
+# runTests "$@" --rom "$SOURCE_DIR/vendor/recrafted/data/computercraft/lua"
 
-cat $COMPUTER_DIR/tap_results.txt >> "$SOURCE_DIR"/tap_results.txt
+cat "$COMPUTER_DIR"/tap_results.txt >> "$SOURCE_DIR"/tap_results.txt
