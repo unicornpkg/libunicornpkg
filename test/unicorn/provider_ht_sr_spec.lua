@@ -12,7 +12,7 @@ describe("provider.ht.sr", function()
 		thisPackage.unicornSpec = "v1.0.0"
 		thisPackage.name = "ht-sr-test"
 		thisPackage.version = "0.0.1"
-        -- Since I don't want to pay for a Sourcehut account, let's use this repository I found
+		-- Since I don't want to pay for a Sourcehut account, let's use this repository I found
 		thisPackage.instdat = {}
 		thisPackage.instdat.repo_owner = "~ntietz"
 		thisPackage.instdat.repo_name = "gal.gay"
