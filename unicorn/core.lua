@@ -7,9 +7,6 @@ local unicorn = {}
 --- @class unicorn.core
 unicorn.core = {}
 unicorn.util = require("unicorn.util")
-local semver = require("semver")
--- selene: allow(global_usage)
-local sha256 = _G.sha256 or require("sha256") -- Some servers provide access to a Java-based hashing API; we should use that where possible
 
 local function is_installed(package_name)
 	if fs.exists("/etc/unicorn/packages/installed/" .. package_name) then
@@ -66,6 +63,7 @@ local function check_installable(package_table)
 	local existing_package = getPackageData(package_table.name)
 	if existing_package then
 		if existing_package.version and package_table.version then
+			local semver = require("semver")
 			if semver(existing_package.version) == semver(package_table.version) then
 				error(
 					"Same version of package is installed. Uninstall the currently installed package if you want to override."
@@ -118,6 +116,9 @@ end
 
 local function action_check_hashes(package_table)
 	if package_table.security and package_table.security.sha256 then
+		-- selene: allow(global_usage)
+		local sha256 = _G.sha256 or require("sha256") -- Some servers provide access to a Java-based hashing API; we should use that where possible
+
 		for k, v in pairs(package_table.security.sha256) do
 			local digest = sha256.digest(fs.open(k, "r"):readAll()):toHex()
 			assert(digest, v)
