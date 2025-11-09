@@ -44,6 +44,11 @@ html_theme_options = {
     "github_banner": True,
 }
 
+# -- MyST configuration ------------------------------------------------------
+# https://myst-parser.readthedocs.io/en/latest/configuration.html
+
+myst_enable_extensions = ["colon_fence"]
+
 # -- rediraffe configuration -------------------------------------------------
 
 rediraffe_redirects = {
