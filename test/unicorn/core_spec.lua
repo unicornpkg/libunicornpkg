@@ -127,6 +127,84 @@ describe("core", function()
 		expect.error(unicornCore.uninstall, "test-sha256-validated")
 	end)
 
+	it("core.install replaces an older package with a newer one", function()
+		local unicornCore = require("unicorn.core")
+
+		local olderPackage = {}
+		olderPackage.pkgType = "local.string"
+		olderPackage.unicornSpec = "v1.0.0"
+		olderPackage.name = "test-older-replaces-newer"
+		olderPackage.version = "0.0.1"
+		olderPackage.instdat = {}
+		olderPackage.instdat.filemaps = {}
+		olderPackage.instdat.filemaps["return 1"] = "/lib/test-older-replaces-newer.lua"
+
+		local newerPackage = {}
+		newerPackage.pkgType = "local.string"
+		newerPackage.unicornSpec = "v1.0.0"
+		newerPackage.name = "test-older-replaces-newer"
+		newerPackage.version = "0.0.2"
+		newerPackage.instdat = {}
+		newerPackage.instdat.filemaps = {}
+		newerPackage.instdat.filemaps["return 2"] = "/lib/test-older-replaces-newer.lua"
+
+		expect(unicornCore.install(olderPackage)):equals(true)
+		expect(fs.exists("/etc/unicorn/packages/installed/" .. olderPackage.name)):equals(true)
+		expect(require(olderPackage.name)):equals(1)
+		expect(unicornCore.install(newerPackage)):equals(true)
+		-- un-cache the previous output, since it changes
+		package.loaded[newerPackage.name] = nil
+		expect(require(newerPackage.name)):equals(2)
+		expect(unicornCore.uninstall(newerPackage.name)):equals(true)
+	end)
+
+	it("core.install refuses to replace a newer package with an older one", function()
+		local unicornCore = require("unicorn.core")
+
+		local olderPackage = {}
+		olderPackage.pkgType = "local.string"
+		olderPackage.unicornSpec = "v1.0.0"
+		olderPackage.name = "test-fail-newer-replaces-older"
+		olderPackage.version = "0.0.1"
+		olderPackage.instdat = {}
+		olderPackage.instdat.filemaps = {}
+		olderPackage.instdat.filemaps["return 1"] = "/lib/test-fail-newer-replaces-older.lua"
+
+		local newerPackage = {}
+		newerPackage.pkgType = "local.string"
+		newerPackage.unicornSpec = "v1.0.0"
+		newerPackage.name = "test-fail-newer-replaces-older"
+		newerPackage.version = "0.0.2"
+		newerPackage.instdat = {}
+		newerPackage.instdat.filemaps = {}
+		newerPackage.instdat.filemaps["return 2"] = "/lib/test-fail-newer-replaces-older.lua"
+
+		expect(unicornCore.install(newerPackage)):equals(true)
+		expect(fs.exists("/etc/unicorn/packages/installed/" .. olderPackage.name)):equals(true)
+		expect(require(olderPackage.name)):equals(2)
+		expect.error(unicornCore.install, newerPackage)
+		expect(unicornCore.uninstall(newerPackage.name)):equals(true)
+	end)
+
+	it("core.install refuses to replace a package with one of the same version", function()
+		local unicornCore = require("unicorn.core")
+
+		local thisPackage = {}
+		thisPackage.pkgType = "local.string"
+		thisPackage.unicornSpec = "v1.0.0"
+		thisPackage.name = "test-fail-same-replaces-same"
+		thisPackage.version = "0.0.1"
+		thisPackage.instdat = {}
+		thisPackage.instdat.filemaps = {}
+		thisPackage.instdat.filemaps["return 1"] = "/lib/test-fail-same-replaces-same.lua"
+
+		expect(unicornCore.install(thisPackage)):equals(true)
+		expect(fs.exists("/etc/unicorn/packages/installed/" .. thisPackage.name)):equals(true)
+		expect(require(thisPackage.name)):equals(1)
+		expect.error(unicornCore.install, thisPackage)
+		expect(unicornCore.uninstall(thisPackage.name)):equals(true)
+	end)
+
 	it("core.install runs script.preinstall", function()
 		local unicornCore = require("unicorn.core")
 
