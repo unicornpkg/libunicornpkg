@@ -13,6 +13,11 @@ includes = ["*.nix"]
 [formatter.shfmt]
 command = "shfmt"
 includes = ["*.sh"]
+[formatter.shellcheck]
+command = "just"
+options = "_autofix-shellcheck"
+priority = -1
+includes = ["*.sh"]
 [formatter.prettier]
 command = "prettier"
 includes = ["*.js", "*.ts", "*.cjs", "*.mjs", "*.yaml", "*.yml", "*.json"]

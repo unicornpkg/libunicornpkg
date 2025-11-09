@@ -8,6 +8,7 @@ lint:
     #!/usr/bin/env bash
     treefmt --ci
     selene . --pattern "unicorn/*.lua" --pattern "cli/*.lua" --pattern "test/*.lua"
+    shellcheck */**.sh
     cd ts-types && just lint
 
 test:
@@ -23,3 +24,8 @@ docs-preview: docs
 
 autofix:
     treefmt
+
+_autofix-shellcheck *FILES:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    shellcheck --format diff {{ FILES }} | patch -p1 || true

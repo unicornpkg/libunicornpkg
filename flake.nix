@@ -65,6 +65,7 @@
               craftos-pc
               python3Packages.tappy
               selene
+              shellcheck
               python3Packages.uv
               lua-language-server # needed for docs
               nodejs_24
