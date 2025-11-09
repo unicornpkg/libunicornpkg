@@ -13,9 +13,9 @@ describe("provider.com.gitlab", function()
 		thisPackage.name = "com-gitlab-test"
 		thisPackage.version = "0.0.1"
 		thisPackage.instdat = {}
-        thisPackage.instdat.repo_owner = "unicornpkg"
-        thisPackage.instdat.repo_name = "test-repo"
-        thisPackage.instdat.repo_ref = "eb68921911fafef3d66c2214e5fbf9bad540cb25854aadc5b008abc2170329ae"
+		thisPackage.instdat.repo_owner = "unicornpkg"
+		thisPackage.instdat.repo_name = "test-repo"
+		thisPackage.instdat.repo_ref = "eb68921911fafef3d66c2214e5fbf9bad540cb25854aadc5b008abc2170329ae"
 		thisPackage.instdat.filemaps = {}
 		thisPackage.instdat.filemaps["com-gitlab-test.lua"] = "/lib/com-gitlab-test.lua"
 

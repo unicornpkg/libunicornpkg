@@ -97,7 +97,8 @@ describe("core", function()
 		package.instdat.filemaps["return 1"] = "/lib/test-sha256-validated.lua"
 		package.security = {}
 		package.security.sha256 = {}
-		package.security.sha256["/lib/test-sha256-validated.lua"] = "486d9affb60dbb0063b03d8e23a6ccf6364ce203dc3a9f56f20e750eb41ecade"
+		package.security.sha256["/lib/test-sha256-validated.lua"] =
+			"486d9affb60dbb0063b03d8e23a6ccf6364ce203dc3a9f56f20e750eb41ecade"
 
 		expect(unicornCore.install(package)):equals(true)
 		expect(fs.exists("/etc/unicorn/packages/installed/test-sha256-validated")):equals(true)
@@ -119,7 +120,8 @@ describe("core", function()
 		package.security = {}
 		package.security.sha256 = {}
 		-- 8373...896c is hash of "return 2"
-		package.security.sha256["/lib/test-sha256-validated.lua"] = "8373f7e086bb27784827ef8f2f4ae118e05d58b67f513f82c2316dc57b0d896c"
+		package.security.sha256["/lib/test-sha256-validated.lua"] =
+			"8373f7e086bb27784827ef8f2f4ae118e05d58b67f513f82c2316dc57b0d896c"
 
 		expect.error(unicornCore.install, package)
 		expect.error(fs.exists, "/etc/unicorn/packages/installed/test-sha256-validated")

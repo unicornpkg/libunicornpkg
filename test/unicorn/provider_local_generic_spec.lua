@@ -14,7 +14,8 @@ describe("provider.org.bitbucket", function()
 		thisPackage.version = "0.0.1"
 		thisPackage.instdat = {}
 		thisPackage.instdat.filemaps = {}
-		thisPackage.instdat.filemaps["https://unicornpkg.github.io/test-repo/local-generic-test.lua"] = "/lib/local-generic-test.lua"
+		thisPackage.instdat.filemaps["https://unicornpkg.github.io/test-repo/local-generic-test.lua"] =
+			"/lib/local-generic-test.lua"
 
 		expect(unicornCore.install(thisPackage)):equals(true)
 		expect(fs.exists("/etc/unicorn/packages/installed/" .. thisPackage.name)):equals(true)

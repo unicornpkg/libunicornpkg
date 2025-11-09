@@ -14,9 +14,9 @@ describe("provider.com.github.gist", function()
 		thisPackage.name = "com-github-gist-test"
 		thisPackage.version = "0.0.1"
 		thisPackage.instdat = {}
-        thisPackage.instdat.repo_owner = "tomodachi94"
-        thisPackage.instdat.repo_name = "6b121766ef4ec1e5c97e6834879d90c3"
-        thisPackage.instdat.repo_ref = "53d888d96535239201305f9c664560bce30d447b"
+		thisPackage.instdat.repo_owner = "tomodachi94"
+		thisPackage.instdat.repo_name = "6b121766ef4ec1e5c97e6834879d90c3"
+		thisPackage.instdat.repo_ref = "53d888d96535239201305f9c664560bce30d447b"
 		thisPackage.instdat.filemaps = {}
 		thisPackage.instdat.filemaps["com-github-gist-test.lua"] = "/lib/com-github-gist-test.lua"
 
