@@ -105,6 +105,28 @@ describe("core", function()
 		expect(unicornCore.uninstall("test-sha256-validated")):equals(true)
 	end)
 
+	pending("unicorn.core.install causes problems when hashes are bad", function()
+		local unicornCore = require("unicorn.core")
+
+		local package = {}
+		package.pkgType = "local.string"
+		package.unicornSpec = "v1.0.0"
+		package.name = "test-sha256-invalid"
+		package.version = "0.0.1"
+		package.instdat = {}
+		package.instdat.filemaps = {}
+		package.instdat.filemaps["return 1"] = "/lib/test-sha256-validated.lua"
+		package.security = {}
+		package.security.sha256 = {}
+		-- 8373...896c is hash of "return 2"
+		package.security.sha256["/lib/test-sha256-validated.lua"] = "8373f7e086bb27784827ef8f2f4ae118e05d58b67f513f82c2316dc57b0d896c"
+
+		expect.error(unicornCore.install, package)
+		expect.error(fs.exists, "/etc/unicorn/packages/installed/test-sha256-validated")
+		expect.error(require, "test-sha256-validated")
+		expect.error(unicornCore.uninstall, "test-sha256-validated")
+	end)
+
 	it("core.install runs script.preinstall", function()
 		local unicornCore = require("unicorn.core")
 
