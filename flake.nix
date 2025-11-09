@@ -63,7 +63,6 @@
             packages = with pkgs; [
               just
               craftos-pc
-              python3Packages.tappy
               selene
               shellcheck
               python3Packages.uv

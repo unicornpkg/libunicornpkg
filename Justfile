@@ -13,7 +13,6 @@ lint:
 
 test:
     ./test/cctm.sh
-    tappy tap_results.txt
 
 docs *SPHINXOPTS:
     uv run --project docs -- \
