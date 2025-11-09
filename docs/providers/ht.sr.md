@@ -22,6 +22,6 @@ The [Git reference](https://git-scm.com/book/en/v2/Git-Internals-Git-References)
 
 ## `instdat.filemaps`
 
-A table which contains mappings for files on Bitbucket and their local counterparts.
+A table which contains mappings for files on Sourcehut and their local counterparts.
 
 The key for each item in the table should correspond to the full path on the Sourcehut repository, and the value should be the local destination.
