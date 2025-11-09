@@ -4,9 +4,6 @@
 [submodule "vendor/libcompat"]
 	path = vendor/libcompat
 	url = https://github.com/unicornpkg/libcompat
-[submodule "vendor/semver"]
-	path = vendor/semver
-	url = https://github.com/kikito/semver.lua
 [submodule "vendor/recrafted"]
 	path = vendor/recrafted
 	url = https://github.com/Ocawesome101/recrafted

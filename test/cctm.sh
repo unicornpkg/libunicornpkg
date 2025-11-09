@@ -22,8 +22,6 @@ cp "$SOURCE_DIR"/test/settings "$COMPUTER_DIR"/.settings
 mkdir -p "$COMPUTER_DIR"/{lib,bin,etc/unicorn/remotes,etc/unicorn/packages/installed}
 cp -r "$SOURCE_DIR/unicorn" "$COMPUTER_DIR/lib"
 cp "$SOURCE_DIR/test/startup.lua" "$COMPUTER_DIR/startup.lua"
-cp "$SOURCE_DIR/vendor/semver/semver.lua" "$COMPUTER_DIR/lib"
-cp "$SOURCE_DIR/vendor/sha256.lua" "$COMPUTER_DIR/lib"
 cp "$SOURCE_DIR/vendor/mcfly.lua" "$COMPUTER_DIR/bin/mcfly.lua"
 
 echo "https://unicornpkg.github.io/unicornpkg-main" > "$COMPUTER_DIR/etc/unicorn/remotes/90-main.txt"
