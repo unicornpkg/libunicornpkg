@@ -207,6 +207,38 @@ describe("core", function()
 		expect(unicornCore.uninstall(thisPackage.name)):equals(true)
 	end)
 
+	it("core.install refuses to install a package that conflicts with another", function()
+		local unicornCore = require("unicorn.core")
+
+		local firstPackage = {}
+		firstPackage.pkgType = "local.string"
+		firstPackage.unicornSpec = "v1.0.0"
+		firstPackage.name = "test-fail-conflicts-foo"
+		firstPackage.version = "0.0.1"
+		firstPackage.instdat = {}
+		firstPackage.instdat.filemaps = {}
+		firstPackage.instdat.filemaps["return 1"] = "/lib/test-fail-conflicts-foo.lua"
+		firstPackage.rel = {}
+		firstPackage.rel.conflicts = {"test-fail-conflicts-bar"}
+
+		local secondPackage = {}
+		secondPackage.pkgType = "local.string"
+		secondPackage.unicornSpec = "v1.0.0"
+		secondPackage.name = "test-fail-conflicts-bar"
+		secondPackage.version = "0.0.1"
+		secondPackage.instdat = {}
+		secondPackage.instdat.filemaps = {}
+		secondPackage.instdat.filemaps["return 1"] = "/lib/test-fail-conflicts-foo.lua"
+		secondPackage.rel = {}
+		secondPackage.rel.conflicts = {"test-fail-conflicts-foo"}
+
+		expect(unicornCore.install(firstPackage)):equals(true)
+		expect(fs.exists("/etc/unicorn/packages/installed/" .. firstPackage.name)):equals(true)
+		expect(require(firstPackage.name)):equals(1)
+		expect.error(unicornCore.install, secondPackage)
+		expect(unicornCore.uninstall(firstPackage.name)):equals(true)
+	end)
+
 	it("core.install runs script.preinstall", function()
 		local unicornCore = require("unicorn.core")
 
