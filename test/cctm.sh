@@ -17,6 +17,7 @@ ln -s "$DATA_DIR" "$SOURCE_DIR/test/testenv"
 COMPUTER_DIR="$DATA_DIR/computer/0"
 cp "$SOURCE_DIR"/test/settings "$COMPUTER_DIR"/.settings
 mkdir -p "$COMPUTER_DIR"/{lib,bin,etc/unicorn/remotes,etc/unicorn/packages/installed}
+cp "$SOURCE_DIR"/cli/{hoof,unicorntool}.lua "$COMPUTER_DIR"/bin
 cp "$SOURCE_DIR/test/startup.lua" "$COMPUTER_DIR/startup.lua"
 
 echo "https://unicornpkg.github.io/unicornpkg-main" > "$COMPUTER_DIR/etc/unicorn/remotes/90-main.txt"
