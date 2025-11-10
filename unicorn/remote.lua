@@ -9,6 +9,33 @@ unicorn.util = require("unicorn.util")
 --- @class unicorn.remote
 unicorn.remote = {}
 
+---@return table
+local function getConfiguredRemotes()
+	local remotes = {}
+	for _, filename in pairs(fs.list("/etc/unicorn/remotes/")) do
+		local fullPath = "/etc/unicorn/remotes/" .. filename
+		if (filename):match(".txt$") and (not fs.isDir(fullPath)) then
+			local f = fs.open(fullPath, "r")
+			local remoteUrl = f.readLine()
+			f.close()
+			table.insert(remotes, remoteUrl)
+		end
+	end
+	return remotes
+end
+
+---@param remote_url string
+---@param candidate string
+---@return string
+local function buildCandidateUrl(remote_url, candidate)
+	local protocol_pattern = "^(%a+://)"
+	local protocol = remote_url:match(protocol_pattern)
+	-- remove the https:// prefix because fs.combine does weird stuff with it if it's left in
+	local bare_remote_url = remote_url:gsub(protocol_pattern, "")
+	local candidate_url = protocol .. fs.combine(bare_remote_url, candidate .. ".lua")
+	return candidate_url
+end
+
 --- Installs a package from a remote.
 ---
 --- This function traverses `/etc/unicorn/remotes` for all `.txt` files that contain URLs to a [package remote](https://unicornpkg.github.io/spec/v1.1.0/package-remotes.html).
@@ -27,40 +54,31 @@ unicorn.remote = {}
 function unicorn.remote.install(package_name)
 	local downloaded = false
 	while not downloaded do
-		-- TODO: Change the variable names into something more descriptive
-		-- TODO: Split this into smaller local functions
-		for _, v0 in pairs(fs.list("/etc/unicorn/remotes/")) do
-			local candidatePath = "/etc/unicorn/remotes/" .. v0
-			if (candidatePath):match(".txt$") and (not fs.isDir(candidatePath)) then
-				local v1 = fs.open(candidatePath, "r")
-				local v2 = v1.readLine()
-				local protocol_pattern = "^(%a+://)"
-				local protocol = v2:match(protocol_pattern)
-				local v3 = v2:gsub(protocol_pattern, "") -- have to remove the https:// prefix because fs.combine does weird stuff with it if it's left in
-				local v4 = fs.combine(v3, package_name .. ".lua")
-				local v5 = protocol .. v4
-				local response, httpError = unicorn.util.smartHttp(v5)
-				if httpError then
-					if not httpError == "Not Found" then
-						error("HTTP request to " .. v5 .. " failed with error " .. httpError)
-					end
-				else
-					unicorn.util.logging.debug(response)
-					unicorn.util.logging.debug(httpError)
-
-					local package_table = unicorn.util.evaluateInSandbox(response)()
-
-					-- install depends
-					if package_table.rel ~= nil and package_table.rel.depends ~= nil then
-						for _, package in pairs(package_table.rel.depends) do
-							unicorn.remote.install(package)
-						end
-					end
-
-					unicorn.core.install(package_table)
-
-					downloaded = true
+		for _, remoteUrl in ipairs(getConfiguredRemotes()) do
+			local candidateUrl = buildCandidateUrl(remoteUrl, package_name)
+			-- FIXME: interface of smartHttp has changed significantly and now always errors
+			-- migrate to bare http.get?
+			local response, httpError = unicorn.util.smartHttp(candidateUrl)
+			if httpError then
+				if not httpError == "Not Found" then
+					error("HTTP request to " .. candidateUrl .. " failed with error " .. httpError)
 				end
+			else
+				unicorn.util.logging.debug(response)
+				unicorn.util.logging.debug(httpError)
+
+				local package_table = unicorn.util.evaluateInSandbox(response)()
+
+				-- install depends
+				if package_table.rel ~= nil and package_table.rel.depends ~= nil then
+					for _, package in pairs(package_table.rel.depends) do
+						unicorn.remote.install(package)
+					end
+				end
+
+				unicorn.core.install(package_table)
+
+				downloaded = true
 			end
 		end
 	end
