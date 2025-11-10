@@ -78,7 +78,13 @@ local function check_installable(package_table)
 	if package_table.rel and package_table.rel.conflicts then
 		for _, conflict in ipairs(package_table.rel.conflicts) do
 			if is_installed(conflict) then
-				error("A package named " .. conflict .. " is installed, which conflicts with this package. Uninstall " .. conflict .. " if you want to proceed with installing this package.")
+				error(
+					"A package named "
+						.. conflict
+						.. " is installed, which conflicts with this package. Uninstall "
+						.. conflict
+						.. " if you want to proceed with installing this package."
+				)
 			end
 		end
 	end

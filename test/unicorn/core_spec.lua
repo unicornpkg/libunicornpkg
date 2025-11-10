@@ -219,7 +219,7 @@ describe("core", function()
 		firstPackage.instdat.filemaps = {}
 		firstPackage.instdat.filemaps["return 1"] = "/lib/test-fail-conflicts-foo.lua"
 		firstPackage.rel = {}
-		firstPackage.rel.conflicts = {"test-fail-conflicts-bar"}
+		firstPackage.rel.conflicts = { "test-fail-conflicts-bar" }
 
 		local secondPackage = {}
 		secondPackage.pkgType = "local.string"
@@ -230,7 +230,7 @@ describe("core", function()
 		secondPackage.instdat.filemaps = {}
 		secondPackage.instdat.filemaps["return 1"] = "/lib/test-fail-conflicts-foo.lua"
 		secondPackage.rel = {}
-		secondPackage.rel.conflicts = {"test-fail-conflicts-foo"}
+		secondPackage.rel.conflicts = { "test-fail-conflicts-foo" }
 
 		expect(unicornCore.install(firstPackage)):equals(true)
 		expect(fs.exists("/etc/unicorn/packages/installed/" .. firstPackage.name)):equals(true)
