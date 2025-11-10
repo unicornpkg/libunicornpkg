@@ -42,6 +42,7 @@ end
 unicorn.util.sandbox_env = {
 	---@diagnostic disable: deprecated
 	-- Source: https://stackoverflow.com/a/6982080 (with gentle modifications)
+	_HOST = _HOST,
 	ipairs = ipairs,
 	next = next,
 	pairs = pairs,
