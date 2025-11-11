@@ -12,7 +12,14 @@ lint:
     cd ts-types && just lint
 
 test:
-    ./test/cctm.sh
+    #!/usr/bin/env bash
+    . ./test/env.sh
+    runTests
+
+develop:
+    #!/usr/bin/env bash
+    . ./test/env.sh
+    runCraftos --cli
 
 docs *SPHINXOPTS:
     uv run --project docs -- \

@@ -10,6 +10,8 @@ Use `nix develop` to retrieve all of our development dependencies, or use [Diren
 
 We use the [`just` command runner](https://just.systems). Instead of adding things to GitHub Actions, we prefer adding recipes to our `Justfile` that are then executed in GitHub Actions.
 
+You can enter a preconfigured CraftOS-PC emulator by running `just develop`.
+
 ## Code formatting
 
 We use a variety of code formatters to avoid wasting time on discussions about code formatting.
