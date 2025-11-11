@@ -18,8 +18,9 @@ test:
 
 develop:
     #!/usr/bin/env bash
+    set -euo pipefail
     . ./test/env.sh
-    runCraftos --cli
+    runDevenv
 
 docs *SPHINXOPTS:
     uv run --project docs -- \

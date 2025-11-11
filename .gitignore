@@ -1,7 +1,7 @@
 doc/
 .direnv
 tap_results.txt
-/test/testenv
+/test/env
 docs/_build
 docs/api
 docs/.venv

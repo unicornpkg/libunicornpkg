@@ -2,8 +2,6 @@
 set -euo pipefail
 
 SOURCE_DIR="$(git rev-parse --show-toplevel)"
-echo "# Source dir is $SOURCE_DIR" >&2
-echo "# CraftOS-PC is $(which craftos)" >&2
 
 function buildDataDir() {
     DATA_DIR="$(mktemp -d)"
@@ -17,10 +15,15 @@ function buildDataDir() {
     cp "$SOURCE_DIR"/cli/{hoof,unicorntool}.lua "$COMPUTER_DIR"/bin
 
     echo "https://unicornpkg.github.io/unicornpkg-main" > "$COMPUTER_DIR/etc/unicorn/remotes/90-main.txt"
+    # add a symlink to ./env, for inspecting the environment
+    rm -f "$SOURCE_DIR/test/env"
+    ln -s "$DATA_DIR" "$SOURCE_DIR/test/env"
+
     echo "$DATA_DIR"
 }
 
 function runCraftos() {
+    echo "# CraftOS-PC is $(which craftos)" >&2
     craftos \
         --mount-ro "source=$SOURCE_DIR" \
         --mount-ro "lib/unicorn=$SOURCE_DIR/unicorn" \
@@ -29,11 +32,15 @@ function runCraftos() {
 
 function runTests() {
     DATA_DIR="$(buildDataDir)"
-    # add a symlink to ./testenv, for inspecting the environment
-    rm -f "$SOURCE_DIR/test/testenv"
-    ln -s "$DATA_DIR" "$SOURCE_DIR/test/testenv"
     cp "$SOURCE_DIR/test/startup.lua" "$DATA_DIR/computer/0/startup.lua"
     runCraftos \
         --headless \
+        --directory "$DATA_DIR"
+}
+
+function runDevenv() {
+    DATA_DIR="$(buildDataDir)"
+    runCraftos \
+        --cli \
         --directory "$DATA_DIR"
 }
