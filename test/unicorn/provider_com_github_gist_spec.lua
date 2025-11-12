@@ -2,7 +2,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
 describe("provider.com.github.gist", function()
 	it("require('unicorn.provider.com.github.gist') returns a function", function()
-		expect(require("unicorn.provider.com.github.gist")):type("table")
+		expect(require("unicorn.provider.com.github.gist")):type("function")
 	end)
 	-- FIXME: make this work
 	pending("can be installed and uninstalled", function()

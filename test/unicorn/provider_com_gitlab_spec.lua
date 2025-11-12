@@ -2,7 +2,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
 describe("provider.com.gitlab", function()
 	it("require('unicorn.provider.com.gitlab') returns a function", function()
-		expect(require("unicorn.provider.com.gitlab")):type("table")
+		expect(require("unicorn.provider.com.gitlab")):type("function")
 	end)
 	it("can be installed and uninstalled on the default instance", function()
 		local unicornCore = require("unicorn.core")

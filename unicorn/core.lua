@@ -98,12 +98,12 @@ local function action_modular_providers(package_table)
 	local match, provider = pcall(require, "unicorn.provider." .. package_table.pkgType)
 	if match then
 		assert(
-			type(provider) == "table",
+			type(provider) == "function",
 			"The package provider "
 				.. package_table.pkgType
-				.. "is malformed (type should be table). Something is wrong with the provider's backend code. Unless you are writing your own provider, please report this error."
+				.. "is malformed (type should be function). Something is wrong with the provider's backend code. Unless you are writing your own provider, please report this error."
 		)
-		provider.install(package_table)
+		provider(package_table)
 	else
 		error(
 			"Package provider "
