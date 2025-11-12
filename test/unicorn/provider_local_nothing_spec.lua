@@ -2,7 +2,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
 describe("provider.local.nothing", function()
 	it("require('unicorn.provider.local.nothing') returns a function", function()
-		expect(require("unicorn.provider.local.nothing")):type("function")
+		expect(require("unicorn.provider.local.nothing")):type("table")
 	end)
 	it("ignores instdat if it is present", function()
 		local unicornCore = require("unicorn.core")

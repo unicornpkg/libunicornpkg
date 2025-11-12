@@ -1,9 +1,11 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local unicorn = require("unicorn")
 
+local provider = {}
+
 --- Package provider for Sourcehut.
 ---@param package_table table A valid package table
-local function install_sourcehut(package_table)
+function provider.install(package_table)
 	for remote_path, install_path in pairs(package_table.instdat.filemaps) do
 		local http_data = unicorn.util.smartHttp(
 			("https://%s/%s/%s/blob/%s/%s"):format(
@@ -18,4 +20,4 @@ local function install_sourcehut(package_table)
 	end
 end
 
-return install_sourcehut
+return provider

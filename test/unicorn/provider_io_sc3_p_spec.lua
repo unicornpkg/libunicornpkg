@@ -2,7 +2,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
 describe("provider.io.sc3.p", function()
 	it("require('unicorn.provider.io.sc3.p') returns a function", function()
-		expect(require("unicorn.provider.io.sc3.p")):type("function")
+		expect(require("unicorn.provider.io.sc3.p")):type("table")
 	end)
 	it("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")

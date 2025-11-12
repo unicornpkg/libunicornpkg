@@ -1,9 +1,11 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local unicorn = require("unicorn")
 
+local provider = {}
+
 --- Package provider for Bitbucket.org.
 ---@param package_table table A valid package table
-local function install_bitbucket(package_table)
+function provider.install(package_table)
 	for remote_path, install_path in pairs(package_table.instdat.filemaps) do
 		local http_data = unicorn.util.smartHttp(
 			("https://bitbucket.org/%s/%s/raw/%s/%s"):format(
@@ -17,4 +19,4 @@ local function install_bitbucket(package_table)
 	end
 end
 
-return install_bitbucket
+return provider

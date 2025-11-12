@@ -2,7 +2,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
 describe("provider.org.bitbucket", function()
 	it("require('unicorn.provider.local.generic') returns a function", function()
-		expect(require("unicorn.provider.local.generic")):type("function")
+		expect(require("unicorn.provider.local.generic")):type("table")
 	end)
 	it("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")

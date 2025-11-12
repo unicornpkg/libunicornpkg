@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   The field should be a list of package names.
   If any of the packages listed are installed when installing this package,
   the installation will fail.
+- Providers defined in `unicorn.provider.<name>` must now return a table containing a function called `install`.
 - The `_HOST` variable can now be accessed from within the package evaluation sandbox.
 
 ## v1.3.0

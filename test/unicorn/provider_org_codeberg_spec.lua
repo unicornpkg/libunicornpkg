@@ -2,7 +2,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
 describe("provider.org.codeberg", function()
 	it("require('unicorn.provider.org.codeberg') returns a function", function()
-		expect(require("unicorn.provider.org.codeberg")):type("function")
+		expect(require("unicorn.provider.org.codeberg")):type("table")
 	end)
 	it("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")

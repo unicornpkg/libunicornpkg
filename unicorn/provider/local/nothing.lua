@@ -1,5 +1,7 @@
 --- Package provider that does nothing.
--- selene: allow(unused_variable)
-local function install_nothing(...) end
+local provider = {}
 
-return install_nothing
+-- selene: allow(unused_variable)
+function provider.install(...) end
+
+return provider
