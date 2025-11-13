@@ -156,7 +156,8 @@ end
 ---
 --- .. DANGER::
 ---    **This is insecure code.** This will execute the file at `/tmp/example_package`.
----    You may want to consider evaluating `/tmp/example_package` in a sandbox.
+---    You may want to consider evaluating `/tmp/example_package` in a sandbox, like
+---    the one provided with :func:`unicorn.util.evaluateInSandbox`.
 ---
 --- >>> local unicorn = require("unicorn")
 --- >>> local file_1 = fs.open("/tmp/example_package")
