@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
+
+## v1.3.1
 - The [](./providers/ht.sr.md) provider for [Sourcehut](https://sourcehut.org) has been added.
 - The `semver` and `sha256` modules are now optional in cases where they would never be invoked.
      - The related code will raise an error if it tries to find the modules but cannot.
