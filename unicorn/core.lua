@@ -206,9 +206,12 @@ end
 
 --- Removes a package from the system.
 --- It traverses package_table.instdat.filemaps and deletes everything.
+---
 --- Example
 --- ~~~~~~~
+---
 --- Uninstall a package named `example-package`.
+---
 --- >>> unicorn.core.uninstall("example-package")
 ---@param package_name string The name of a package.
 ---@return boolean
