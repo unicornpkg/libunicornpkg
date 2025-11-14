@@ -31,3 +31,7 @@ We use [Sphinx](https://sphinx-doc.org) combined with [`sphinx-lua-ls`](https://
 We use McFly for unit tests. Documentation for McFly is sparse, but the source code can be found [here](https://github.com/cc-tweaked/CC-Tweaked/blob/mc-1.20.x/projects/core/src/test/resources/test-rom/mcfly.lua). Unit tests can be run in the CraftOS-PC emulator by running `just test`.
 
 Please add unit tests when adding a new feature. Many examples can be found in `test/unicorn`.
+
+## Third-party dependencies
+
+Please refrain from adding third-party dependencies that are required to use `unicorn.core`, `unicorn.remote`, `unicorn.util`, and `unicorn.provider.com.github` as that requires us to bootstrap that dependency without using Unicornpkg packages.
