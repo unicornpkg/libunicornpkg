@@ -108,6 +108,20 @@ function unicorn.util.evaluateInSandbox(input)
 	return load(input, "sandbox_content", "t", unicorn.util.sandbox_env)
 end
 
+--- Run string.gsub on a particular file
+---@see string.gsub
+---@param file string The path to the file to operate on
+---@param ... The parameters to pass to string.gsub
+function unicorn.util.substituteInPlace(file, ...)
+	local oldf = fs.open(file, "r")
+	local fileContents = oldf.readAll()
+	oldf.close()
+	local newContents = string.gsub(fileContents, ...)
+	local newf = fs.open(file, "w")
+	newf.write(newContents)
+	newf.close()
+end
+
 --- !doctype module
 --- @class unicorn.util.logging
 unicorn.util.logging = {}
