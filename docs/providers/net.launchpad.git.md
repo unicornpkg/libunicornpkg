@@ -2,7 +2,7 @@
 
 `net.launchpad.git` is the identifier for the package provider of the [Launchpad](https://launchpad.net) code forge.
 
-This provider enables sourcing individual files from a GitLab repository.
+This provider enables sourcing individual files from a Launchpad Git repository.
 
 ## `instdat.launchpad_instance`
 
