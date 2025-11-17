@@ -18,5 +18,6 @@ To use these in a package, set the `package.pkgType` to the provider's identifie
    ./local.generic.md
    ./local.nothing.md
    ./local.string.md
+   ./net.launchpad.git.md
    ./org.codeberg.md
    ./org.bitbucket.md
