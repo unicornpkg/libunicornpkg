@@ -3,7 +3,7 @@
 default: lint
 
 install:
-	npm install --save-dev --silent
+	npm ci
 
 lint: install
 	npx eslint .
