@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: libunicornpkg
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - name: Tomodachi94
+repository-code: 'https://github.com/unicornpkg/libunicornpkg'
+url: 'https://unicornpkg.github.io/libunicornpkg'
+license: Apache-2.0
