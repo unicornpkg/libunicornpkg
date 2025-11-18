@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The [](./providers/net.launchpad.git.md) provider for [Launchpad](https://launchpad.net) has been added.
 - The `unicorn.util.substituteInPlace` function has been added.
 
-## v1.3.1
+## v1.3.1 - 2025-11-12
 - The [](./providers/ht.sr.md) provider for [Sourcehut](https://sourcehut.org) has been added.
 - The `semver` and `sha256` modules are now optional in cases where they would never be invoked.
      - The related code will raise an error if it tries to find the modules but cannot.
@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the installation will fail.
 - The `_HOST` variable can now be accessed from within the package evaluation sandbox.
 
-## v1.3.0
+## v1.3.0 - 2025-11-08
 - Packages are now evaluated inside of a sandbox, preventing package tables from having side effects.
   The functions available in the sandbox are defined in `unicorn.util.sandbox_env`.
   **This does not provide much security. Do not install untrusted packages!**
@@ -42,11 +42,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   **Recrafted support will come back in a future release.**
   (Tracked by [#12](https://github.com/unicornpkg/libunicornpkg/issues/12))
 
-## v1.2.1
+## v1.2.1 - 2025-07-02
 
 - Fix a bug where attempting to uninstall and then reinstall a package would result in an error. ([Reported](https://github.com/unicornpkg/wing/issues/19#issuecomment-3029323428) by [@rapidradiance](https://github.com/rapidradiance))
 
-## v1.2.0
+## v1.2.0 - 2025-05-21
 
 - Add `UnicornInstall` and `UnicornUninstall` events with `os.queueEvent`.
 - Add the `instdat.gitlab_instance` field in the GitLab provider.
@@ -58,13 +58,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Retroactive note: **This breaks most installations of the CLI.**
       The breakages that this change caused in the CLI are fixed in CLI version 1.2.1 or later.
 
-## v1.1.0
+## v1.1.0 - 2022-12-18
 
 - Fix scripts provider.
 - Add `dirs` module.
 - Use external installation of `semver.lua` if present.
 
-## v1.0.0
+## v1.0.0 - 2022-12-11
 
 - Add [Recrafted](https://recrafted.madefor.cc) support.
 - Add package remotes.
@@ -76,6 +76,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add [scripts](https://unicornpkg.madefor.cc/specification/package-tables.html#script).
 - Fix [](./providers/org.bitbucket.md) and [](./providers/com.gitlab.md) providers.
 
-## v0.1.0
+## v0.1.0 - 2022-11-01
 
 - Initial release.
