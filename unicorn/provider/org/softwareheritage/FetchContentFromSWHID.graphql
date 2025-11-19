@@ -1,0 +1,10 @@
+# https://archive.softwareheritage.org/graphql/
+query FetchContentFromSWHID($ourSwhid: SWHID!) {
+  file: contentsBySWHID(swhid: $ourSwhid) {
+    data {
+      raw {
+        text
+      }
+    }
+  }
+}
