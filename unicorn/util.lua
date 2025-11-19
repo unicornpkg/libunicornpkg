@@ -1,6 +1,9 @@
 --- Utility functions for use with unicornpkg.
+package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
 local unicorn = {}
+unicorn.constants = require("unicorn.constants")
+
 --- !doctype module
 --- @class unicorn.util
 unicorn.util = {}
@@ -11,7 +14,10 @@ unicorn.util = {}
 function unicorn.util.smartHttp(url)
 	unicorn.util.logging.debug("Connecting to " .. url .. "... ")
 
-	local response, httpError = http.get(url)
+	local headers = {}
+	headers["User-Agent"] = unicorn.constants.userAgent
+
+	local response, httpError = http.get(url, headers)
 	if not response then
 		error("Failed to fetch URL '" .. url .. "': " .. tostring(httpError))
 	end

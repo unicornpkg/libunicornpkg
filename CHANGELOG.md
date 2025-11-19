@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [unreleased]
 - The [](./providers/org.softwareheritage.archive.md) provider for [the Software Heritage Archive](https://archive.softwareheritage.org) has been added.
 - The [](./providers/net.launchpad.git.md) provider for [Launchpad](https://launchpad.net) has been added.
+- All HTTP(S) requests made by libunicornpkg now send [a `User-Agent` header](./information-for-websites.md).
 - The `unicorn.util.substituteInPlace` function has been added.
 
 ## v1.3.1 - 2025-11-12

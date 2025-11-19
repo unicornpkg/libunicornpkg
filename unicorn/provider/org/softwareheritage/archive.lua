@@ -35,6 +35,7 @@ local function getSwhidContents(swhid)
 	unicorn.util.logging.debug(body)
 	local res, err = http.post("https://archive.softwareheritage.org/graphql/", body, {
 		["Content-Type"] = "application/json",
+		["User-Agent"] = unicorn.constants.userAgent,
 	})
 
 	if not res then
