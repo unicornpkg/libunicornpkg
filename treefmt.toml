@@ -21,7 +21,16 @@ includes = ["*.sh"]
 [formatter.prettier]
 command = "prettier"
 options = ["--write"]
-includes = ["*.js", "*.ts", "*.cjs", "*.mjs", "*.yaml", "*.yml", "*.json"]
+includes = [
+  "*.js",
+  "*.ts",
+  "*.cjs",
+  "*.mjs",
+  "*.yaml",
+  "*.yml",
+  "*.json",
+  "*.graphql",
+]
 excludes = ["*-lock.json"]
 [formatter.ruff]
 command = "ruff"
