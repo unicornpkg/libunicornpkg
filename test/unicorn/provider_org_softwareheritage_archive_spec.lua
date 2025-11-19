@@ -3,9 +3,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local testutils = require("testutils")
 
 describe("provider.org.softwareheritage.archive", function()
-	it("require('provider.org.softwareheritage.archive') returns a function", function()
-		expect(require("unicorn.provider.org.softwareheritage.archive")):type("function")
-	end)
+	testutils.checkPackageProviderIsWellFormed(it, "org.softwareheritage.archive")
 	it("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")
 

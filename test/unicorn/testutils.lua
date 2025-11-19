@@ -11,4 +11,11 @@ function testutils.doPackageProviderInstall(except, thisPackage)
 	expect(unicornCore.uninstall(thisPackage.name)):equals(true)
 end
 
+function testutils.checkPackageProviderIsWellFormed(it, providerName)
+	local message = string.format([[require("unicorn.provider.%s) returns a function]], providerName)
+	it(message, function()
+		expect(require("unicorn.provider." .. providerName)):type("function")
+	end)
+end
+
 return testutils

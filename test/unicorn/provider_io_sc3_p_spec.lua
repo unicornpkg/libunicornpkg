@@ -3,9 +3,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local testutils = require("testutils")
 
 describe("provider.io.sc3.p", function()
-	it("require('unicorn.provider.io.sc3.p') returns a function", function()
-		expect(require("unicorn.provider.io.sc3.p")):type("function")
-	end)
+	testutils.checkPackageProviderIsWellFormed(it, "io.sc3.p")
 	it("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")
 

@@ -3,9 +3,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local testutils = require("testutils")
 
 describe("provider.com.pastebin", function()
-	it("require('unicorn.provider.com.pastebin') returns a function", function()
-		expect(require("unicorn.provider.com.pastebin")):type("function")
-	end)
+	testutils.checkPackageProviderIsWellFormed(it, "com.pastebin")
 	it("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")
 

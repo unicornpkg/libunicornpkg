@@ -1,9 +1,9 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
+local testutils = require("testutils")
+
 describe("provider.local.string", function()
-	it("require('unicorn.provider.local.string') returns a function", function()
-		expect(require("unicorn.provider.local.string")):type("function")
-	end)
+	testutils.checkPackageProviderIsWellFormed(it, "local.generic")
 	it("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")
 		--local testutils = require("testutils")

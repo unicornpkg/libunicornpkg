@@ -3,9 +3,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local testutils = require("testutils")
 
 describe("provider.com.github", function()
-	it("require('unicorn.provider.com.github') returns a function", function()
-		expect(require("unicorn.provider.com.github")):type("function")
-	end)
+	testutils.checkPackageProviderIsWellFormed(it, "com.github")
 	it("can be installed and uninstalled", function()
 		local thisPackage = {}
 		thisPackage.pkgType = "com.github"

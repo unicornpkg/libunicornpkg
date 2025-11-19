@@ -3,9 +3,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local testutils = require("testutils")
 
 describe("provider.net.launchpad.git", function()
-	it("require('unicorn.provider.net.launchpad.git') returns a function", function()
-		expect(require("unicorn.provider.com.github")):type("function")
-	end)
+	testutils.checkPackageProviderIsWellFormed(it, "net.launchpad.git")
 	it("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")
 

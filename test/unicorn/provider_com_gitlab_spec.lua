@@ -3,9 +3,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local testutils = require("testutils")
 
 describe("provider.com.gitlab", function()
-	it("require('unicorn.provider.com.gitlab') returns a function", function()
-		expect(require("unicorn.provider.com.gitlab")):type("function")
-	end)
+	testutils.checkPackageProviderIsWellFormed(it, "com.gitlab")
 	it("can be installed and uninstalled on the default instance", function()
 		local unicornCore = require("unicorn.core")
 

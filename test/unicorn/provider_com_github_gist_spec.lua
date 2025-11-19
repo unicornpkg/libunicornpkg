@@ -3,9 +3,7 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local testutils = require("testutils")
 
 describe("provider.com.github.gist", function()
-	it("require('unicorn.provider.com.github.gist') returns a function", function()
-		expect(require("unicorn.provider.com.github.gist")):type("function")
-	end)
+	testutils.checkPackageProviderIsWellFormed(it, "com.github.gist")
 	-- FIXME: make this work
 	pending("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")
