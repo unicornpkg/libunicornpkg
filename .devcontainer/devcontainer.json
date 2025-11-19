@@ -12,12 +12,10 @@
   "postStartCommand": "sudo setfacl -k /tmp; if [ -e /dev/kvm ]; then sudo chgrp $(id -g) /dev/kvm; fi",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "jnoortheen.nix-ide"
-      ],
+      "extensions": ["jnoortheen.nix-ide"],
       "settings": {
         "[nix]": {
-            "editor.formatOnSave": true
+          "editor.formatOnSave": true
         },
         "nix.enableLanguageServer": true,
         "nix.serverPath": "nixd"

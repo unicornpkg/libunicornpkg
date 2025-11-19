@@ -8,4 +8,3 @@ globals:
     property: read-only
   expect:
     property: read-only
-
