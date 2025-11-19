@@ -21,3 +21,4 @@ To use these in a package, set the `package.pkgType` to the provider's identifie
    ./net.launchpad.git.md
    ./org.codeberg.md
    ./org.bitbucket.md
+   ./org.softwareheritage.archive.md
