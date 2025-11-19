@@ -1,5 +1,7 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
+local testutils = require("testutils")
+
 describe("provider.com.github.gist", function()
 	it("require('unicorn.provider.com.github.gist') returns a function", function()
 		expect(require("unicorn.provider.com.github.gist")):type("function")
@@ -20,9 +22,6 @@ describe("provider.com.github.gist", function()
 		thisPackage.instdat.filemaps = {}
 		thisPackage.instdat.filemaps["com-github-gist-test.lua"] = "/lib/com-github-gist-test.lua"
 
-		expect(unicornCore.install(thisPackage)):equals(true)
-		expect(fs.exists("/etc/unicorn/packages/installed/" .. thisPackage.name)):equals(true)
-		expect(require(thisPackage.name)):equals(1)
-		expect(unicornCore.uninstall(thisPackage.name)):equals(true)
+		testutils.doPackageProviderInstall(except, thisPackage)
 	end)
 end)

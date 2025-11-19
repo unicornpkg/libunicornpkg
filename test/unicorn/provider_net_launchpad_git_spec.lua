@@ -1,5 +1,7 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
+local testutils = require("testutils")
+
 describe("provider.net.launchpad.git", function()
 	it("require('unicorn.provider.net.launchpad.git') returns a function", function()
 		expect(require("unicorn.provider.com.github")):type("function")
@@ -18,9 +20,6 @@ describe("provider.net.launchpad.git", function()
 		thisPackage.instdat.filemaps = {}
 		thisPackage.instdat.filemaps["test-net-launchpad-git.lua"] = "/lib/test-net-launchpad-git.lua"
 
-		expect(unicornCore.install(thisPackage)):equals(true)
-		expect(fs.exists("/etc/unicorn/packages/installed/" .. thisPackage.name)):equals(true)
-		expect(require(thisPackage.name)):equals(1)
-		expect(unicornCore.uninstall(thisPackage.name)):equals(true)
+		testutils.doPackageProviderInstall(except, thisPackage)
 	end)
 end)

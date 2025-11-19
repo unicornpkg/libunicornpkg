@@ -1,5 +1,7 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
+local testutils = require("testutils")
+
 describe("provider.org.bitbucket", function()
 	it("require('unicorn.provider.org.bitbucket') returns a function", function()
 		expect(require("unicorn.provider.org.bitbucket")):type("function")
@@ -19,9 +21,6 @@ describe("provider.org.bitbucket", function()
 		thisPackage.instdat.filemaps = {}
 		thisPackage.instdat.filemaps["org-bitbucket-test.lua"] = "/lib/org-bitbucket-test.lua"
 
-		expect(unicornCore.install(thisPackage)):equals(true)
-		expect(fs.exists("/etc/unicorn/packages/installed/" .. thisPackage.name)):equals(true)
-		expect(require(thisPackage.name)):equals(1)
-		expect(unicornCore.uninstall(thisPackage.name)):equals(true)
+		testutils.doPackageProviderInstall(except, thisPackage)
 	end)
 end)

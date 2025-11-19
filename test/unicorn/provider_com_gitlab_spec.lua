@@ -1,5 +1,7 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
+local testutils = require("testutils")
+
 describe("provider.com.gitlab", function()
 	it("require('unicorn.provider.com.gitlab') returns a function", function()
 		expect(require("unicorn.provider.com.gitlab")):type("function")
@@ -19,9 +21,6 @@ describe("provider.com.gitlab", function()
 		thisPackage.instdat.filemaps = {}
 		thisPackage.instdat.filemaps["com-gitlab-test.lua"] = "/lib/com-gitlab-test.lua"
 
-		expect(unicornCore.install(thisPackage)):equals(true)
-		expect(fs.exists("/etc/unicorn/packages/installed/" .. thisPackage.name)):equals(true)
-		expect(require(thisPackage.name)):equals(1)
-		expect(unicornCore.uninstall(thisPackage.name)):equals(true)
+		testutils.doPackageProviderInstall(except, thisPackage)
 	end)
 end)

@@ -1,5 +1,7 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
+local testutils = require("testutils")
+
 describe("provider.org.bitbucket", function()
 	it("require('unicorn.provider.local.generic') returns a function", function()
 		expect(require("unicorn.provider.local.generic")):type("function")
@@ -17,9 +19,6 @@ describe("provider.org.bitbucket", function()
 		thisPackage.instdat.filemaps["https://unicornpkg.github.io/test-repo/local-generic-test.lua"] =
 			"/lib/local-generic-test.lua"
 
-		expect(unicornCore.install(thisPackage)):equals(true)
-		expect(fs.exists("/etc/unicorn/packages/installed/" .. thisPackage.name)):equals(true)
-		expect(require(thisPackage.name)):equals(1)
-		expect(unicornCore.uninstall(thisPackage.name)):equals(true)
+		testutils.doPackageProviderInstall(except, thisPackage)
 	end)
 end)
