@@ -5,11 +5,11 @@ local testutils = require("testutils")
 describe("provider.com.github.gist", function()
 	testutils.checkPackageProviderIsWellFormed(it, "com.github.gist")
 	-- FIXME: make this work
-	pending("can be installed and uninstalled", function()
+	it("can be installed and uninstalled", function()
 		local unicornCore = require("unicorn.core")
 
 		local thisPackage = {}
-		thisPackage.pkgType = "com.pastebin"
+		thisPackage.pkgType = "com.github.gist"
 		thisPackage.unicornSpec = "v1.0.0"
 		thisPackage.name = "com-github-gist-test"
 		thisPackage.version = "0.0.1"
