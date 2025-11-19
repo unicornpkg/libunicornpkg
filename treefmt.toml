@@ -20,7 +20,9 @@ priority = -1
 includes = ["*.sh"]
 [formatter.prettier]
 command = "prettier"
+options = ["--write"]
 includes = ["*.js", "*.ts", "*.cjs", "*.mjs", "*.yaml", "*.yml", "*.json"]
+excludes = ["*-lock.json"]
 [formatter.ruff]
 command = "ruff"
 options = ["format"]
