@@ -3,13 +3,16 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import os
+import re
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "libunicornpkg"
 copyright = "2025, Tomodachi94"
 author = "Tomodachi94"
-release = "1.3.1"
+release = version = re.sub('^v', '', os.popen('git describe --tags --match "v*"').read().strip())
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
