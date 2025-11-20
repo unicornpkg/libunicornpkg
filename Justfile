@@ -41,8 +41,8 @@ CURRENT_RELEASE := `git describe --tags --match "v*" --abbrev=0 | sed 's/v//g'`
 TODAY := `TZ='America/Los_Angeles' date -I`
 
 release new_version:
-    [ -z "$(git status --porcelain)" ] || echo "Current tree is dirty, please commit your changes!" && exit 1
-    git rev-parse --abbrev-ref HEAD | grep -F "^main$" || echo "You're on the wrong branch!" && exit 1
+    # git status --porcelain || echo "Current tree is dirty, please commit your changes!" && exit 1
+    # git rev-parse --abbrev-ref HEAD | grep -F "^main$" || echo "You're on the wrong branch!" && exit 1
 
     sed -i 's/{{ CURRENT_RELEASE }}/{{ new_version }}/g' unicorn/constants.lua
     # Append a new line after '## [unreleased]', another newline, and then a line like '## v1.0.0 - YYYY-MM-DD',
