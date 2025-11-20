@@ -62,6 +62,10 @@
           default = pkgs.mkShellNoCC {
             packages = with pkgs; [
               just
+              git
+              busybox
+              gnused
+              gh
               craftos-pc
               selene
               shellcheck
