@@ -12,7 +12,9 @@ import re
 project = "libunicornpkg"
 copyright = "2025, Tomodachi94"
 author = "Tomodachi94"
-release = version = re.sub('^v', '', os.popen('git describe --tags --match "v*"').read().strip())
+release = version = re.sub(
+    "^v", "", os.popen('git describe --tags --match "v*"').read().strip()
+)
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

@@ -4,7 +4,7 @@ local unicorn = require("unicorn")
 --- Package provider for GitHub.com.
 ---@param package_table table A valid package table
 ---@param state table A table containing locally-computed state
----@param state table A 
+---@param state table A
 local function install_github(state, package_table)
 	for remote_path, install_path in pairs(package_table.instdat.filemaps) do
 		local http_data = unicorn.util.smartHttp(
