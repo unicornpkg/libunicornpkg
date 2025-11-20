@@ -35,3 +35,7 @@ Please add unit tests when adding a new feature. Many examples can be found in `
 ## Third-party dependencies
 
 Please refrain from adding third-party dependencies that are required to use `unicorn.core`, `unicorn.remote`, `unicorn.util`, and `unicorn.provider.com.github` as that requires us to bootstrap that dependency without using Unicornpkg packages.
+
+## Release process
+
+The release process is mostly scripted in the `just release` and `just release-publish` recipes.
