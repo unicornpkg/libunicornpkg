@@ -39,6 +39,8 @@
     "git.sr.ht",
     "git.launchpad.net",
     "archive.softwareheritage.org",
+    "archive.org",
+    "*.archive.org",
     "httpbin.io",
     "example.com"
   ],
