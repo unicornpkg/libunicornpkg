@@ -1,5 +1,7 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 
+local testutils = require("testutils")
+
 describe("core", function()
 	it("require('unicorn.core') returns a table", function()
 		expect(require("unicorn.core")):type("table")
@@ -116,17 +118,14 @@ describe("core", function()
 		package.version = "0.0.1"
 		package.instdat = {}
 		package.instdat.filemaps = {}
-		package.instdat.filemaps["return 1"] = "/lib/test-sha256-validated.lua"
+		package.instdat.filemaps["return 1"] = "/lib/test-sha256-invalid.lua"
 		package.security = {}
 		package.security.sha256 = {}
 		-- 8373...896c is hash of "return 2"
-		package.security.sha256["/lib/test-sha256-validated.lua"] =
+		package.security.sha256["/lib/test-sha256-invalid.lua"] =
 			"8373f7e086bb27784827ef8f2f4ae118e05d58b67f513f82c2316dc57b0d896c"
 
-		expect.error(unicornCore.install, package)
-		expect.error(fs.exists, "/etc/unicorn/packages/installed/test-sha256-validated")
-		expect.error(require, "test-sha256-validated")
-		expect.error(unicornCore.uninstall, "test-sha256-validated")
+		expect.error(testutils.doPackageProviderInstall(except, package))
 	end)
 
 	it("core.install replaces an older package with a newer one", function()

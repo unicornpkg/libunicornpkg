@@ -94,7 +94,7 @@ end
 -- This function traverses "/lib/unicorn/provider" for a valid package provider.
 -- If found, it uses that provider to install files to the system.
 -- Otherwise, it errors.
-local function action_modular_providers(package_table)
+local function action_modular_providers(state, package_table)
 	local match, provider = pcall(require, "unicorn.provider." .. package_table.pkgType)
 	if match then
 		assert(
@@ -103,14 +103,8 @@ local function action_modular_providers(package_table)
 				.. package_table.pkgType
 				.. "is malformed (type should be function). Something is wrong with the provider's backend code. Unless you are writing your own provider, please report this error."
 		)
-		-- Create state table for provider
-		local state = {}
-		state.filemaps = {}
 		-- provider should fill state.filemaps
 		provider(state, package_table)
-		for path, content in pairs(state.filemaps) do
-			unicorn.util.fileWrite(content, path)
-		end
 	else
 		error(
 			"Package provider "
@@ -134,14 +128,25 @@ local function action_script(package_table, package_script_name)
 	end
 end
 
-local function action_check_hashes(package_table)
+local function install_filemaps(state)
+	for path, content in pairs(state.filemaps) do
+		unicorn.util.fileWrite(content, path)
+	end
+end
+
+local function action_check_hashes(state, package_table)
 	if package_table.security and package_table.security.sha256 then
 		-- selene: allow(global_usage)
 		local sha256 = _G.sha256 or require("sha256") -- Some servers provide access to a Java-based hashing API; we should use that where possible
 
 		for k, v in pairs(package_table.security.sha256) do
-			local digest = sha256.digest(fs.open(k, "r"):readAll()):toHex()
-			assert(digest, v)
+			print(k)
+			print(v)
+			local digest = sha256.digest(state.filemaps[k]):toHex()
+			print(digest)
+			if digest ~= v then
+				error(("Hash mismatch for %s: got %s, expected %s"):format(k, digest, v))
+			end
 		end
 	end
 end
@@ -178,6 +183,10 @@ function unicorn.core.install(package_table)
 	-- Checks ensure that the operation can be completed,
 	-- and actions do things with values in the package table.
 
+	-- This table keeps track of all state.
+	local state = {}
+	state.filemaps = {}
+
 	-- assertion blocks
 	check_valid(package_table)
 
@@ -190,12 +199,14 @@ function unicorn.core.install(package_table)
 	-- make folders
 	action_make_folders(package_table)
 	-- modular provider loading and usage
-	action_modular_providers(package_table)
+	action_modular_providers(state, package_table)
+	action_check_hashes(state, package_table)
+
+	install_filemaps(state)
 	action_script(package_table, "postinstall")
 
 	-- finish up
 	storePackageData(package_table)
-	action_check_hashes(package_table)
 
 	os.queueEvent("UnicornInstall", package_table["name"])
 	unicorn.util.logging.info("Package " .. package_table.name .. " installed successfully.")
