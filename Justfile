@@ -57,4 +57,4 @@ release new_version:
 release-publish new_version:
     git push
     git push --tag
-    gh release create "{{ new_version }}" --title "v{{ new_version }}" --notes-file ./.changelog-blurb.md
+    gh release create "v{{ new_version }}" --title "v{{ new_version }}" --notes-file ./.changelog-blurb.md
