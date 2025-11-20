@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
+
+## v1.4.0 - 2025-11-20
 - The [](./providers/org.softwareheritage.archive.md) provider for [the Software Heritage Archive](https://archive.softwareheritage.org) has been added.
 - The [](./providers/net.launchpad.git.md) provider for [Launchpad](https://launchpad.net) has been added.
 - The [](./providers/org.archive.md) provider for [the Internet Archive](https://archive.org) has been added.
