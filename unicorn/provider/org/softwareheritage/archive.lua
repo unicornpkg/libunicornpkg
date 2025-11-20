@@ -50,10 +50,12 @@ end
 
 --- Package provider for Software Heritage.
 ---@param package_table table A valid package table
-local function install_softwareheritage(package_table)
+---@param state table A table containing locally-computed state
+local function install_softwareheritage(state, package_table)
 	for swhid, install_path in pairs(package_table.instdat.filemaps) do
-		unicorn.util.fileWrite(getSwhidContents(swhid), install_path)
+		state.filemaps[install_path] = getSwhidContents(swhid)
 	end
+	return state
 end
 
 return install_softwareheritage

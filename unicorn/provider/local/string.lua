@@ -3,10 +3,12 @@ local unicorn = require("unicorn")
 
 --- Generic package provider.
 ---@param package_table table A valid package table
-local function install_string(package_table)
+---@param state table A table containing locally-computed state
+local function install_string(state, package_table)
 	for _string, install_path in pairs(package_table.instdat.filemaps) do
-		unicorn.util.fileWrite(_string, install_path)
+		state.filemaps[install_path] = _string
 	end
+	return state
 end
 
 return install_string

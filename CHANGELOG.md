@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The [](./providers/net.launchpad.git.md) provider for [Launchpad](https://launchpad.net) has been added.
 - All HTTP(S) requests made by libunicornpkg now send [a `User-Agent` header](./information-for-websites.md).
 - The `unicorn.util.substituteInPlace` function has been added.
+- Providers now are of the shape `function provider(state, package_table)`.
+    - Providers should now populate `state.filemaps[filename] = contents` instead of writing directly to the filesystem.
+    - This only affects you if you write your own custom providers.
 
 ## v1.3.1 - 2025-11-12
 - The [](./providers/ht.sr.md) provider for [Sourcehut](https://sourcehut.org) has been added.

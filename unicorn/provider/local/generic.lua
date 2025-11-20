@@ -3,10 +3,11 @@ local unicorn = require("unicorn")
 
 --- Generic package provider.
 ---@param package_table table A valid package table
-local function install_generic(package_table)
+---@param state table A table containing locally-computed state
+local function install_generic(state, package_table)
 	for remote_url, install_path in pairs(package_table.instdat.filemaps) do
 		local http_data = unicorn.util.smartHttp(remote_url)
-		unicorn.util.fileWrite(http_data, install_path)
+		state.filemaps[install_path] = http_data
 	end
 end
 

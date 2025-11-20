@@ -3,7 +3,8 @@ local unicorn = require("unicorn")
 
 --- Package provider for git.launchpad.net.
 ---@param package_table table A valid package table
-local function install_launchpad(package_table)
+---@param state table A table containing locally-computed state
+local function install_launchpad(state, package_table)
 	for remote_path, install_path in pairs(package_table.instdat.filemaps) do
 		local http_data = unicorn.util.smartHttp(
 			("https://%s/%s/plain/%s?h=%s"):format(
@@ -13,7 +14,7 @@ local function install_launchpad(package_table)
 				package_table.instdat.repo_ref
 			)
 		)
-		unicorn.util.fileWrite(http_data, install_path)
+		state.filemaps[install_path] = http_data
 	end
 end
 

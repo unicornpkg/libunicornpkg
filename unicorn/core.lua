@@ -103,7 +103,14 @@ local function action_modular_providers(package_table)
 				.. package_table.pkgType
 				.. "is malformed (type should be function). Something is wrong with the provider's backend code. Unless you are writing your own provider, please report this error."
 		)
-		provider(package_table)
+		-- Create state table for provider
+		local state = {}
+		state.filemaps = {}
+		-- provider should fill state.filemaps
+		provider(state, package_table)
+		for path, content in pairs(state.filemaps) do
+			unicorn.util.fileWrite(content, path)
+		end
 	else
 		error(
 			"Package provider "
