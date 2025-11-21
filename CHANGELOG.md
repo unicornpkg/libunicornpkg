@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
+- When searching the local machine for available remotes, it now also searches `/rom/config/unicorn/remotes`.
 - SHA-256 hash validation now uses [CCryptoLib](https://github.com/migeyel/ccryptolib).
   libunicornpkg no longer depends on `anavrins-sha256`.
 

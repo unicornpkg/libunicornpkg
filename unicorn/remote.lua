@@ -30,6 +30,8 @@ end
 ---@return table
 local function getConfiguredRemotes()
 	local remotes = {}
+	-- FIXME: test this searching behavior!
+	getRemotesFromDirectory("/rom/config/unicorn/remotes/", remotes)
 	getRemotesFromDirectory("/etc/unicorn/remotes/", remotes)
 	return remotes
 end
@@ -48,7 +50,7 @@ end
 
 --- Installs a package from a remote.
 ---
---- This function traverses `/etc/unicorn/remotes` for all `.txt` files that contain URLs to a [package remote](https://unicornpkg.github.io/spec/v1.1.0/package-remotes.html).
+--- This function traverses `/rom/config/unicorn/remotes` and then `/etc/unicorn/remotes` for all `.txt` files that contain URLs to a [package remote](https://unicornpkg.github.io/spec/v1.0.0/package-remotes.html).
 ---
 --- For each remote, it tries requesting the remote's URL plus the package's name.
 --- If it fails with a `Not Found` error, it moves on.
