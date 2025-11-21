@@ -136,13 +136,13 @@ end
 
 local function action_check_hashes(state, package_table)
 	if package_table.security and package_table.security.sha256 then
-		-- selene: allow(global_usage)
-		local sha256 = _G.sha256 or require("sha256") -- Some servers provide access to a Java-based hashing API; we should use that where possible
+		local sha256 = require("ccryptolib.sha256")
+		local ccryptolib_util = require("ccryptolib.util")
 
 		for k, v in pairs(package_table.security.sha256) do
 			print(k)
 			print(v)
-			local digest = sha256.digest(state.filemaps[k]):toHex()
+			local digest = ccryptolib_util.toHex(sha256.digest(state.filemaps[k]))
 			print(digest)
 			if digest ~= v then
 				error(("Hash mismatch for %s: got %s, expected %s"):format(k, digest, v))
