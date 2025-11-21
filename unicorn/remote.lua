@@ -3,6 +3,7 @@
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local unicorn = {}
 unicorn.core = require("unicorn.core")
+unicorn.constants = require("unicorn.constants")
 unicorn.util = require("unicorn.util")
 --- Functions for installing packages from a package remote.
 --- !doctype module
@@ -14,15 +15,17 @@ unicorn.remote = {}
 ---@returns nil
 local function getRemotesFromDirectory(directory, remotes)
     sleep(0)
-	for _, filename in ipairs(fs.list(directory)) do
-		sleep(0)
-		local fullPath = fs.combine(directory, filename)
-		if (filename):match("%.txt$") and (not fs.isDir(fullPath)) then
-			local f = fs.open(fullPath, "r")
-			local remoteUrl = f.readLine()
-			f.close()
-			-- We intentionally allow overwriting files with identical filenames
-			remotes[filename] = remoteUrl
+	if fs.exists(directory) then
+		for _, filename in ipairs(fs.list(directory)) do
+			sleep(0)
+			local fullPath = fs.combine(directory, filename)
+			if (filename):match("%.txt$") and (not fs.isDir(fullPath)) then
+				local f = fs.open(fullPath, "r")
+				local remoteUrl = f.readLine()
+				f.close()
+				-- We intentionally allow overwriting files with identical filenames
+				remotes[filename] = remoteUrl
+			end
 		end
 	end
 end
@@ -68,10 +71,10 @@ function unicorn.remote.install(package_name)
 	while not downloaded do
 		for _, remoteUrl in pairs(getConfiguredRemotes()) do
 			local candidateUrl = buildCandidateUrl(remoteUrl, package_name)
-			-- FIXME: interface of smartHttp has changed significantly and now always errors
-			-- migrate to bare http.get?
-			local response, httpError = unicorn.util.smartHttp(candidateUrl)
-			if httpError then
+			local response, httpError = http.get(candidateUrl, {
+				["User-Agent"] = unicorn.constants.userAgent,
+			})
+			if not response then
 				if not httpError == "Not Found" then
 					error("HTTP request to " .. candidateUrl .. " failed with error " .. httpError)
 				end
@@ -79,7 +82,8 @@ function unicorn.remote.install(package_name)
 				unicorn.util.logging.debug(response)
 				unicorn.util.logging.debug(httpError)
 
-				local package_table = unicorn.util.evaluateInSandbox(response)()
+				local package_table = unicorn.util.evaluateInSandbox(response.readAll())()
+				response.close()
 
 				-- install depends
 				if package_table.rel ~= nil and package_table.rel.depends ~= nil then
