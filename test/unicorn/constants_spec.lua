@@ -1,0 +1,5 @@
+describe("unicorn.constants", function()
+	it("can be required", function()
+		expect(require("unicorn.constants")):type("table")
+	end)
+end)
