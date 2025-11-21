@@ -9,18 +9,28 @@ unicorn.util = require("unicorn.util")
 --- @class unicorn.remote
 unicorn.remote = {}
 
----@return table
-local function getConfiguredRemotes()
-	local remotes = {}
-	for _, filename in pairs(fs.list("/etc/unicorn/remotes/")) do
-		local fullPath = "/etc/unicorn/remotes/" .. filename
-		if (filename):match(".txt$") and (not fs.isDir(fullPath)) then
+---@param directory string
+---@param remotes table
+---@returns nil
+local function getRemotesFromDirectory(directory, remotes)
+    sleep(0)
+	for _, filename in ipairs(fs.list(directory)) do
+		sleep(0)
+		local fullPath = fs.combine(directory, filename)
+		if (filename):match("%.txt$") and (not fs.isDir(fullPath)) then
 			local f = fs.open(fullPath, "r")
 			local remoteUrl = f.readLine()
 			f.close()
-			table.insert(remotes, remoteUrl)
+			-- We intentionally allow overwriting files with identical filenames
+			remotes[filename] = remoteUrl
 		end
 	end
+end
+
+---@return table
+local function getConfiguredRemotes()
+	local remotes = {}
+	getRemotesFromDirectory("/etc/unicorn/remotes/", remotes)
 	return remotes
 end
 
@@ -54,7 +64,7 @@ end
 function unicorn.remote.install(package_name)
 	local downloaded = false
 	while not downloaded do
-		for _, remoteUrl in ipairs(getConfiguredRemotes()) do
+		for _, remoteUrl in pairs(getConfiguredRemotes()) do
 			local candidateUrl = buildCandidateUrl(remoteUrl, package_name)
 			-- FIXME: interface of smartHttp has changed significantly and now always errors
 			-- migrate to bare http.get?
