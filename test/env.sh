@@ -34,7 +34,7 @@ function runCraftos() {
 
 function runTests() {
     DATA_DIR="$(buildDataDir)"
-    cp "$SOURCE_DIR/test/startup.lua" "$DATA_DIR/computer/0/startup.lua"
+    cp "$SOURCE_DIR/test/startup.lua" "$DATA_DIR/computer/0/startup/zzz-run-tests.lua"
     runCraftos \
         --headless \
         --directory "$DATA_DIR"
