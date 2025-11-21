@@ -6,15 +6,6 @@ local tArgs = { ... }
 local command = tArgs[1]
 local target = tArgs[2]
 
-local function complete()
-	local completion = require("cc.shell.completion")
-	shell.setCompletionFunction(
-		shell.getRunningProgram(),
-		completion.build({ completion.choice, { "install", "uninstall" } })
-	)
-end
-
-complete()
 if command == "install" or command == "add" then
 	local f = fs.open(target, "r")
 	local contents = f.readAll()
