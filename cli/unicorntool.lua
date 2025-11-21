@@ -19,7 +19,7 @@ if command == "install" or command == "add" then
 	local f = fs.open(target, "r")
 	local contents = f.readAll()
 	f.close()
-	local p = unicorn.util.evaluateInSandbox(contents)
+	local p = unicorn.util.evaluateInSandbox(contents)()
 	unicorn.core.install(p)
 elseif command == "uninstall" or command == "remove" then
 	unicorn.core.uninstall(target)
