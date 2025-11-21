@@ -108,7 +108,7 @@ describe("core", function()
 		expect(unicornCore.uninstall("test-sha256-validated")):equals(true)
 	end)
 
-	pending("unicorn.core.install causes problems when hashes are bad", function()
+	it("unicorn.core.install causes problems when hashes are bad", function()
 		local unicornCore = require("unicorn.core")
 
 		local package = {}
@@ -125,7 +125,8 @@ describe("core", function()
 		package.security.sha256["/lib/test-sha256-invalid.lua"] =
 			"8373f7e086bb27784827ef8f2f4ae118e05d58b67f513f82c2316dc57b0d896c"
 
-		expect.error(testutils.doPackageProviderInstall(except, package))
+		expect.error(testutils.doPackageProviderInstall, except, package)
+		expect(fs.exists("/lib/test-sha256-invalid.lua")):equals(false)
 	end)
 
 	it("core.install replaces an older package with a newer one", function()
