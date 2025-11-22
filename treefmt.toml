@@ -29,6 +29,7 @@ includes = [
   "*.yaml",
   "*.yml",
   "*.json",
+  "*.jsonc",
   "*.graphql",
   "*.cff",
 ]
