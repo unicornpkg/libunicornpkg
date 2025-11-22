@@ -69,6 +69,7 @@
               craftos-pc
               selene
               shellcheck
+              sphinx-lint
               python3Packages.uv
               lua-language-server # needed for docs
               nodejs_24

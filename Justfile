@@ -9,6 +9,9 @@ lint:
     treefmt --ci
     selene . --pattern "unicorn/*.lua" --pattern "cli/*.lua" --pattern "test/*.lua" --pattern "extras/*.lua"
     shellcheck */**.sh
+    sphinx-lint docs \
+        -i docs/.venv \
+        -i docs/api # generated code
     cd ts-types && just lint
 
 test:
