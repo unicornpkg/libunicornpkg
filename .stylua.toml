@@ -2,3 +2,5 @@ line_endings = "Unix"
 indent_type = "Tabs"
 quote_style = "AutoPreferDouble"
 call_parentheses = "Always"
+[sort_requires]
+enabled = true
