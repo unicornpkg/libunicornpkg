@@ -4,6 +4,7 @@ pcall(function()
 	unicorn.remote.install("semver")
 	unicorn.remote.install("ccryptolib")
 	unicorn.remote.install("mcfly")
+	-- selene: allow(global_usage)
 	_G.UNICORN_DEBUG_DO_NOT_USE_IN_PRODUCTION_CODE = 1
 	shell.run("bin/mcfly.lua source/test/unicorn/")
 end)
