@@ -14,7 +14,7 @@ unicorn.remote = {}
 ---@param remotes table
 ---@returns nil
 local function getRemotesFromDirectory(directory, remotes)
-    sleep(0)
+	sleep(0)
 	if fs.exists(directory) then
 		for _, filename in ipairs(fs.list(directory)) do
 			sleep(0)
