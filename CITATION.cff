@@ -6,6 +6,6 @@ message: >-
 type: software
 authors:
   - name: Tomodachi94
-repository-code: 'https://github.com/unicornpkg/libunicornpkg'
-url: 'https://unicornpkg.github.io/libunicornpkg'
+repository-code: "https://github.com/unicornpkg/libunicornpkg"
+url: "https://unicornpkg.github.io/libunicornpkg"
 license: Apache-2.0
