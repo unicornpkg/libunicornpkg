@@ -50,6 +50,8 @@ globals:
     property: read-only
   shell:
     property: read-only
+  sleep:
+    property: read-only
   term:
     property: read-only
   textutils:
