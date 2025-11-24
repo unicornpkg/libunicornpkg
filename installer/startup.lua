@@ -10,12 +10,12 @@ fs.copy("/lib/unicorn", "/env/lib/unicorn")
 shell.run("/bin/ccsfx.lua env install.lua.sfx")
 shell.run("install.lua.sfx test")
 
-fs.makeDir("datapack/data/computercraft/lua/rom/modules")
+fs.makeDir("datapack/data/computercraft/lua/rom/modules/main")
 fs.makeDir("datapack/data/computercraft/lua/rom/programs")
 fs.makeDir("datapack/data/computercraft/lua/rom/autorun")
 fs.makeDir("datapack/data/computercraft/lua/rom/config/unicorn")
 
-fs.copy("/lib/unicorn", "datapack/data/computercraft/lua/rom/modules/unicorn")
+fs.copy("/lib/unicorn", "datapack/data/computercraft/lua/rom/modules/main/unicorn")
 fs.copy("/bin/hoof.lua", "datapack/data/computercraft/lua/rom/programs/hoof.lua")
 fs.copy("/bin/unicorntool.lua", "datapack/data/computercraft/lua/rom/programs/unicorntool.lua")
 fs.copy(
