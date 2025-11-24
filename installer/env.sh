@@ -47,6 +47,10 @@ function buildInstaller() {
         --headless \
         --directory "$DATA_DIR"
     cp "$DATA_DIR/computer/0/install.lua.sfx" "$SOURCE_DIR/installer"
+    rm -rf "$SOURCE_DIR/datapack"
+    cp -r "$DATA_DIR/computer/0/datapack" "$SOURCE_DIR/installer"
+    cp "$SOURCE_DIR/installer/pack.mcmeta" "$SOURCE_DIR/installer/datapack"
+    (cd "$SOURCE_DIR/installer/datapack" && zip -r ../datapack.zip .)
 }
 
 function runDevenv() {

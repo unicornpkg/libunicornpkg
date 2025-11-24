@@ -32,6 +32,7 @@ includes = [
   "*.jsonc",
   "*.graphql",
   "*.cff",
+  "*.mcmeta",
 ]
 excludes = ["*-lock.json"]
 [formatter.ruff]

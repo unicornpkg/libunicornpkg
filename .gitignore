@@ -2,6 +2,8 @@ doc/
 .direnv
 tap_results.txt
 /installer/env
+/installer/datapack
+/installer/datapack.zip
 *.sfx
 docs/_build
 docs/api

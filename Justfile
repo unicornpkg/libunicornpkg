@@ -53,6 +53,7 @@ release new_version:
     # git rev-parse --abbrev-ref HEAD | grep -F "^main$" || echo "You're on the wrong branch!" && exit 1
 
     sed -i 's/{{ CURRENT_RELEASE }}/{{ new_version }}/g' unicorn/constants.lua
+    sed -i 's/{{ CURRENT_RELEASE }}/{{ new_version }}/g' installer/pack.mcmeta
     # Append a new line after '## [unreleased]', another newline, and then a line like '## v1.0.0 - YYYY-MM-DD',
     # so that there is a "new" `## [unreleased]` section at the top.
     sed -i -e '/## \[unreleased\]/a\' -e '\' -e '## v{{ new_version }} - {{ TODAY }}' CHANGELOG.md
@@ -65,4 +66,4 @@ release new_version:
 release-publish new_version: installer
     git push
     git push --tag
-    gh release create "v{{ new_version }}" installer/install.lua.sfx installer/install.lua --title "v{{ new_version }}" --notes-file ./.changelog-blurb.md
+    gh release create "v{{ new_version }}" installer/install.lua.sfx installer/install.lua installer/datapack.zip --title "v{{ new_version }}" --notes-file ./.changelog-blurb.md
