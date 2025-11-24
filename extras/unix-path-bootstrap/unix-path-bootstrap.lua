@@ -3,5 +3,9 @@ if _HOST:find("Recrafted") then
 	help = require("help")
 end
 
-shell.setPath(shell.path() .. ":/bin")
-help.setPath(help.path() .. ":/usr/share/help")
+if fs.exists("/bin") and fs.isDir("/bin") then
+	shell.setPath(shell.path() .. ":/bin")
+end
+if fs.exists("/usr/share/help") and fs.isDir("/usr/share/help") then
+	help.setPath(help.path() .. ":/usr/share/help")
+end
