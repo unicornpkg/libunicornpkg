@@ -7,10 +7,10 @@ function buildDataDir() {
     DATA_DIR="$(mktemp -d)"
     echo "# Data dir is $DATA_DIR" >&2
     mkdir -p "$DATA_DIR"/{config,computer/0}
-    cp "$SOURCE_DIR"/test/global.json "$DATA_DIR"/config/global.json
+    cp "$SOURCE_DIR"/installer/global.json "$DATA_DIR"/config/global.json
 
     COMPUTER_DIR="$DATA_DIR/computer/0"
-    cp "$SOURCE_DIR"/test/settings "$COMPUTER_DIR"/.settings
+    cp "$SOURCE_DIR"/installer/settings "$COMPUTER_DIR"/.settings
     mkdir -p "$COMPUTER_DIR"/{startup,lib,bin,etc/unicorn/remotes,etc/unicorn/packages/installed}
     cp "$SOURCE_DIR"/cli/{hoof,unicorntool}.lua "$COMPUTER_DIR"/bin
     cp "$SOURCE_DIR"/cli/{hoof,unicorntool}-completion.lua "$COMPUTER_DIR"/startup/
@@ -19,7 +19,7 @@ function buildDataDir() {
     echo "https://unicornpkg.github.io/unicornpkg-main" > "$COMPUTER_DIR/etc/unicorn/remotes/90-main.txt"
     # add a symlink to ./env, for inspecting the environment
     rm -f "$SOURCE_DIR/test/env"
-    ln -s "$DATA_DIR" "$SOURCE_DIR/test/env"
+    ln -s "$DATA_DIR" "$SOURCE_DIR/installer/env"
 
     echo "$DATA_DIR"
 }
@@ -38,6 +38,15 @@ function runTests() {
     runCraftos \
         --headless \
         --directory "$DATA_DIR"
+}
+
+function buildInstaller() {
+    DATA_DIR="$(buildDataDir)"
+    cp "$SOURCE_DIR/installer/startup.lua" "$DATA_DIR/computer/0/startup/zzz-build-installer.lua"
+    runCraftos \
+        --headless \
+        --directory "$DATA_DIR"
+    cp "$DATA_DIR/computer/0/install.lua.sfx" "$SOURCE_DIR/installer"
 }
 
 function runDevenv() {

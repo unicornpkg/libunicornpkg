@@ -16,13 +16,18 @@ lint:
 
 test:
     #!/usr/bin/env bash
-    . ./test/env.sh
+    . ./installer/env.sh
     runTests
+
+installer:
+    #!/usr/bin/env bash
+    . ./installer/env.sh
+    buildInstaller
 
 develop:
     #!/usr/bin/env bash
     set -euo pipefail
-    . ./test/env.sh
+    . ./installer/env.sh
     runDevenv
 
 docs *SPHINXOPTS:
@@ -57,7 +62,7 @@ release new_version:
 
     echo "Now, run just release-publish if everything is okay!"
 
-release-publish new_version:
+release-publish new_version: installer
     git push
     git push --tag
-    gh release create "v{{ new_version }}" --title "v{{ new_version }}" --notes-file ./.changelog-blurb.md
+    gh release create "v{{ new_version }}" installer/install.lua.sfx installer/install.lua --title "v{{ new_version }}" --notes-file ./.changelog-blurb.md

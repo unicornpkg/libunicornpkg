@@ -1,7 +1,8 @@
 doc/
 .direnv
 tap_results.txt
-/test/env
+/installer/env
+*.sfx
 docs/_build
 docs/api
 docs/.venv
