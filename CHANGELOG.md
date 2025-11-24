@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 - When searching the local machine for available remotes, it now also searches `/rom/config/unicorn/remotes`.
+- When a file ending in `.lua` contains `require`, we now add a line to the top of the file that patches
+  `package.path` to add `/lib` to the search path.
 - SHA-256 hash validation now uses [CCryptoLib](https://github.com/migeyel/ccryptolib).
   libunicornpkg no longer depends on `anavrins-sha256`.
 

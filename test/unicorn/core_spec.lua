@@ -129,6 +129,25 @@ describe("core", function()
 		expect(fs.exists("/lib/test-sha256-invalid.lua")):equals(false)
 	end)
 
+	it("unicorn.core.install patches package.path", function()
+		local unicornCore = require("unicorn.core")
+
+		local package = {}
+		package.pkgType = "local.string"
+		package.unicornSpec = "v1.0.0"
+		package.name = "test-package-path-patched"
+		package.version = "0.0.1"
+		package.instdat = {}
+		package.instdat.filemaps = {}
+		package.instdat.filemaps["return require('hi') + 1"] = "/tmp/test-package-path-patched.lua"
+		package.instdat.filemaps["return 1"] = "/lib/hi.lua"
+
+		expect(unicornCore.install(package)):equals(true)
+		expect(fs.exists("/etc/unicorn/packages/installed/test-package-path-patched")):equals(true)
+		expect(require("/tmp/test-package-path-patched")):equals(2)
+		expect(unicornCore.uninstall("test-package-path-patched")):equals(true)
+	end)
+
 	it("core.install replaces an older package with a newer one", function()
 		local unicornCore = require("unicorn.core")
 

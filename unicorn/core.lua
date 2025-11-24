@@ -160,6 +160,17 @@ local function action_make_folders(package_table)
 	end
 end
 
+--- Patches files to have a correct package.path if they contain `require`.
+---@param state table
+local function action_patch_package_path(state)
+	local patch = [[package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path]]
+	for k, v in pairs(state.filemaps) do
+		if k:find("%.lua$") and v:find("require") then
+			state.filemaps[k] = patch .. "\n" .. v
+		end
+	end
+end
+
 --- Installs a package from a package table.
 ---
 --- Example
@@ -201,6 +212,7 @@ function unicorn.core.install(package_table)
 	-- modular provider loading and usage
 	action_modular_providers(state, package_table)
 	action_check_hashes(state, package_table)
+	action_patch_package_path(state)
 
 	install_filemaps(state)
 	action_script(package_table, "postinstall")
