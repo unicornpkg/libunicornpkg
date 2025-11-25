@@ -14,4 +14,4 @@ This installation method requires the `http` API to be available.
 
 ## Through a datapack
 
-If you want to make unicornpkg available on all computers, [there is a datapack available](https://github.com/unicornpkg/libunicornpkg/releases/latest/download/datapack.zip). See [this guide on `minecraft.wiki` for information on how to install datapacks](https://minecraft.fandom.com/wiki/Tutorials/Installing_a_data_pack).
+If you want to make unicornpkg available on all computers, [there is a datapack available](https://github.com/unicornpkg/libunicornpkg/releases/latest/download/datapack.zip). See [this guide on `minecraft.wiki` for information on how to install datapacks](https://minecraft.wiki/wiki/Tutorials/Installing_a_data_pack).
