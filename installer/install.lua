@@ -20,3 +20,9 @@ unicorn.core.install(
 unicorn.remote.install("semver")
 unicorn.remote.install("ccryptolib")
 unicorn.remote.install("unicorn-cli")
+
+print("Thank you! unicornpkg is done installing!")
+print("If you use and enjoy unicornpkg, consider giving us a star on GitHub:")
+print("https://github.com/unicornpkg/libunicornpkg")
+print("It helps the maintainer(s) know that they should keep developing this project.")
+
