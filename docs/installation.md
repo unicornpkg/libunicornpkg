@@ -16,6 +16,6 @@ This installation method requires the `http` API to be available.
 
 If you want to make unicornpkg available on all computers, [there is a datapack available](https://github.com/unicornpkg/libunicornpkg/releases/latest/download/datapack.zip). See [this guide on `minecraft.wiki` for information on how to install datapacks](https://minecraft.wiki/wiki/Tutorials/Installing_a_data_pack).
 
-### Through Modrinth
+### From Modrinth and CurseForge
 
-The datapack is also available [through Modrinth](https://modrinth.com/project/l8CMTDjk). Many Minecraft launchers support installing datapacks directly from Modrinth; consult your launcher's documentation.
+The datapack is also available [from Modrinth](https://modrinth.com/project/l8CMTDjk) and [CurseForge](https://www.curseforge.com/projects/1593742). Many Minecraft launchers support installing datapacks directly from these platforms; consult your launcher's documentation.
