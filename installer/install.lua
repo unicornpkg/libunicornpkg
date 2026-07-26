@@ -6,7 +6,7 @@ shell.run(
 	"wget https://github.com/unicornpkg/libunicornpkg/releases/latest/download/install.lua.sfx /tmp/install.lua.sfx"
 )
 assert(shell.run("/tmp/install.lua.sfx /"), "/tmp/install.lua.sfx did not finish, exiting...")
-shell.run("rm /tmp/install.lua.sfx")
+fs.delete("/tmp/install.lua.sfx")
 
 package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 local unicorn = require("unicorn")
