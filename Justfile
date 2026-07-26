@@ -67,3 +67,5 @@ release-publish new_version: installer
     git push
     git push --tag
     gh release create "v{{ new_version }}" installer/install.lua.sfx installer/install.lua installer/datapack.zip --title "v{{ new_version }}" --notes-file ./.changelog-blurb.md
+    echo "Upload to Modrinth manually: https://modrinth.com/datapack/unicornpkg/settings/versions"
+    echo "Upload to CurseForge manually: https://authors.curseforge.com/#/projects/1593742/files/create"
