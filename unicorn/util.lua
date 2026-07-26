@@ -111,7 +111,18 @@ unicorn.util.sandbox_env = {
 ---@param input string Lua code to evaluate
 ---@return function
 function unicorn.util.evaluateInSandbox(input)
-	return load(input, "sandbox_content", "t", unicorn.util.sandbox_env)
+	local context_label = "sandbox_content"
+	if type(load) == "function" then
+		return load(input, context_label, "t", unicorn.util.sandbox_env)
+	else
+		unicorn.util.debug("load is undefined, attempting to use loadstring")
+		local func, err = loadstring(input, context_label)
+		if not func then
+			error("while trying to evaluate input: " .. err)
+		end
+		setfenv(func, unicorn.util.sandbox_env)
+		return func
+	end
 end
 
 --- Run string.gsub on a particular file
