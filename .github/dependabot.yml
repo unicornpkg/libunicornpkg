@@ -4,6 +4,10 @@
 
 version: 2
 updates:
+  - package-ecosystem: "nix"
+    directory: "/"
+    schedule:
+      interval: "monthly"
   - package-ecosystem: "github-actions"
     directory: ".github/workflows"
     schedule:
@@ -11,7 +15,11 @@ updates:
   - package-ecosystem: "npm"
     directory: "ts-types"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    groups:
+      ts-types:
+        patterns:
+          - "*"
   - package-ecosystem: "gitsubmodule"
     directory: "vendor"
     schedule:
