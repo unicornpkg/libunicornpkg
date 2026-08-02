@@ -24,6 +24,14 @@ updates:
       ts-types:
         patterns:
           - "*"
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      docs:
+        patterns:
+          - "*"
   - package-ecosystem: "gitsubmodule"
     directory: "vendor"
     schedule:
