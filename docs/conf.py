@@ -81,3 +81,13 @@ lua_ls_apidoc_roots = {
 
 html_theme = "alabaster"
 html_static_path = ["_static"]
+
+html_js_files = [
+    (
+        "//gc.zgo.at/count.js",
+        {
+            "async": "async",
+            "data-goatcounter": "https://unicornpkg.goatcounter.com/count",
+        },
+    )
+]
