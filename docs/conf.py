@@ -89,6 +89,7 @@ rediraffe_redirects = {
     "providers/org.bitbucket.md": "reference/providers/org.bitbucket.md",
     "providers/org.codeberg.md": "reference/providers/org.codeberg.md",
     "providers/org.softwareheritage.archive.md": "reference/providers/org.softwareheritage.archive.md",
+    "information-for-websites.md": "explanation/information-for-websites.md",
 }
 
 # -- sphinx-lua-ls configuration ---------------------------------------------

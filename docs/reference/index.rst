@@ -5,7 +5,7 @@ This section contains reference documentation of libunicornpkg's interfaces.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: In this section:
 
    Provider reference <providers/index.rst>
    Lua API reference <api/index.rst>
