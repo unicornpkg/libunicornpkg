@@ -61,6 +61,34 @@ myst_enable_extensions = ["colon_fence"]
 rediraffe_redirects = {
     "providers/com.github.releases.md": "providers/com.github.release.md",
     "providers/dev.devbin.md": "changelog.md",
+    "api/index.rst": "reference/api/index.rst",
+    "api/unicorn.core.rst": "reference/api/unicorn.core.rst",
+    "api/unicorn.remote.rst": "reference/api/unicorn.remote.rst",
+    "api/unicorn.util.rst": "reference/api/unicorn.util.rst",
+    "api/unicorn.util.logging.rst": "reference/api/unicorn.util.logging.rst",
+    "cli/changelog.md": "reference/cli/changelog.md",
+    "cli/hoof.md": "reference/cli/hoof.md",
+    "cli/index.rst": "reference/cli/index.rst",
+    "cli/unicorntool.md": "reference/cli/unicorntool.md",
+    "extras/etc-startup.md": "reference/extras/etc-startup.md",
+    "extras/index.rst": "reference/extras/index.rst",
+    "extras/unix-path-bootstrap.md": "reference/extras/unix-path-bootstrap.md",
+    "providers/com.github.gist.md": "reference/providers/com.github.gist.md",
+    "providers/com.github.md": "reference/providers/com.github.md",
+    "providers/com.github.release.md": "reference/providers/com.github.release.md",
+    "providers/com.gitlab.md": "reference/providers/com.gitlab.md",
+    "providers/com.pastebin.md": "reference/providers/com.pastebin.md",
+    "providers/ht.sr.md": "reference/providers/ht.sr.md",
+    "providers/index.rst": "reference/providers/index.rst",
+    "providers/io.sc3.p.md": "reference/providers/io.sc3.p.md",
+    "providers/local.generic.md": "reference/providers/local.generic.md",
+    "providers/local.nothing.md": "reference/providers/local.nothing.md",
+    "providers/local.string.md": "reference/providers/local.string.md",
+    "providers/net.launchpad.git.md": "reference/providers/net.launchpad.git.md",
+    "providers/org.archive.md": "reference/providers/org.archive.md",
+    "providers/org.bitbucket.md": "reference/providers/org.bitbucket.md",
+    "providers/org.codeberg.md": "reference/providers/org.codeberg.md",
+    "providers/org.softwareheritage.archive.md": "reference/providers/org.softwareheritage.archive.md",
 }
 
 # -- sphinx-lua-ls configuration ---------------------------------------------
@@ -73,7 +101,7 @@ lua_ls_apidoc_default_options = {
     "globals": "",
 }
 lua_ls_apidoc_roots = {
-    "unicorn": "api",
+    "unicorn": "reference/api",
 }
 
 # -- Options for HTML output -------------------------------------------------

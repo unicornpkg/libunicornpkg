@@ -15,12 +15,8 @@ The documentation here is limited strictly to the library; please see the main w
    :caption: Contents:
 
    installation.md
-   cli/index.rst
-   providers/index.rst
-   api/index.rst
+   reference/index.rst
    TypeScript to Lua types <tstl-types.md>
-   extras/index.rst
-   debugging.rst
    information-for-websites.md
    changelog.md
    License <license.md>

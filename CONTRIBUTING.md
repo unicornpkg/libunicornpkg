@@ -32,6 +32,13 @@ We use McFly for unit tests. Documentation for McFly is sparse, but the source c
 
 Please add unit tests when adding a new feature. Many examples can be found in `test/unicorn`.
 
+## Debug logs
+
+Very verbose debug logs can be enabled by setting
+`_G.UNICORN_DEBUG_DO_NOT_USE_IN_PRODUCTION_CODE = 1`.
+
+**This interface should not be assumed to be stable.**
+
 ## Third-party dependencies
 
 Please refrain from adding third-party dependencies that are required to use `unicorn.core`, `unicorn.remote`, `unicorn.util`, and `unicorn.provider.com.github` as that requires us to bootstrap that dependency without using Unicornpkg packages.

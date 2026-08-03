@@ -6,5 +6,5 @@ tap_results.txt
 /installer/datapack.zip
 *.sfx
 docs/_build
-docs/api
+docs/reference/api
 docs/.venv
