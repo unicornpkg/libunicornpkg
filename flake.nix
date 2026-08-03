@@ -60,6 +60,10 @@
         in
         {
           default = pkgs.mkShellNoCC {
+	    env = {
+	      # Workaround for https://github.com/sphinx-doc/sphinx/issues/11739
+	      LC_ALL = "C.UTF-8";
+	    };
             packages = with pkgs; [
               just
               git
