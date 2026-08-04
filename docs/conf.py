@@ -19,7 +19,7 @@ release = version = re.sub(
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["myst_parser", "sphinx_lua_ls", "sphinxext.rediraffe"]
+extensions = ["myst_parser", "sphinx_lua_ls", "sphinxext.rediraffe", "sphinx_design"]
 
 templates_path = ["_templates"]
 exclude_patterns = [".venv"]

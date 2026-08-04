@@ -5,6 +5,7 @@ requires-python = ">=3.13"
 dependencies = [
   "myst-parser>=5.1.0",
   "sphinx",
+  "sphinx-design>=0.7.0",
   "sphinx_lua_ls>=3.7.0",
   "sphinxext-rediraffe>=0.3.0",
 ]

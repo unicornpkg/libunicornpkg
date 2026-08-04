@@ -3,12 +3,22 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-libunicornpkg documentation
-===========================
+Welcome to the unicornpkg docs!
+===============================
 
-This is the documentation for libunicornpkg, the library containing the *de facto* implementation of `unicornpkg <https://unicornpkg.madefor.cc>`_.
+unicornpkg is a package manager for ComputerCraft that aims to be reliable, long-lived, and thoughtfully designed.
 
-The documentation here is limited strictly to the library; please see the main website for other documentation.
+.. raw:: html
+
+   <!-- Terrible hack incoming! -->
+   <div style="display:flex; flex-wrap:nowrap; gap:3px; align-items:flex-start;">
+     <a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary m-0 p-0"
+        href="#installation">Installation</a>
+
+     <a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-secondary m-0 p-0"
+        href="https://github.com/unicornpkg/libunicornpkg">GitHub</a>
+   </div>
+
 
 .. toctree::
    :maxdepth: 2
