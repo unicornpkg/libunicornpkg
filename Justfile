@@ -1,6 +1,6 @@
 #!/usr/bin/env just --justfile
 
-set export := true
+set export
 
 default: lint test
 
