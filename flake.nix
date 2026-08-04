@@ -60,31 +60,33 @@
         in
         {
           default = pkgs.mkShellNoCC {
-	    env = {
-	      # Workaround for https://github.com/sphinx-doc/sphinx/issues/11739
-	      LC_ALL = "C.UTF-8";
-	    };
+            env = {
+              # Workaround for https://github.com/sphinx-doc/sphinx/issues/11739
+              LC_ALL = "C.UTF-8";
+            };
             packages = with pkgs; [
-              just
-              git
+              # keep-sorted start
               busybox
-              gnused
-              gh
               craftos-pc
+              gh
+              git
+              gnused
+              just
+              keep-sorted # formatter
+              lua-language-server # needed for docs
+              nixfmt # formatter
+              nodejs_24
+              prettier # formatter
+              python3Packages.uv
+              ruff # formatter
               selene
               shellcheck
+              shfmt # formatter
               sphinx-lint
-              python3Packages.uv
-              lua-language-server # needed for docs
-              nodejs_24
-              # formatters
-              treefmt
-              stylua
-              taplo
-              nixfmt
-              prettier
-              shfmt
-              ruff
+              stylua # formatter
+              taplo # formatter
+              treefmt # formatter
+              # keep-sorted end
             ];
           };
         }
