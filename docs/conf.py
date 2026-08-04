@@ -91,6 +91,7 @@ rediraffe_redirects = {
     "providers/org.codeberg.md": "reference/providers/org.codeberg.md",
     "providers/org.softwareheritage.archive.md": "reference/providers/org.softwareheritage.archive.md",
     "information-for-websites.md": "explanation/information-for-websites.md",
+    "installation.md": "how-tos/installation.md",
 }
 
 # -- sphinx-lua-ls configuration ---------------------------------------------
