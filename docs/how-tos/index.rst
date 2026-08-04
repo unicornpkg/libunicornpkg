@@ -8,3 +8,6 @@ These are (mostly) shorter guides for when you're trying to do something specifi
    :caption: In this section:
 
    installation.md
+   create-a-package.md
+   install-package-from-file.md
+   create-package-remote.md

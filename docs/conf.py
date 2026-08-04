@@ -92,6 +92,8 @@ rediraffe_redirects = {
     "providers/org.softwareheritage.archive.md": "reference/providers/org.softwareheritage.archive.md",
     "information-for-websites.md": "explanation/information-for-websites.md",
     "installation.md": "how-tos/installation.md",
+    "how-tos/install-raw-package.md": "how-tos/install-package-from-file.md",
+    "how-tos/build-a-package.md": "how-tos/create-a-package.md",
 }
 
 # -- sphinx-lua-ls configuration ---------------------------------------------
