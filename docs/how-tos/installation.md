@@ -2,15 +2,13 @@
 
 ## On a computer
 
+:::{warning}
+This installation method requires the `http` API to be available.
+:::
+
 1. Execute `wget run https://github.com/unicornpkg/libunicornpkg/releases/latest/download/install.lua`.
 2. Add `/bin` to your `shell.path`. There is a script to bootstrap this, available by executing `/bin/hoof install unix-path-bootstrap`, and then restarting your system.
 3. You're done! Check out [other how-tos](https://unicornpkg.madefor.cc/how-tos/installation.html).
-
-:::{admonition} `http` API required
-:class: warning
-
-This installation method requires the `http` API to be available.
-:::
 
 ## Through a datapack
 
