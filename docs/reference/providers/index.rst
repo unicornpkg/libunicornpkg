@@ -8,8 +8,9 @@ To use these in a package, set the `package.pkgType` to the provider's identifie
    :maxdepth: 1
    :caption: Available providers:
 
-   ./com.github.md
+   .. keep-sorted start
    ./com.github.gist.md
+   ./com.github.md
    ./com.github.release.md
    ./com.gitlab.md
    ./com.pastebin.md
@@ -23,3 +24,4 @@ To use these in a package, set the `package.pkgType` to the provider's identifie
    ./org.bitbucket.md
    ./org.codeberg.md
    ./org.softwareheritage.archive.md
+   .. keep-sorted end

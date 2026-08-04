@@ -14,9 +14,11 @@ package.path = "/lib/?.lua;/lib/?;/lib/?/init.lua;" .. package.path
 --- !doctype module
 --- @class unicorn
 local unicorn = {}
+-- keep-sorted start
 unicorn.constants = require("unicorn.constants")
 unicorn.core = require("unicorn.core")
-unicorn.util = require("unicorn.util")
 unicorn.remote = require("unicorn.remote")
+unicorn.util = require("unicorn.util")
+-- keep-sorted end
 
 return unicorn

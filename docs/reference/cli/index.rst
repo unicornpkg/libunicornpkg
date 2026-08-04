@@ -10,8 +10,10 @@ libunicornpkg comes with two command-line tools.
    :maxdepth: 2
    :caption: Available command-line tools:
 
+   .. keep-sorted start
    hoof.md
    unicorntool.md
+   .. keep-sorted end
 
 These tools are meant to be used by humans.
 :doc:`The API </api>` should be used when automation is wanted.

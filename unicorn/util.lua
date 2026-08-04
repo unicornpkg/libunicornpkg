@@ -48,30 +48,9 @@ end
 unicorn.util.sandbox_env = {
 	---@diagnostic disable: deprecated
 	-- Source: https://stackoverflow.com/a/6982080 (with gentle modifications)
+	-- keep-sorted start block=yes
 	_HOST = _HOST,
 	ipairs = ipairs,
-	next = next,
-	pairs = pairs,
-	tonumber = tonumber,
-	tostring = tostring,
-	type = type,
-	unpack = unpack,
-	string = {
-		byte = string.byte,
-		char = string.char,
-		find = string.find,
-		format = string.format,
-		gmatch = string.gmatch,
-		gsub = string.gsub,
-		len = string.len,
-		lower = string.lower,
-		match = string.match,
-		rep = string.rep,
-		reverse = string.reverse,
-		sub = string.sub,
-		upper = string.upper,
-	},
-	table = { insert = table.insert, maxn = table.maxn, remove = table.remove, sort = table.sort },
 	math = {
 		abs = math.abs,
 		acos = math.acos,
@@ -102,6 +81,29 @@ unicorn.util.sandbox_env = {
 		tan = math.tan,
 		tanh = math.tanh,
 	},
+	next = next,
+	pairs = pairs,
+	string = {
+		byte = string.byte,
+		char = string.char,
+		find = string.find,
+		format = string.format,
+		gmatch = string.gmatch,
+		gsub = string.gsub,
+		len = string.len,
+		lower = string.lower,
+		match = string.match,
+		rep = string.rep,
+		reverse = string.reverse,
+		sub = string.sub,
+		upper = string.upper,
+	},
+	table = { insert = table.insert, maxn = table.maxn, remove = table.remove, sort = table.sort },
+	tonumber = tonumber,
+	tostring = tostring,
+	type = type,
+	unpack = unpack,
+	-- keep-sorted end
 	---@diagnostic enable: deprecated
 }
 

@@ -43,3 +43,6 @@ includes = ["*.py"]
 command = "just"
 options = ["--unstable", "--format", "--justfile"]
 includes = ["Justfile"]
+[formatter.keep-sorted]
+command = "keep-sorted"
+includes = ["*"]

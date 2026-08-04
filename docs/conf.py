@@ -60,13 +60,12 @@ myst_enable_extensions = ["colon_fence"]
 # -- rediraffe configuration -------------------------------------------------
 
 rediraffe_redirects = {
-    "providers/com.github.releases.md": "providers/com.github.release.md",
-    "providers/dev.devbin.md": "changelog.md",
+    # keep-sorted start
     "api/index.rst": "reference/api/index.rst",
     "api/unicorn.core.rst": "reference/api/unicorn.core.rst",
     "api/unicorn.remote.rst": "reference/api/unicorn.remote.rst",
-    "api/unicorn.util.rst": "reference/api/unicorn.util.rst",
     "api/unicorn.util.logging.rst": "reference/api/unicorn.util.logging.rst",
+    "api/unicorn.util.rst": "reference/api/unicorn.util.rst",
     "cli/changelog.md": "reference/cli/changelog.md",
     "cli/hoof.md": "reference/cli/hoof.md",
     "cli/index.rst": "reference/cli/index.rst",
@@ -74,11 +73,17 @@ rediraffe_redirects = {
     "extras/etc-startup.md": "reference/extras/etc-startup.md",
     "extras/index.rst": "reference/extras/index.rst",
     "extras/unix-path-bootstrap.md": "reference/extras/unix-path-bootstrap.md",
+    "how-tos/build-a-package.md": "how-tos/create-a-package.md",
+    "how-tos/install-raw-package.md": "how-tos/install-package-from-file.md",
+    "information-for-websites.md": "explanation/information-for-websites.md",
+    "installation.md": "how-tos/installation.md",
     "providers/com.github.gist.md": "reference/providers/com.github.gist.md",
     "providers/com.github.md": "reference/providers/com.github.md",
     "providers/com.github.release.md": "reference/providers/com.github.release.md",
+    "providers/com.github.releases.md": "providers/com.github.release.md",
     "providers/com.gitlab.md": "reference/providers/com.gitlab.md",
     "providers/com.pastebin.md": "reference/providers/com.pastebin.md",
+    "providers/dev.devbin.md": "changelog.md",
     "providers/ht.sr.md": "reference/providers/ht.sr.md",
     "providers/index.rst": "reference/providers/index.rst",
     "providers/io.sc3.p.md": "reference/providers/io.sc3.p.md",
@@ -90,10 +95,7 @@ rediraffe_redirects = {
     "providers/org.bitbucket.md": "reference/providers/org.bitbucket.md",
     "providers/org.codeberg.md": "reference/providers/org.codeberg.md",
     "providers/org.softwareheritage.archive.md": "reference/providers/org.softwareheritage.archive.md",
-    "information-for-websites.md": "explanation/information-for-websites.md",
-    "installation.md": "how-tos/installation.md",
-    "how-tos/install-raw-package.md": "how-tos/install-package-from-file.md",
-    "how-tos/build-a-package.md": "how-tos/create-a-package.md",
+    # keep-sorted end
 }
 
 # -- sphinx-lua-ls configuration ---------------------------------------------
