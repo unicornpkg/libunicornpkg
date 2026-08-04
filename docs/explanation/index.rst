@@ -8,3 +8,4 @@ These are slightly longer, mostly theoretical documents that aim to improve unde
    :caption: In this section:
 
    design-choices.rst
+   information-for-websites.rst
