@@ -116,7 +116,7 @@ lua_ls_apidoc_roots = {
 
 html_theme = "alabaster"
 html_static_path = ["_static"]
-
+html_extra_path = ["CNAME"]
 html_js_files = [
     (
         "//gc.zgo.at/count.js",
