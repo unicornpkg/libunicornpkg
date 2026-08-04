@@ -44,6 +44,7 @@ html_theme_options = {
     "extra_nav_links": {
         "Report a problem": "https://github.com/unicornpkg/libunicornpkg/issues/new?template=bug_report.md",
         "Suggest a feature": "https://github.com/unicornpkg/libunicornpkg/issues/new?template=feature_request.md",
+        "Join our Discord": "https://discord.gg/Xs3VKNJrMb",
         "Default package repository": "https://github.com/unicornpkg/unicornpkg-main",
     },
     "github_user": "unicornpkg",
