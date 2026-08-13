@@ -13,7 +13,7 @@ unicornpkg is a package manager for ComputerCraft that aims to be reliable, long
    <!-- Terrible hack incoming! -->
    <div style="display:flex; flex-wrap:nowrap; gap:3px; align-items:flex-start;">
      <a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary m-0 p-0"
-        href="#installation">Installation</a>
+        href="installation.html">Installation</a>
 
      <a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-secondary m-0 p-0"
         href="https://github.com/unicornpkg/libunicornpkg">GitHub</a>
