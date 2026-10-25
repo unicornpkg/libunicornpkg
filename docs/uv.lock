@@ -181,7 +181,7 @@ requires-dist = [
     { name = "myst-parser", specifier = ">=5.1.0" },
     { name = "sphinx" },
     { name = "sphinx-design", specifier = ">=0.7.0" },
-    { name = "sphinx-lua-ls", specifier = ">=3.7.0" },
+    { name = "sphinx-lua-ls", specifier = ">=3.12.1" },
     { name = "sphinxext-rediraffe", specifier = ">=0.3.0" },
 ]
 
@@ -490,16 +490,16 @@ wheels = [
 
 [[package]]
 name = "sphinx-lua-ls"
-version = "3.12.0"
+version = "3.12.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pygithub" },
     { name = "requests" },
     { name = "sphinx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e9/0b/ef708ee31f8e7ffd68402dea7ffe7cc21f542180c2aa81802ba91fe430f8/sphinx_lua_ls-3.12.0.tar.gz", hash = "sha256:9f31a5f5da4d4431acc04cf7e9b2061ba8b0cddb62c238bd1baf066ef983577f", size = 174613, upload-time = "2026-05-12T18:49:21.728Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/16/36/80d91b31a5c486fe454fef243cc76dcd17e9b3227deb6c511cb80ab2c75e/sphinx_lua_ls-3.12.1.tar.gz", hash = "sha256:3f75ed8bad829d99d6a77e4045e3b53caca4d661e9b1c3aa8d19cb447c3c74b0", size = 195311, upload-time = "2026-09-08T09:48:08.59Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f3/e6/397a49b8281b72fd9c49420b77d36753cc13c6edef7077cbf8d09bd6164b/sphinx_lua_ls-3.12.0-py3-none-any.whl", hash = "sha256:7512b892ef993710af9292e29a5803f08f7bb0dc072bf7ded1d1fe69560980d9", size = 53447, upload-time = "2026-05-12T18:49:20.679Z" },
+    { url = "https://files.pythonhosted.org/packages/f4/04/fac28c941143a7fb6803b2cd4cea1d62faae9d6489e784e38f954dafdf7d/sphinx_lua_ls-3.12.1-py3-none-any.whl", hash = "sha256:be7dca12d3e686f1c9bab3f9caae4d11e192aa025b4c1e1fe9fdda6c8cef196e", size = 53464, upload-time = "2026-09-08T09:48:07.407Z" },
 ]
 
 [[package]]
