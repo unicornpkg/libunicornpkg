@@ -13,11 +13,11 @@ wheels = [
 
 [[package]]
 name = "babel"
-version = "2.17.0"
+version = "2.18.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/7d/6b/d52e42361e1aa00709585ecc30b3f9684b3ab62530771402248b1b1d6240/babel-2.17.0.tar.gz", hash = "sha256:0c54cffb19f690cdcc52a3b50bcbf71e07a808d1c80d549f2459b9d2cf0afb9d", size = 9951852, upload-time = "2025-02-01T15:17:41.026Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7d/b2/51899539b6ceeeb420d40ed3cd4b7a40519404f9baf3d4ac99dc413a834b/babel-2.18.0.tar.gz", hash = "sha256:b80b99a14bd085fcacfa15c9165f651fbb3406e66cc603abf11c5750937c992d", size = 9959554, upload-time = "2026-02-01T12:30:56.078Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b7/b8/3fe70c75fe32afc4bb507f75563d39bc5642255d1d94f1f23604725780bf/babel-2.17.0-py3-none-any.whl", hash = "sha256:4d0b53093fdfb4b21c92b5213dba5a1b23885afa8383709427046b21c366e5f2", size = 10182537, upload-time = "2025-02-01T15:17:37.39Z" },
+    { url = "https://files.pythonhosted.org/packages/77/f5/21d2de20e8b8b0408f0681956ca2c69f1320a3848ac50e6e7f39c6159675/babel-2.18.0-py3-none-any.whl", hash = "sha256:e2b422b277c2b9a9630c1d7903c2a00d0830c409c59ac8cae9081c92f1aeba35", size = 10196845, upload-time = "2026-02-01T12:30:53.445Z" },
 ]
 
 [[package]]
@@ -181,7 +181,7 @@ requires-dist = [
     { name = "myst-parser", specifier = ">=5.1.0" },
     { name = "sphinx" },
     { name = "sphinx-design", specifier = ">=0.7.0" },
-    { name = "sphinx-lua-ls", specifier = ">=3.7.0" },
+    { name = "sphinx-lua-ls", specifier = ">=3.12.1" },
     { name = "sphinxext-rediraffe", specifier = ">=0.3.0" },
 ]
 
@@ -450,7 +450,7 @@ wheels = [
 
 [[package]]
 name = "sphinx"
-version = "9.1.0"
+version = "9.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "alabaster" },
@@ -471,9 +471,9 @@ dependencies = [
     { name = "sphinxcontrib-qthelp" },
     { name = "sphinxcontrib-serializinghtml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cd/bd/f08eb0f4eed5c83f1ba2a3bd18f7745a2b1525fad70660a1c00224ec468a/sphinx-9.1.0.tar.gz", hash = "sha256:7741722357dd75f8190766926071fed3bdc211c74dd2d7d4df5404da95930ddb", size = 8718324, upload-time = "2025-12-31T15:09:27.646Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/64/d4/413466f0be8b1cb0e3e43893a148b96d7462d0923d82b4166b21afc5f30c/sphinx-9.2.0.tar.gz", hash = "sha256:90470459f3cab15d9dfed146c71cf77694b0445df17b2e0e69059cb9f7fc9ee4", size = 8782438, upload-time = "2026-10-21T00:05:15.019Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/73/f7/b1884cb3188ab181fc81fa00c266699dab600f927a964df02ec3d5d1916a/sphinx-9.1.0-py3-none-any.whl", hash = "sha256:c84fdd4e782504495fe4f2c0b3413d6c2bf388589bb352d439b2a3bb99991978", size = 3921742, upload-time = "2025-12-31T15:09:25.561Z" },
+    { url = "https://files.pythonhosted.org/packages/c4/28/a0c50761cd215b7042f4bc617a6bc5c0cd7be62f75bc908e169e28a4d21e/sphinx-9.2.0-py3-none-any.whl", hash = "sha256:4c3ec13b612712c0d3ce4cbdd9e3eb91e68577e07a8e31f32f21cf178453578c", size = 3925388, upload-time = "2026-10-21T00:05:12.241Z" },
 ]
 
 [[package]]
@@ -490,16 +490,16 @@ wheels = [
 
 [[package]]
 name = "sphinx-lua-ls"
-version = "3.12.0"
+version = "3.12.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pygithub" },
     { name = "requests" },
     { name = "sphinx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e9/0b/ef708ee31f8e7ffd68402dea7ffe7cc21f542180c2aa81802ba91fe430f8/sphinx_lua_ls-3.12.0.tar.gz", hash = "sha256:9f31a5f5da4d4431acc04cf7e9b2061ba8b0cddb62c238bd1baf066ef983577f", size = 174613, upload-time = "2026-05-12T18:49:21.728Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/16/36/80d91b31a5c486fe454fef243cc76dcd17e9b3227deb6c511cb80ab2c75e/sphinx_lua_ls-3.12.1.tar.gz", hash = "sha256:3f75ed8bad829d99d6a77e4045e3b53caca4d661e9b1c3aa8d19cb447c3c74b0", size = 195311, upload-time = "2026-09-08T09:48:08.59Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f3/e6/397a49b8281b72fd9c49420b77d36753cc13c6edef7077cbf8d09bd6164b/sphinx_lua_ls-3.12.0-py3-none-any.whl", hash = "sha256:7512b892ef993710af9292e29a5803f08f7bb0dc072bf7ded1d1fe69560980d9", size = 53447, upload-time = "2026-05-12T18:49:20.679Z" },
+    { url = "https://files.pythonhosted.org/packages/f4/04/fac28c941143a7fb6803b2cd4cea1d62faae9d6489e784e38f954dafdf7d/sphinx_lua_ls-3.12.1-py3-none-any.whl", hash = "sha256:be7dca12d3e686f1c9bab3f9caae4d11e192aa025b4c1e1fe9fdda6c8cef196e", size = 53464, upload-time = "2026-09-08T09:48:07.407Z" },
 ]
 
 [[package]]
